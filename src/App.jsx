@@ -1,3 +1,4 @@
+import Header from "./components/Header/Header";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   return (
     <div>
-      <h1>MERN App</h1>
+      <Header></Header>
       <p>Ответ от бэкенда: {data}</p>
     </div>
   );
