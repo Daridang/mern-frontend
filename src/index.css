@@ -1,0 +1,21 @@
+@import "./reset.css";
+
+:root {
+  --color-btn-bg: #ccecde;
+  --color-text: #235372;
+}
+
+body {
+  font-family: "Exo 2", sans-serif;
+  color: var(--color-text);
+}
+
+h1 {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+}
+
+.container {
+  max-width: 970px;
+  padding: 0 15px;
+}
