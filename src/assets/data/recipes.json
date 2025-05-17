@@ -8,7 +8,7 @@
         "serving_size": "2 rolls",
         "prep_time": "25 minutes",
         "temperature": "served chilled",
-        "image_url": "galactic_sushi.webp",
+        "image": "/images/galactic_sushi.webp",
         "ingredients": {
             "groups": [
                 {
@@ -102,7 +102,7 @@
         "serving_size": "1 bowl",
         "prep_time": "15 minutes",
         "temperature": "served hot",
-        "image_url": "neon_noodles.webp",
+        "image": "/images/neon_noodles.webp",
         "ingredients": {
             "groups": [
                 {
@@ -191,7 +191,7 @@
         "serving_size": "1 burger",
         "prep_time": "20 minutes",
         "temperature": "served hot",
-        "image_url": "astro_burger.webp",
+        "image": "/images/astro_burger.webp",
         "ingredients": {
             "groups": [
                 {
@@ -276,7 +276,7 @@
         "serving_size": "1 shard",
         "prep_time": "10 minutes (plus 2 hours freezing)",
         "temperature": "-20°C",
-        "image_url": "cryo_desert.webp",
+        "image": "/images/cryo_desert.webp",
         "ingredients": {
             "groups": [
                 {
@@ -338,7 +338,7 @@
         "serving_size": "1 shard",
         "prep_time": "12 minutes (plus 2 hours freezing)",
         "temperature": "-20°C",
-        "image_url": "cryo_desert_pink.webp",
+        "image": "/images/cryo_desert_pink.webp",
         "ingredients": {
             "groups": [
                 {
@@ -409,7 +409,7 @@
         "serving_size": "1 module",
         "prep_time": "30 minutes",
         "temperature": "served fresh",
-        "image_url": "3d_printed_live.webp",
+        "image": "/images/3d_printed_live.webp",
         "ingredients": {
             "groups": [
                 {
@@ -480,7 +480,7 @@
         "serving_size": "50 ml",
         "prep_time": "4 minutes",
         "temperature": "70°C",
-        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "image": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
         "ingredients": {
             "groups": [
                 {

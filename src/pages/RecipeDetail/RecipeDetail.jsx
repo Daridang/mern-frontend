@@ -15,35 +15,22 @@ import sampleData from "../../assets/data/recipes.json";
 export default function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const found = sampleData.find((r) => String(r.id) === id);
-    if (found) {
-      setRecipe(found);
-      setError("");
-    } else {
-      setError("Рецепт не найден");
-    }
+    setRecipe(found || null);
   }, [id]);
 
-  if (error)
-    return (
-      <div className={styles.wrap}>
-        <p>{error}</p>
-      </div>
-    );
-  if (!recipe)
-    return (
-      <div className={styles.wrap}>
-        <p>Загрузка...</p>
-      </div>
-    );
-
+  if (!recipe) return <p>Загрузка или рецепт не найден</p>;
   return (
     <div className={styles.wrap}>
       <div className="container">
         <TitleSection title={recipe.title} description={recipe.description} />
+        <img
+          src={recipe.image}
+          alt={recipe.title}
+          className={styles.mainImage}
+        />
         <MetaInfo
           category={recipe.category}
           yieldInfo={recipe.yield}
