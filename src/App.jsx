@@ -2,6 +2,7 @@ import Header from "./components/Header/Header";
 import { useEffect, useState } from "react";
 import Hero from "./components/Hero/Hero";
 import Features from "./components/Features/Features";
+import RecipesCatalog from "./components/RecipesCatalog/RecipesCatalog";
 
 function App() {
   const [data, setData] = useState("");
@@ -24,6 +25,7 @@ function App() {
       <Header></Header>
       <Hero></Hero>
       <Features></Features>
+      <RecipesCatalog></RecipesCatalog>
       <p>Ответ от бэкенда: {data}</p>
     </div>
   );
