@@ -2,12 +2,12 @@
 import React from "react";
 import styles from "./RecipesCatalog.module.css";
 
-import galacticSushi from "../../assets/galactic_sushi.webp";
-import neonNoodles from "../../assets/neon_noodles.webp";
-import astroBurger from "../../assets/astro_burger.webp";
-import cryoDesert from "../../assets/cryo_desert.webp";
-import cryoDesertPink from "../../assets/cryo_desert_pink.webp";
-import printedLive3D from "../../assets/3d_printed_live.webp";
+import galacticSushi from "../../../assets/galactic_sushi.webp";
+import neonNoodles from "../../../assets/neon_noodles.webp";
+import astroBurger from "../../../assets/astro_burger.webp";
+import cryoDesert from "../../../assets/cryo_desert.webp";
+import cryoDesertPink from "../../../assets/cryo_desert_pink.webp";
+import printedLive3D from "../../../assets/3d_printed_live.webp";
 
 import RecipeCard from "../RecipeCard/RecipeCard";
 

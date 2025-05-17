@@ -1,0 +1,953 @@
+[
+    {
+        "id": 1,
+        "title": "Galactic Sushi",
+        "description": "Interstellar sushi rolls filled with ionized rice and nebula‑marinated fish, garnished with edible star dust.",
+        "category": "sushi",
+        "yield": "8 rolls",
+        "serving_size": "2 rolls",
+        "prep_time": "25 minutes",
+        "temperature": "served chilled",
+        "image_url": "galactic_sushi.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "rice_layer",
+                    "items": [
+                        {
+                            "item": "Ionized sushi rice",
+                            "amount": "200 g"
+                        },
+                        {
+                            "item": "Galactic rice vinegar",
+                            "amount": "2 tbsp"
+                        },
+                        {
+                            "item": "Photon salt",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "filling",
+                    "items": [
+                        {
+                            "item": "Nebula‑marinated tuna",
+                            "amount": "100 g"
+                        },
+                        {
+                            "item": "Quantum avocado slices",
+                            "amount": "50 g"
+                        },
+                        {
+                            "item": "Chrono cucumber ribbons",
+                            "amount": "30 g"
+                        }
+                    ]
+                },
+                {
+                    "name": "toppings",
+                    "items": [
+                        {
+                            "item": "Edible star dust",
+                            "amount": "1 tsp"
+                        },
+                        {
+                            "item": "Micro‑seaweed strands",
+                            "amount": "to garnish"
+                        },
+                        {
+                            "item": "Plasma soy caviar",
+                            "amount": "1 tbsp"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Bamboo rolling mat",
+            "Sharp sushi knife",
+            "Mixing bowl",
+            "Rice paddle"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Cook ionized rice according to instructions and season with vinegar and photon salt.",
+                        "Lay nori sheet on the mat, spread rice in an even layer.",
+                        "Arrange tuna, avocado and cucumber in center of rice.",
+                        "Roll tightly with bamboo mat and seal edge with a grain of rice.",
+                        "Slice into 8 pieces with a sharp, dampened knife.",
+                        "Top each roll with star dust, seaweed strands, and plasma soy caviar."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Serve with neon‑lit wasabi and pickled chronoginger.",
+            "Pair with Nebula Nectar Tea for a complete experience."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 2,
+        "title": "Neon Noodles",
+        "description": "Vibrant glowing noodles tossed in a luminescent citrus‑plasma sauce with bioluminescent veggies.",
+        "category": "noodles",
+        "yield": "2 bowls",
+        "serving_size": "1 bowl",
+        "prep_time": "15 minutes",
+        "temperature": "served hot",
+        "image_url": "neon_noodles.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "noodles",
+                    "items": [
+                        {
+                            "item": "Glowing neon wheat noodles",
+                            "amount": "200 g"
+                        },
+                        {
+                            "item": "Charged water",
+                            "amount": "1 L"
+                        }
+                    ]
+                },
+                {
+                    "name": "sauce",
+                    "items": [
+                        {
+                            "item": "Citrus‑plasma concentrate",
+                            "amount": "50 ml"
+                        },
+                        {
+                            "item": "Synth‑soy glaze",
+                            "amount": "2 tbsp"
+                        },
+                        {
+                            "item": "Photon chili flakes",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "toppings",
+                    "items": [
+                        {
+                            "item": "Bioluminescent broccoli florets",
+                            "amount": "50 g"
+                        },
+                        {
+                            "item": "Quantum tofu cubes",
+                            "amount": "100 g"
+                        },
+                        {
+                            "item": "Edible neon sesame seeds",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Large saucepan",
+            "Colander",
+            "Mixing bowl",
+            "Tongs"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Boil charged water and cook neon noodles for 3 minutes until al dente.",
+                        "Drain noodles and immediately toss in a bowl with citrus‑plasma concentrate and synth‑soy glaze.",
+                        "Stir in photon chili flakes for heat and color contrast.",
+                        "Top with bioluminescent broccoli and quantum tofu.",
+                        "Sprinkle neon sesame seeds before serving."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Garnish with a swirl of luminescent edible oil for extra glow.",
+            "Serve on a black ceramic bowl to enhance neon effect."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 3,
+        "title": "Astro Burger",
+        "description": "Grilled cosmic beef patty served in a zero‑gravity brioche with meteorite aioli and orbital greens.",
+        "category": "burger",
+        "yield": "1 burger",
+        "serving_size": "1 burger",
+        "prep_time": "20 minutes",
+        "temperature": "served hot",
+        "image_url": "astro_burger.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "patty",
+                    "items": [
+                        {
+                            "item": "Cosmic ground nebula beef",
+                            "amount": "150 g"
+                        },
+                        {
+                            "item": "Ionized seasoning blend",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "bun_and_sauces",
+                    "items": [
+                        {
+                            "item": "Zero‑gravity brioche bun",
+                            "amount": "1"
+                        },
+                        {
+                            "item": "Meteorite aioli",
+                            "amount": "2 tbsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "toppings",
+                    "items": [
+                        {
+                            "item": "Orbital lettuce leaves",
+                            "amount": "2 leaves"
+                        },
+                        {
+                            "item": "Lunar tomato slice",
+                            "amount": "2 slices"
+                        },
+                        {
+                            "item": "Plasma onion rings",
+                            "amount": "3 rings"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Grill module",
+            "Spatula",
+            "Mixing bowl"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Season nebula beef with ionized blend and form a 150 g patty.",
+                        "Preheat grill module and cook patty 3 minutes per side for medium rare.",
+                        "Toast zero‑gravity brioche bun lightly on the grill.",
+                        "Spread meteorite aioli on both bun halves.",
+                        "Assemble burger with lettuce, tomato, patty, and onion rings.",
+                        "Serve immediately on a magnetic platter."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Add a side of charged truffle fries for indulgence.",
+            "Offer optional plasma cheese slice melt."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 4,
+        "title": "Cryo Desert",
+        "description": "Ultra‑chilled dessert shards crystallized with cryogenic honey and frozen plasma pearls.",
+        "category": "dessert",
+        "yield": "6 servings",
+        "serving_size": "1 shard",
+        "prep_time": "10 minutes (plus 2 hours freezing)",
+        "temperature": "-20°C",
+        "image_url": "cryo_desert.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "base_shards",
+                    "items": [
+                        {
+                            "item": "Cryogenic honey syrup",
+                            "amount": "100 ml"
+                        },
+                        {
+                            "item": "Nebula sugar crystals",
+                            "amount": "50 g"
+                        }
+                    ]
+                },
+                {
+                    "name": "pearls",
+                    "items": [
+                        {
+                            "item": "Frozen plasma pearls",
+                            "amount": "30 pieces"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Freezer chamber",
+            "Silicone mold",
+            "Spatula"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "assembly",
+                    "steps": [
+                        "Pour honey syrup and sugar crystals into silicone mold.",
+                        "Scatter frozen plasma pearls evenly among syrup.",
+                        "Freeze at -20°C for 2 hours until fully crystallized.",
+                        "Remove shards from mold and serve immediately."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Serve on chilled obsidian plate for dramatic contrast.",
+            "Dust with edible ultraviolet shimmer before plating."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 5,
+        "title": "Cryo Desert Pink",
+        "description": "A rosy‑tinted variant of the ultra‑chilled Cryo Desert, infused with pink plasma and rose‑nebula petals.",
+        "category": "dessert",
+        "yield": "6 servings",
+        "serving_size": "1 shard",
+        "prep_time": "12 minutes (plus 2 hours freezing)",
+        "temperature": "-20°C",
+        "image_url": "cryo_desert_pink.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "base_shards",
+                    "items": [
+                        {
+                            "item": "Cryogenic rose plasma syrup",
+                            "amount": "100 ml"
+                        },
+                        {
+                            "item": "Rose-nebula sugar crystals",
+                            "amount": "50 g"
+                        }
+                    ]
+                },
+                {
+                    "name": "pearls",
+                    "items": [
+                        {
+                            "item": "Frozen plasma pearls",
+                            "amount": "30 pieces"
+                        }
+                    ]
+                },
+                {
+                    "name": "garnish",
+                    "items": [
+                        {
+                            "item": "Dried rose‑nebula petals",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Freezer chamber",
+            "Silicone mold",
+            "Spatula"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "assembly",
+                    "steps": [
+                        "Combine rose plasma syrup and sugar crystals in silicone mold.",
+                        "Nestle frozen plasma pearls and sprinkle petals on top.",
+                        "Freeze at -20°C for 2 hours until solid.",
+                        "Pop out pink shards and serve immediately."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Garnish plate with micro‑roses for elegance.",
+            "Pair with warm cosmic tea to contrast temperatures."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 6,
+        "title": "3D Printed Live",
+        "description": "Biodynamic protein module 3D‑printed from live cultured algae and micro‑plants, served fresh off the bioprinter.",
+        "category": "special",
+        "yield": "1 module",
+        "serving_size": "1 module",
+        "prep_time": "30 minutes",
+        "temperature": "served fresh",
+        "image_url": "3d_printed_live.webp",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "bio_ink",
+                    "items": [
+                        {
+                            "item": "Cultured algae paste",
+                            "amount": "100 ml"
+                        },
+                        {
+                            "item": "Micro‑plant extract",
+                            "amount": "50 ml"
+                        },
+                        {
+                            "item": "Protein scaffold polymer",
+                            "amount": "20 g"
+                        }
+                    ]
+                },
+                {
+                    "name": "finishing",
+                    "items": [
+                        {
+                            "item": "Edible bio‑ink glaze",
+                            "amount": "10 ml"
+                        },
+                        {
+                            "item": "Live microgreens",
+                            "amount": "5 g"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "3D food bioprinter",
+            "Sterile nozzle set",
+            "Incubation chamber"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "printing",
+                    "steps": [
+                        "Load cultured algae paste, micro‑plant extract and polymer into bioprinter cartridges.",
+                        "Select live‑module template and initiate 3D printing sequence at 22°C.",
+                        "After printing, apply bio‑ink glaze over the surface.",
+                        "Incubate printed module for 10 minutes in sterile chamber.",
+                        "Garnish with live microgreens before serving."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Customize shape and nutrient profile via bioprinter settings.",
+            "Consume within 15 minutes for optimal freshness."
+        ],
+        "created_at": {
+            "$date": "2025-05-17T00:00:00Z"
+        }
+    },
+    {
+        "id": 7,
+        "title": "Anti‑Gravity Espresso Blob",
+        "description": "A glossy sphere of concentrated espresso suspended in mid‑air within a transparent vacuum dome, held by magnetic fields.",
+        "category": "beverage",
+        "yield": "1 serving",
+        "serving_size": "50 ml",
+        "prep_time": "4 minutes",
+        "temperature": "70°C",
+        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "espresso_sphere",
+                    "items": [
+                        {
+                            "item": "Ultra‑dense espresso extract",
+                            "amount": "50 ml"
+                        },
+                        {
+                            "item": "Molecular stabilizer gel",
+                            "amount": "2 ml"
+                        }
+                    ]
+                },
+                {
+                    "name": "magnetic_field_fluid",
+                    "items": [
+                        {
+                            "item": "Ionized saline solution",
+                            "amount": "10 ml"
+                        },
+                        {
+                            "item": "Electro‑plasma catalyst",
+                            "amount": "1 drop"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Precision espresso module",
+            "Micro‑spherification kit",
+            "Magnetic levitation cradle",
+            "Transparent vacuum dome"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Pull a 50 ml shot of ultra‑dense espresso extract at 9 bar pressure.",
+                        "Cool the espresso briefly, then mix in 2 ml of molecular stabilizer gel.",
+                        "Using the spherification kit, form a perfect sphere and rinse off excess gel.",
+                        "Activate the magnetic levitation cradle and fine‑tune field strength with electro‑plasma catalyst in the levitation fluid.",
+                        "Place the espresso sphere into the cradle inside the vacuum dome.",
+                        "Seal the dome and engage the magnetic fields to suspend the sphere in mid‑air."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Serve with a measured shimmer of edible metallic dust around the dome’s base.",
+            "Offer alongside a tiny gravity‑blade spoon for interactive sipping."
+        ],
+        "created_at": "2025-05-16T12:15:00Z"
+    },
+    {
+        "id": 8,
+        "title": "Cosmic Intergalactic Cheesecake",
+        "description": "A no-bake cheesecake made with interstellar ingredients like quantum cream cheese and mirror helium glaze, designed for space cafés in distant galaxies.",
+        "category": "cheesecake",
+        "yield": "1 cake",
+        "serving_size": "8–10 slices",
+        "prep_time": "20 minutes (plus 8 hours chilling)",
+        "temperature": "served chilled",
+        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "base",
+                    "items": [
+                        {
+                            "item": "Asteroid cookie dust",
+                            "amount": "200g"
+                        },
+                        {
+                            "item": "Melted meteorite butter core",
+                            "amount": "50ml"
+                        }
+                    ]
+                },
+                {
+                    "name": "filling",
+                    "items": [
+                        {
+                            "item": "Quantum cream cheese",
+                            "amount": "400g"
+                        },
+                        {
+                            "item": "Dark matter cream",
+                            "amount": "200ml"
+                        },
+                        {
+                            "item": "Milky way concentrate",
+                            "amount": "100ml"
+                        },
+                        {
+                            "item": "Chrono-stabilizer orbs",
+                            "amount": "2 pcs"
+                        },
+                        {
+                            "item": "Chronopepper crystals",
+                            "amount": "1 pinch"
+                        },
+                        {
+                            "item": "Black hole extract",
+                            "amount": "2 tsp"
+                        },
+                        {
+                            "item": "Galactic dye",
+                            "amount": "to taste"
+                        }
+                    ]
+                },
+                {
+                    "name": "topping",
+                    "items": [
+                        {
+                            "item": "Mirror helium glaze",
+                            "amount": "enough to cover"
+                        },
+                        {
+                            "item": "First-generation matter sugar stars",
+                            "amount": "to taste"
+                        },
+                        {
+                            "item": "Molecular stardust",
+                            "amount": "to taste"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Mixing bowls",
+            "Whisk or electric mixer",
+            "Springform pan",
+            "Refrigerator or cryo-chamber"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Mix asteroid cookie dust with melted meteorite butter, press into the base of a springform pan, and chill for 15 minutes.",
+                        "In a bowl, blend quantum cream cheese, dark matter cream, and milky way concentrate until smooth.",
+                        "Add chrono-stabilizer orbs, chronopepper, black hole extract, and galactic dye; mix to create a cosmic swirl.",
+                        "Pour the filling onto the chilled base and refrigerate for 8 hours or until fully set.",
+                        "Top with mirror helium glaze, then sprinkle sugar stars and molecular stardust.",
+                        "Serve under the light of a supernova for best visual effect."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Optional: Add a gravity-locked crust edge for stability in orbital environments.",
+            "Enhance color vibrancy with ultraviolet table lighting during serving."
+        ],
+        "created_at": "2025-05-17T00:00:00Z"
+    },
+    {
+        "id": 9,
+        "title": "Galaxy Cupcakes",
+        "description": "Rich chocolate cupcakes with galaxy-colored buttercream and edible glitter, perfect for an intergalactic cafe.",
+        "category": "dessert",
+        "yield": "12 cupcakes",
+        "serving_size": "1 cupcake",
+        "prep_time": "35 minutes",
+        "temperature": "room temperature",
+        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "chocolate_cupcakes",
+                    "items": [
+                        {
+                            "item": "All-purpose flour",
+                            "amount": "1 cup"
+                        },
+                        {
+                            "item": "Granulated sugar",
+                            "amount": "1 cup"
+                        },
+                        {
+                            "item": "Unsweetened cocoa powder",
+                            "amount": "1/3 cup"
+                        },
+                        {
+                            "item": "Baking soda",
+                            "amount": "1 tsp"
+                        },
+                        {
+                            "item": "Salt",
+                            "amount": "1/2 tsp"
+                        },
+                        {
+                            "item": "Buttermilk (or milk + vinegar)",
+                            "amount": "1/2 cup"
+                        },
+                        {
+                            "item": "Vegetable oil",
+                            "amount": "1/2 cup"
+                        },
+                        {
+                            "item": "Egg",
+                            "amount": "1"
+                        },
+                        {
+                            "item": "Vanilla extract",
+                            "amount": "1 tsp"
+                        },
+                        {
+                            "item": "Hot water or coffee",
+                            "amount": "1/2 cup"
+                        }
+                    ]
+                },
+                {
+                    "name": "galaxy_buttercream",
+                    "items": [
+                        {
+                            "item": "Unsalted butter (softened)",
+                            "amount": "1 cup"
+                        },
+                        {
+                            "item": "Powdered sugar (sifted)",
+                            "amount": "3–4 cups"
+                        },
+                        {
+                            "item": "Heavy cream or milk",
+                            "amount": "2–3 tbsp"
+                        },
+                        {
+                            "item": "Vanilla extract",
+                            "amount": "1 tsp"
+                        },
+                        {
+                            "item": "Gel food coloring",
+                            "amount": "black, dark blue, purple, pink"
+                        },
+                        {
+                            "item": "Edible glitter or shimmer dust",
+                            "amount": "to decorate"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Cupcake tray with liners",
+            "Mixing bowls",
+            "Whisk",
+            "Electric mixer",
+            "Piping bags",
+            "Plastic wrap",
+            "Star piping tip",
+            "Wire rack"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "cupcakes",
+                    "steps": [
+                        "Preheat oven to 350°F (175°C). Line a cupcake tray with liners.",
+                        "Whisk together flour, sugar, cocoa powder, baking soda, and salt in a large bowl.",
+                        "Add buttermilk, oil, egg, and vanilla; mix until smooth.",
+                        "Gradually add hot water or coffee; batter will be thin.",
+                        "Fill liners 2/3 full and bake for 18–20 minutes, or until a toothpick comes out clean.",
+                        "Cool cupcakes completely on a wire rack."
+                    ]
+                },
+                {
+                    "name": "buttercream",
+                    "steps": [
+                        "Beat butter until light and fluffy.",
+                        "Gradually add powdered sugar, then vanilla and cream until desired texture is achieved.",
+                        "Divide into 4 bowls and tint each with a different gel color (black, blue, purple, pink).",
+                        "Lay plastic wrap on the counter, pipe a stripe of each color side by side, roll into a log.",
+                        "Place log into a piping bag with a star tip and pipe swirls on cooled cupcakes.",
+                        "Decorate with edible glitter or stars."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Add chocolate ganache centers for a black hole effect.",
+            "Use edible shimmer spray for a glowing nebula look.",
+            "Top with fondant planets or moons for decoration."
+        ],
+        "created_at": "2025-05-17T00:00:00Z"
+    },
+    {
+        "id": 10,
+        "title": "Photon Flux Milkshake",
+        "description": "A luminous, anti-gravity milkshake served in a zero-G tumbler at the Nova Horizon Café.",
+        "category": "milkshake",
+        "yield": "1 shake",
+        "serving_size": "1 interstellar portion",
+        "prep_time": "5 minutes",
+        "temperature": "-5°C (bright glow preserved)",
+        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "base_liquid",
+                    "items": [
+                        {
+                            "item": "Quantum-infused bacchus milk",
+                            "amount": "300 ml"
+                        },
+                        {
+                            "item": "Nebula nectar syrup",
+                            "amount": "50 ml"
+                        }
+                    ]
+                },
+                {
+                    "name": "frozen_core",
+                    "items": [
+                        {
+                            "item": "Anti-gravity ice crystals",
+                            "amount": "4 scoops"
+                        },
+                        {
+                            "item": "Dark matter swirl gelato",
+                            "amount": "2 scoops"
+                        }
+                    ]
+                },
+                {
+                    "name": "mix_ins",
+                    "items": [
+                        {
+                            "item": "Luminescent stardust pearls",
+                            "amount": "1 tbsp"
+                        },
+                        {
+                            "item": "Solarflare citrus shards",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "toppings",
+                    "items": [
+                        {
+                            "item": "Photon foam cloud",
+                            "amount": "a generous dollop"
+                        },
+                        {
+                            "item": "Chromatic comet sprinkles",
+                            "amount": "2 tsp"
+                        },
+                        {
+                            "item": "Edible galaxy shards",
+                            "amount": "5 pieces"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Zero-G tumbler",
+            "Magneto-whisk blender",
+            "Cryo-ladle"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Chill the zero-G tumbler to -10°C in the cryo-chamber.",
+                        "In the magneto-whisk blender, combine bacchus milk and nebula nectar syrup; blend on phase-2 for 7 seconds.",
+                        "Add anti-gravity ice crystals and dark matter swirl gelato; pulse-blend until a smooth, swirling vortex forms.",
+                        "Fold in luminescent stardust pearls and solarflare citrus shards by hand using the cryo-ladle.",
+                        "Pour mixture into chilled tumbler under a soft photon beam to maintain glow intensity.",
+                        "Top with a cloud of photon foam, sprinkle chromatic comet sprinkles, and garnish with edible galaxy shards.",
+                        "Serve immediately in zero-G conditions; sip through a gravitic straw."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Can be served with a glowing anti-spill dome lid for starship travel.",
+            "Pair with asteroid dust cookies for an interplanetary dessert combo."
+        ],
+        "created_at": "2025-05-17T00:00:00Z"
+    },
+    {
+        "id": 11,
+        "title": "Stellar Mist Latte",
+        "description": "A glowing latte infused with nebula extract and topped with a cloud of fluorescent cosmic mist.",
+        "category": "beverage",
+        "yield": "1 cup",
+        "serving_size": "300 ml",
+        "prep_time": "7 minutes",
+        "temperature": "65°C",
+        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "ingredients": {
+            "groups": [
+                {
+                    "name": "espresso_base",
+                    "items": [
+                        {
+                            "item": "Concentrated starfire espresso",
+                            "amount": "60 ml"
+                        },
+                        {
+                            "item": "Nebula nectar extract",
+                            "amount": "15 ml"
+                        }
+                    ]
+                },
+                {
+                    "name": "milk_foam",
+                    "items": [
+                        {
+                            "item": "Frothed lunar milk",
+                            "amount": "200 ml"
+                        },
+                        {
+                            "item": "Photon-charged sugar",
+                            "amount": "1 tsp"
+                        }
+                    ]
+                },
+                {
+                    "name": "cosmic_topping",
+                    "items": [
+                        {
+                            "item": "Fluorescent cosmic mist powder",
+                            "amount": "1 pinch"
+                        },
+                        {
+                            "item": "Edible silver stardust",
+                            "amount": "1/2 tsp"
+                        }
+                    ]
+                }
+            ]
+        },
+        "equipment": [
+            "Espresso module",
+            "Nebula steeping vial",
+            "Milk frother",
+            "Transparent glass mug"
+        ],
+        "instructions": {
+            "groups": [
+                {
+                    "name": "main",
+                    "steps": [
+                        "Heat and extract 60 ml of starfire espresso into the glass mug.",
+                        "Stir in 15 ml of nebula nectar extract until fully dissolved.",
+                        "Froth 200 ml of lunar milk with 1 tsp of photon-charged sugar until airy foam forms.",
+                        "Slowly pour the frothed milk over the espresso base to create layers.",
+                        "Sprinkle a pinch of fluorescent cosmic mist powder on top of the foam.",
+                        "Dust with edible silver stardust for a shimmering finish."
+                    ]
+                }
+            ]
+        },
+        "extras": [
+            "Serve under a soft cyan backlight to enhance the mist glow.",
+            "Pair with meteorite shortbread biscuits for extra crunch."
+        ],
+        "created_at": "2025-05-16T12:00:00Z"
+    }
+]

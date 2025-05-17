@@ -2,9 +2,9 @@
 import React from "react";
 import styles from "./Features.module.css";
 
-import imgIngredients from "../../assets/ingredients.png";
-import imgTechniques from "../../assets/techniques.png";
-import imgFlavors from "../../assets/flavors.png";
+import imgIngredients from "../../../assets/ingredients.png";
+import imgTechniques from "../../../assets/techniques.png";
+import imgFlavors from "../../../assets/flavors.png";
 
 export default function Features() {
   return (

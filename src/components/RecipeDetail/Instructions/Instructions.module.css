@@ -1,0 +1,12 @@
+/* Instructions.module.css */
+.root {
+  margin-bottom: 30px;
+}
+.steps {
+  padding-left: 20px;
+  margin-bottom: 16px;
+}
+.steps li {
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
