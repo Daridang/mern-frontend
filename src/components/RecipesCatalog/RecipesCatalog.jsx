@@ -47,7 +47,6 @@ const sampleRecipes = [
     price: "$16.00",
     img: printedLive3D,
   },
-  ,
   {
     id: 5,
     title: "Cryo Desert Pink",
