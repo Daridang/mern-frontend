@@ -9,57 +9,18 @@ import cryoDesert from "../../assets/cryo_desert.webp";
 import cryoDesertPink from "../../assets/cryo_desert_pink.webp";
 import printedLive3D from "../../assets/3d_printed_live.webp";
 
-// Пример данных: замените на реальный fetch из API
+import RecipeCard from "../RecipeCard/RecipeCard";
+
 const sampleRecipes = [
-  {
-    id: 1,
-    title: "Galactic Sushi",
-    price: "$14.99",
-    img: galacticSushi,
-  },
-  {
-    id: 2,
-    title: "Neon Noodles",
-    price: "$11.50",
-    img: neonNoodles,
-  },
-  {
-    id: 3,
-    title: "Astro Burger",
-    price: "$13.25",
-    img: astroBurger,
-  },
-  {
-    id: 4,
-    title: "Cryo Desert",
-    price: "$9.75",
-    img: cryoDesert,
-  },
-  {
-    id: 5,
-    title: "Cryo Desert Pink",
-    price: "$10.25",
-    img: cryoDesertPink,
-  },
-  {
-    id: 6,
-    title: "3D Printed Live",
-    price: "$16.00",
-    img: printedLive3D,
-  },
-  ,
-  {
-    id: 5,
-    title: "Cryo Desert Pink",
-    price: "$10.25",
-    img: cryoDesertPink,
-  },
-  {
-    id: 6,
-    title: "3D Printed Live",
-    price: "$16.00",
-    img: printedLive3D,
-  },
+  { id: 1, title: "Galactic Sushi", price: "$14.99", img: galacticSushi },
+  { id: 2, title: "Neon Noodles", price: "$11.50", img: neonNoodles },
+  { id: 3, title: "Astro Burger", price: "$13.25", img: astroBurger },
+  { id: 4, title: "Cryo Desert", price: "$9.75", img: cryoDesert },
+  { id: 5, title: "Cryo Desert Pink", price: "$10.25", img: cryoDesertPink },
+  { id: 6, title: "3D Printed Live", price: "$16.00", img: printedLive3D },
+  // ...дубли для теста прокрутки
+  { id: 7, title: "Cryo Desert Pink", price: "$10.25", img: cryoDesertPink },
+  { id: 8, title: "3D Printed Live", price: "$16.00", img: printedLive3D },
 ];
 
 export default function RecipesCatalog({ recipes = sampleRecipes }) {
@@ -69,13 +30,13 @@ export default function RecipesCatalog({ recipes = sampleRecipes }) {
         <h2 className={styles.heading}>Recipe Catalog</h2>
         <div className={styles.grid}>
           {recipes.map(({ id, title, price, img }) => (
-            <div key={id} className={styles.card}>
-              <img src={img} alt={title} className={styles.image} />
-              <div className={styles.info}>
-                <div className={styles.title}>{title}</div>
-                <div className={styles.price}>{price}</div>
-              </div>
-            </div>
+            <RecipeCard
+              key={id}
+              title={title}
+              price={price}
+              img={img}
+              alt={title}
+            />
           ))}
         </div>
       </div>
