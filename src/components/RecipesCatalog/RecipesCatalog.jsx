@@ -18,7 +18,6 @@ const sampleRecipes = [
   { id: 4, title: "Cryo Desert", price: "$9.75", img: cryoDesert },
   { id: 5, title: "Cryo Desert Pink", price: "$10.25", img: cryoDesertPink },
   { id: 6, title: "3D Printed Live", price: "$16.00", img: printedLive3D },
-  // ...дубли для теста прокрутки
   { id: 7, title: "Cryo Desert Pink", price: "$10.25", img: cryoDesertPink },
   { id: 8, title: "3D Printed Live", price: "$16.00", img: printedLive3D },
 ];
@@ -29,13 +28,13 @@ export default function RecipesCatalog({ recipes = sampleRecipes }) {
       <div className="container">
         <h2 className={styles.heading}>Recipe Catalog</h2>
         <div className={styles.grid}>
-          {recipes.map(({ id, title, price, img }) => (
+          {recipes.map((r) => (
             <RecipeCard
-              key={id}
-              title={title}
-              price={price}
-              img={img}
-              alt={title}
+              key={r.id}
+              id={r.id}
+              title={r.title}
+              price={r.price}
+              img={r.img}
             />
           ))}
         </div>
