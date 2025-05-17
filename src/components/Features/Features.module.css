@@ -1,0 +1,54 @@
+/* src/components/Features/Features.module.css */
+
+.features {
+  background-color: #c9e6e9;
+  padding: 50px 0;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.items {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.item {
+  flex: 1 1 calc(33.333% - 20px);
+  text-align: center;
+}
+
+.image {
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.item h3 {
+  margin: 0 0 12px;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.item p {
+  margin: 0;
+  line-height: 1.4;
+  color: var(--color-text);
+}
+
+@media (max-width: 768px) {
+  .item {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+@media (max-width: 480px) {
+  .item {
+    flex: 1 1 100%;
+  }
+}
