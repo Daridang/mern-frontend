@@ -17,7 +17,7 @@
   display: block;
   max-width: 100%;
   height: auto;
-  border-radius: 8px; 
+  border-radius: 8px;
 }
 
 .textWrapper {
@@ -27,7 +27,7 @@
 
 .textWrapper h1 {
   margin: 0 0 16px;
-  font-size: 2rem;
+  font-size: 4rem;
 }
 
 .textWrapper p {
@@ -39,7 +39,7 @@
   display: inline-block;
   padding: 12px 24px;
   text-decoration: none;
-  background-color: #ccecde; 
+  background-color: #ccecde;
   color: var(--color-text);
   font-weight: 500;
   border-radius: 4px;
