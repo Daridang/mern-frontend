@@ -480,7 +480,7 @@
         "serving_size": "50 ml",
         "prep_time": "4 minutes",
         "temperature": "70°C",
-        "image": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "image": "/images/antigravity_espresso_blob.webp",
         "ingredients": {
             "groups": [
                 {
@@ -547,7 +547,7 @@
         "serving_size": "8–10 slices",
         "prep_time": "20 minutes (plus 8 hours chilling)",
         "temperature": "served chilled",
-        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "image_url": "/images/cosmic_cheesecake.webp",
         "ingredients": {
             "groups": [
                 {
@@ -651,7 +651,7 @@
         "serving_size": "1 cupcake",
         "prep_time": "35 minutes",
         "temperature": "room temperature",
-        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "image_url": "/images/galaxy_cupcake.webp",
         "ingredients": {
             "groups": [
                 {
@@ -775,103 +775,6 @@
     },
     {
         "id": 10,
-        "title": "Photon Flux Milkshake",
-        "description": "A luminous, anti-gravity milkshake served in a zero-G tumbler at the Nova Horizon Café.",
-        "category": "milkshake",
-        "yield": "1 shake",
-        "serving_size": "1 interstellar portion",
-        "prep_time": "5 minutes",
-        "temperature": "-5°C (bright glow preserved)",
-        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
-        "ingredients": {
-            "groups": [
-                {
-                    "name": "base_liquid",
-                    "items": [
-                        {
-                            "item": "Quantum-infused bacchus milk",
-                            "amount": "300 ml"
-                        },
-                        {
-                            "item": "Nebula nectar syrup",
-                            "amount": "50 ml"
-                        }
-                    ]
-                },
-                {
-                    "name": "frozen_core",
-                    "items": [
-                        {
-                            "item": "Anti-gravity ice crystals",
-                            "amount": "4 scoops"
-                        },
-                        {
-                            "item": "Dark matter swirl gelato",
-                            "amount": "2 scoops"
-                        }
-                    ]
-                },
-                {
-                    "name": "mix_ins",
-                    "items": [
-                        {
-                            "item": "Luminescent stardust pearls",
-                            "amount": "1 tbsp"
-                        },
-                        {
-                            "item": "Solarflare citrus shards",
-                            "amount": "1 tsp"
-                        }
-                    ]
-                },
-                {
-                    "name": "toppings",
-                    "items": [
-                        {
-                            "item": "Photon foam cloud",
-                            "amount": "a generous dollop"
-                        },
-                        {
-                            "item": "Chromatic comet sprinkles",
-                            "amount": "2 tsp"
-                        },
-                        {
-                            "item": "Edible galaxy shards",
-                            "amount": "5 pieces"
-                        }
-                    ]
-                }
-            ]
-        },
-        "equipment": [
-            "Zero-G tumbler",
-            "Magneto-whisk blender",
-            "Cryo-ladle"
-        ],
-        "instructions": {
-            "groups": [
-                {
-                    "name": "main",
-                    "steps": [
-                        "Chill the zero-G tumbler to -10°C in the cryo-chamber.",
-                        "In the magneto-whisk blender, combine bacchus milk and nebula nectar syrup; blend on phase-2 for 7 seconds.",
-                        "Add anti-gravity ice crystals and dark matter swirl gelato; pulse-blend until a smooth, swirling vortex forms.",
-                        "Fold in luminescent stardust pearls and solarflare citrus shards by hand using the cryo-ladle.",
-                        "Pour mixture into chilled tumbler under a soft photon beam to maintain glow intensity.",
-                        "Top with a cloud of photon foam, sprinkle chromatic comet sprinkles, and garnish with edible galaxy shards.",
-                        "Serve immediately in zero-G conditions; sip through a gravitic straw."
-                    ]
-                }
-            ]
-        },
-        "extras": [
-            "Can be served with a glowing anti-spill dome lid for starship travel.",
-            "Pair with asteroid dust cookies for an interplanetary dessert combo."
-        ],
-        "created_at": "2025-05-17T00:00:00Z"
-    },
-    {
-        "id": 11,
         "title": "Stellar Mist Latte",
         "description": "A glowing latte infused with nebula extract and topped with a cloud of fluorescent cosmic mist.",
         "category": "beverage",
@@ -879,7 +782,7 @@
         "serving_size": "300 ml",
         "prep_time": "7 minutes",
         "temperature": "65°C",
-        "image_url": "https://www.dummyimage.com/512x512/b0adb0/bebec4.jpg",
+        "image_url": "/images/stellar_mist_latte.webp",
         "ingredients": {
             "groups": [
                 {
