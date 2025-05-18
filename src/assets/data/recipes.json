@@ -547,7 +547,7 @@
         "serving_size": "8–10 slices",
         "prep_time": "20 minutes (plus 8 hours chilling)",
         "temperature": "served chilled",
-        "image_url": "/images/cosmic_cheesecake.webp",
+        "image": "/images/cosmic_cheesecake.webp",
         "ingredients": {
             "groups": [
                 {
@@ -651,7 +651,7 @@
         "serving_size": "1 cupcake",
         "prep_time": "35 minutes",
         "temperature": "room temperature",
-        "image_url": "/images/galaxy_cupcake.webp",
+        "image": "/images/galaxy_cupcake.webp",
         "ingredients": {
             "groups": [
                 {
@@ -782,7 +782,7 @@
         "serving_size": "300 ml",
         "prep_time": "7 minutes",
         "temperature": "65°C",
-        "image_url": "/images/stellar_mist_latte.webp",
+        "image": "/images/stellar_mist_latte.webp",
         "ingredients": {
             "groups": [
                 {
