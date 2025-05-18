@@ -1,0 +1,11 @@
+/* Equipment.module.css */
+.root {
+  margin-bottom: 30px;
+}
+.list {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+.list li {
+  margin-bottom: 4px;
+}
