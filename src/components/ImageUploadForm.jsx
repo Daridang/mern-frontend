@@ -25,7 +25,8 @@ function ImageUploadForm() {
         }
       );
 
-      console.log("File uploaded successfully", response.data);
+      const data = await response.json();
+      console.log("File uploaded successfully", data.url);
     } catch (error) {
       console.error("Error uploading file", error);
     }
