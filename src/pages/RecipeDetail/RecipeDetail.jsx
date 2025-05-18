@@ -1,4 +1,4 @@
-// RecipeDetail.jsx
+// src/components/RecipeDetail/RecipeDetail.jsx
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./RecipeDetail.module.css";
@@ -10,18 +10,26 @@ import Equipment from "../../components/RecipeDetail/Equipment/Equipment";
 import Instructions from "../../components/RecipeDetail/Instructions/Instructions";
 import Extras from "../../components/RecipeDetail/Extras/Extras";
 
-import sampleData from "../../assets/data/recipes.json";
-
 export default function RecipeDetail() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    const found = sampleData.find((r) => String(r.id) === id);
-    setRecipe(found || null);
+    fetch(`${process.env.REACT_APP_API_URL}/api/recipes/${id}`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Рецепт не найден");
+        return res.json();
+      })
+      .then((data) => setRecipe(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }, [id]);
 
-  if (!recipe) return <p>Загрузка или рецепт не найден</p>;
+  if (loading) return <p>Загрузка…</p>;
+  if (error) return <p>Ошибка: {error}</p>;
+
   return (
     <div className={styles.wrap}>
       <div className="container">

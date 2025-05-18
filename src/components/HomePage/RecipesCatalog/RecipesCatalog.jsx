@@ -1,20 +1,27 @@
 // src/components/RecipesCatalog/RecipesCatalog.jsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./RecipesCatalog.module.css";
 import RecipeCard from "../RecipeCard/RecipeCard";
-import sampleData from "../../../assets/data/recipes.json";
 
-function transformRecipesToCatalog(data) {
-  return data.map((recipe, index) => ({
-    id: recipe.id ?? index + 1,
-    title: recipe.title,
-    price: `$${(Math.random() * 10 + 8).toFixed(2)}`,
-    img: recipe.image,
-  }));
-}
-const sampleRecipes = transformRecipesToCatalog(sampleData);
+export default function RecipesCatalog() {
+  const [recipes, setRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-export default function RecipesCatalog({ recipes = sampleRecipes }) {
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_API_URL}/api/recipes`)
+      .then((res) => {
+        if (!res.ok) throw new Error("Ошибка загрузки каталога");
+        return res.json();
+      })
+      .then((data) => setRecipes(data))
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (loading) return <p>Загрузка рецептов…</p>;
+  if (error) return <p>Ошибка: {error}</p>;
+
   return (
     <section className={styles.catalog}>
       <div className="container">
@@ -22,11 +29,11 @@ export default function RecipesCatalog({ recipes = sampleRecipes }) {
         <div className={styles.grid}>
           {recipes.map((r) => (
             <RecipeCard
-              key={r.id}
-              id={r.id}
+              key={r._id}
+              id={r._id}
               title={r.title}
-              price={r.price}
-              img={r.img}
+              price={r.price || "$–"}
+              img={r.image}
             />
           ))}
         </div>
