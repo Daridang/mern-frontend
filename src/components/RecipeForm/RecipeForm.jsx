@@ -10,6 +10,7 @@ import ExtrasSection from "./ExtrasSection";
 import styles from "./RecipeForm.module.css";
 
 export default function RecipeForm() {
+  const navigate = useNavigate();
   // Основные поля
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
