@@ -1,0 +1,76 @@
+.form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #f1f9e2; /* светлый фон */
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.heading {
+  margin-bottom: 20px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1.75rem;
+  color: #235372;
+  text-align: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #0d1538;
+  margin-top: 16px;
+}
+
+.input,
+.textarea,
+.fileInput {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #c7e4d9;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #0d1538;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #4a7c59;
+}
+
+.textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+.fileInput {
+  padding: 6px;
+  background-color: #fffde2;
+}
+
+.button {
+  margin-top: 24px;
+  width: 100%;
+  padding: 12px;
+  background-color: #ccecde;
+  color: #0d1538;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover {
+  background-color: #4a7c59;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.button:active {
+  transform: translateY(0);
+}

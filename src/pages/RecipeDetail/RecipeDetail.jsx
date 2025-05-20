@@ -1,4 +1,5 @@
 // src/components/RecipeDetail/RecipeDetail.jsx
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import styles from "./RecipeDetail.module.css";
@@ -33,6 +34,9 @@ export default function RecipeDetail() {
   return (
     <div className={styles.wrap}>
       <div className="container">
+        <div className={styles.breadcrumb}>
+          <Link to="/">Home</Link> &gt; <span>{recipe.title}</span>
+        </div>
         <TitleSection title={recipe.title} description={recipe.description} />
         <img
           src={recipe.image}
