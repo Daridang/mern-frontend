@@ -1,14 +1,24 @@
+/* src/components/Header/Header.module.css */
 .header {
-  /* display: flex;
-  justify-content: space-between;
+  display: flex;
   align-items: center;
-  padding: 20px; */
-  height: 50px;
-  background-color: #c0e0e7;
+  justify-content: space-between;
+  padding: 16px 24px;
+  background: var(--bacground-nav);
 }
-/* .nav a {
-  margin-left: 16px;
-  text-decoration: none;
+.logo {
+  font-size: 1.5rem;
   color: #fff;
+}
+.nav a {
+  margin-left: 16px;
+  color: #eee;
+  text-decoration: none;
   font-weight: 500;
-} */
+  transition: color 0.2s;
+}
+.nav a:hover,
+.nav a.active {
+  color: #fff;
+  border-bottom: 2px solid #fff;
+}

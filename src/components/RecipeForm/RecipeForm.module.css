@@ -1,0 +1,122 @@
+.form {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #f1f9e2;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form h2 {
+  font-family: "Orbitron", sans-serif;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+label,
+.section h3 {
+  color: #235372;
+  font-weight: 600;
+  margin-top: 16px;
+}
+
+input,
+textarea {
+  padding: 8px;
+  border: 2px solid #c7e4d9;
+  border-radius: 6px;
+  margin-top: 4px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.section {
+  margin-top: 24px;
+}
+.basicInfo {
+  text-align: center;
+}
+.description {
+  display: flex;
+  flex-direction: column;
+}
+.description textarea {
+  width: 100%;
+  min-height: 120px;
+}
+
+.group {
+  background: #fffde2;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.groupHeader {
+  margin-bottom: 8px;
+}
+.groupHeader input {
+  margin-right: 8px;
+}
+
+.imagePreview {
+  margin: 10px 0;
+  max-width: 300px;
+}
+
+.previewImage {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.itemRow,
+.listRow {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.itemRow input,
+.listRow input {
+  flex: 1;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ccecde;
+  color: #0d1538;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #4a7c59;
+  color: #fff;
+}
+
+.submitBtn {
+  width: 100%;
+  margin-top: 24px;
+  padding: 12px 0;
+  font-size: 1.2rem;
+  background: #235372;
+  color: #fff;
+}
