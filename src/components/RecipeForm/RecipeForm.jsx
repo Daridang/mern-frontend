@@ -1,7 +1,7 @@
 // src/components/RecipeForm/RecipeForm.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import BasicInfo from "./BasicInfo";
-// import ImageUpload from "../ImageUploadForm/ImageUploadForm";
 import ImageUpload from "./ImageUpload";
 import IngredientsSection from "./IngredientsSection";
 import EquipmentSection from "./EquipmentSection";
@@ -147,14 +147,14 @@ export default function RecipeForm() {
           body: formData,
         }
       );
-      // Если сервер вернул ошибку (например, 404 или 500), не делать res.json() сразу
       if (!res.ok) {
         const text = await res.text();
         throw new Error(`Server responded ${res.status}: ${text}`);
       }
       const data = await res.json();
       console.log("Recipe created:", data);
-      // сброс формы или редирект
+
+      navigate("/");
     } catch (err) {
       console.error("Error creating recipe", err, err.message);
     }
