@@ -147,11 +147,16 @@ export default function RecipeForm() {
           body: formData,
         }
       );
+      // Если сервер вернул ошибку (например, 404 или 500), не делать res.json() сразу
+      if (!res.ok) {
+        const text = await res.text();
+        throw new Error(`Server responded ${res.status}: ${text}`);
+      }
       const data = await res.json();
       console.log("Recipe created:", data);
       // сброс формы или редирект
     } catch (err) {
-      console.error("Error creating recipe", err);
+      console.error("Error creating recipe", err, err.message);
     }
   };
 
