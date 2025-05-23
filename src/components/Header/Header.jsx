@@ -5,7 +5,7 @@ import styles from "./Header.module.css";
 
 export default function Header() {
   const navigate = useNavigate();
-  const { user, token, logout } = useContext(AuthContext);
+  const { token, logout } = useContext(AuthContext);
 
   const handleLogout = () => {
     logout();
