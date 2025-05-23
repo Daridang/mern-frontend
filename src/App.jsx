@@ -1,19 +1,47 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
 
 import Layout from "./layout/Layout";
 import HomePage from "./pages/HomePage/HomePage";
 import RecipeDetail from "./pages/RecipeDetail/RecipeDetail";
 import RecipeForm from "./components/RecipeForm/RecipeForm";
+import Login from "./pages/Login/Login";
+import Register from "./pages/Register/Register";
+import Profile from "./pages/Profile/Profile";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
 export default function App() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/recipes/:id" element={<RecipeDetail />} />
-        <Route path="/create" element={<RecipeForm />} />
-      </Route>
-    </Routes>
+    <AuthProvider>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/recipes/:id" element={<RecipeDetail />} />
+          
+          {/* Protected routes */}
+          <Route 
+            path="/create" 
+            element={
+              <ProtectedRoute>
+                <RecipeForm />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            } 
+          />
+          
+          {/* Auth routes */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
