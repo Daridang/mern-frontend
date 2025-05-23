@@ -1,11 +1,11 @@
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api";
+// const API_URL = "http://localhost:5000/api";
 
 // Create axios instance with default config
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
   headers: {
     "Content-Type": "application/json",
   },
@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
     const fetchUser = async () => {
       if (token) {
         try {
-          const response = await api.get("/auth/me");
+          const response = await api.get("/api/auth/me");
           setUser(response.data.user);
         } catch (error) {
           console.error("Error fetching user:", error);
@@ -58,7 +58,7 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       setError(null);
-      const response = await api.post("/auth/register", userData);
+      const response = await api.post("/api/auth/register", userData);
       const { token: authToken, user: newUser } = response.data;
       
       // Log in the user after successful registration
@@ -82,7 +82,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (credentials) => {
     try {
       setError(null);
-      const response = await api.post("/auth/login", credentials);
+      const response = await api.post("/api/auth/login", credentials);
       const { token: authToken, user: userData } = response.data;
       
       setUser(userData);
@@ -111,7 +111,10 @@ export const AuthProvider = ({ children }) => {
   const updateUser = async (updatedUserData) => {
     try {
       setError(null);
-      const response = await api.put("/auth/update-profile", updatedUserData);
+      const response = await api.put(
+        "/api/auth/update-profile",
+        updatedUserData
+      );
       setUser((prevUser) => ({ ...prevUser, ...response.data.user }));
       return { success: true, data: response.data };
     } catch (error) {
@@ -129,7 +132,7 @@ export const AuthProvider = ({ children }) => {
   const changePassword = async (passwordData) => {
     try {
       setError(null);
-      const response = await api.put("/auth/change-password", passwordData);
+      const response = await api.put("/api/auth/change-password", passwordData);
       return { success: true, data: response.data };
     } catch (error) {
       setError(
