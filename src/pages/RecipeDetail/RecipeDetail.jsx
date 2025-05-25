@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import api from "../../axiosConfig";
+import { AuthContext } from "../../context/AuthContext";
 import styles from "./RecipeDetail.module.css";
 
 import TitleSection from "../../components/RecipeDetail/TitleSection/TitleSection";
@@ -19,53 +19,79 @@ export default function RecipeDetail() {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    const fetchRecipe = async () => {
+    const fetchData = async () => {
       try {
-        const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/recipes/${id}`
-        );
-        if (!res.ok) throw new Error("Рецепт не найден");
-        const data = await res.json();
-        setRecipe(data);
+        const recipeRes = await api.get(`/api/recipes/${id}`);
+        setRecipe(recipeRes.data);
+
+        const commentRes = await api.get(`/api/comments/recipe/${id}`);
+        setComments(commentRes.data);
       } catch (err) {
-        setError(err.message);
+        setError("Ошибка загрузки данных");
+        console.error(err);
       } finally {
         setLoading(false);
       }
     };
 
-    const fetchComments = async () => {
-      try {
-        const res = await api.get(`/api/comments/recipe/${id}`);
-
-        console.log(`res.data:`, res.data);
-
-        setComments(res.data);
-      } catch (err) {
-        console.error("Error fetching comments:", err);
-      }
-    };
-
-    fetchRecipe();
-    fetchComments();
+    fetchData();
   }, [id]);
 
-  const addComment = async (commentText) => {
+  const handleAddComment = async (text) => {
     try {
-      const newComment = {
+      const res = await api.post("/api/comments", {
         recipeId: id,
-        text: commentText,
-        // Add other necessary fields like userId, username, etc.
-      };
-      const res = await api.post(
-        `${process.env.REACT_APP_API_URL}/api/comments`,
-        newComment
-      );
-      setComments([...comments, res.data]);
+        text,
+      });
+      setComments((prev) => [...prev, res.data]);
     } catch (err) {
-      console.error("Error adding comment:", err);
+      console.error("Ошибка при добавлении комментария:", err);
+    }
+  };
+
+  const handleLikeToggle = async (commentId) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}/like`);
+      setComments((prev) =>
+        prev.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, likes: res.data.likes }
+            : comment
+        )
+      );
+    } catch (err) {
+      console.error("Ошибка при лайке:", err);
+    }
+  };
+
+  const handleEditComment = async (commentId, newText) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}`, {
+        text: newText,
+      });
+      setComments((prev) =>
+        prev.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, text: res.data.text }
+            : comment
+        )
+      );
+    } catch (err) {
+      console.error("Ошибка при редактировании:", err);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await api.delete(`/api/comments/${commentId}`);
+      setComments((prev) =>
+        prev.filter((comment) => comment._id !== commentId)
+      );
+    } catch (err) {
+      console.error("Ошибка при удалении:", err);
     }
   };
 
@@ -78,6 +104,7 @@ export default function RecipeDetail() {
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link> &gt; <span>{recipe.title}</span>
         </div>
+
         <TitleSection title={recipe.title} description={recipe.description} />
         <img
           src={recipe.image}
@@ -97,8 +124,14 @@ export default function RecipeDetail() {
         <Extras items={recipe.extras} />
 
         <h3>Comments</h3>
-        <CommentList comments={comments} />
-        <CommentForm onSubmit={addComment} />
+        <CommentList
+          comments={comments}
+          currentUserId={currentUser?._id}
+          onLikeToggle={handleLikeToggle}
+          onEdit={handleEditComment}
+          onDelete={handleDeleteComment}
+        />
+        <CommentForm onSubmit={handleAddComment} />
       </div>
     </div>
   );

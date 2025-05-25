@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Comment = ({
   avatar,
   username,
   text,
   date,
-  likes,
+  likes: initialLikes,
   onEdit,
   onDelete,
   isEditable,
+  onLikeToggle,
 }) => {
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(initialLikes);
+
+  const handleLikeToggle = () => {
+    setLiked((prev) => !prev);
+    setLikes((prev) => (liked ? prev - 1 : prev + 1));
+    onLikeToggle();
+  };
+
   return (
     <div className="comment">
       <img
@@ -21,13 +31,18 @@ const Comment = ({
         <h4>{username}</h4>
         <p>{text}</p>
         <small>{new Date(date).toLocaleDateString()}</small>
-        <span>{likes} likes</span>
-        {isEditable && (
-          <div className="comment-actions">
-            <button onClick={onEdit}>Edit</button>
-            <button onClick={onDelete}>Delete</button>
-          </div>
-        )}
+        <div className="comment-actions">
+          <button onClick={handleLikeToggle}>
+            {liked ? "Unlike" : "Like"}
+          </button>
+          <span>{likes} likes</span>
+          {isEditable && (
+            <>
+              <button onClick={onEdit}>Edit</button>
+              <button onClick={onDelete}>Delete</button>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
