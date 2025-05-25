@@ -1,15 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import axios from "axios";
-
-// const API_URL = "http://localhost:5000/api";
-
-// Create axios instance with default config
-const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || "http://localhost:5000",
-  headers: {
-    "Content-Type": "application/json",
-  },
-});
+import api from "../axiosConfig";
 
 export const AuthContext = createContext();
 
@@ -60,21 +50,20 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       const response = await api.post("/api/auth/register", userData);
       const { token: authToken, user: newUser } = response.data;
-      
+
       // Log in the user after successful registration
       setUser(newUser);
       setToken(authToken);
       localStorage.setItem("token", authToken);
-      
+
       return { success: true, data: response.data };
     } catch (error) {
       setError(
-        error.response?.data?.error || 
-        "Registration failed. Please try again."
+        error.response?.data?.error || "Registration failed. Please try again."
       );
-      return { 
-        success: false, 
-        error: error.response?.data?.error || "Registration failed" 
+      return {
+        success: false,
+        error: error.response?.data?.error || "Registration failed",
       };
     }
   };
@@ -84,20 +73,20 @@ export const AuthProvider = ({ children }) => {
       setError(null);
       const response = await api.post("/api/auth/login", credentials);
       const { token: authToken, user: userData } = response.data;
-      
+
       setUser(userData);
       setToken(authToken);
       localStorage.setItem("token", authToken);
-      
+
       return { success: true, data: response.data };
     } catch (error) {
       setError(
-        error.response?.data?.error || 
-        "Login failed. Please check your credentials."
+        error.response?.data?.error ||
+          "Login failed. Please check your credentials."
       );
-      return { 
-        success: false, 
-        error: error.response?.data?.error || "Login failed" 
+      return {
+        success: false,
+        error: error.response?.data?.error || "Login failed",
       };
     }
   };
@@ -119,12 +108,12 @@ export const AuthProvider = ({ children }) => {
       return { success: true, data: response.data };
     } catch (error) {
       setError(
-        error.response?.data?.error || 
-        "Failed to update profile. Please try again."
+        error.response?.data?.error ||
+          "Failed to update profile. Please try again."
       );
-      return { 
-        success: false, 
-        error: error.response?.data?.error || "Update failed" 
+      return {
+        success: false,
+        error: error.response?.data?.error || "Update failed",
       };
     }
   };
@@ -136,28 +125,28 @@ export const AuthProvider = ({ children }) => {
       return { success: true, data: response.data };
     } catch (error) {
       setError(
-        error.response?.data?.error || 
-        "Failed to change password. Please try again."
+        error.response?.data?.error ||
+          "Failed to change password. Please try again."
       );
-      return { 
-        success: false, 
-        error: error.response?.data?.error || "Password change failed" 
+      return {
+        success: false,
+        error: error.response?.data?.error || "Password change failed",
       };
     }
   };
 
   return (
     <AuthContext.Provider
-      value={{ 
-        user, 
-        token, 
-        loading, 
+      value={{
+        user,
+        token,
+        loading,
         error,
         register,
-        login, 
-        logout, 
+        login,
+        logout,
         updateUser,
-        changePassword
+        changePassword,
       }}
     >
       {children}

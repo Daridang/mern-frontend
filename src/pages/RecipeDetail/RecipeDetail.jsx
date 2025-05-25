@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import api from "../../axiosConfig";
 import styles from "./RecipeDetail.module.css";
 
 import TitleSection from "../../components/RecipeDetail/TitleSection/TitleSection";
@@ -38,12 +38,10 @@ export default function RecipeDetail() {
 
     const fetchComments = async () => {
       try {
-        const res = await axios.get(
-          `${
-            /**process.env.REACT_APP_API_URL ||  */
-            "http://localhost:5000"
-          }/api/comments/${id}`
-        );
+        const res = await api.get(`/api/comments/recipe/${id}`);
+
+        console.log(`res.data:`, res.data);
+
         setComments(res.data);
       } catch (err) {
         console.error("Error fetching comments:", err);
@@ -61,7 +59,7 @@ export default function RecipeDetail() {
         text: commentText,
         // Add other necessary fields like userId, username, etc.
       };
-      const res = await axios.post(
+      const res = await api.post(
         `${process.env.REACT_APP_API_URL}/api/comments`,
         newComment
       );

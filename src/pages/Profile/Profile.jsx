@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Profile.module.css";
 import CommentList from "../../components/Comment/CommentList/CommentList";
@@ -16,10 +16,13 @@ export default function Profile() {
   const [userComments, setUserComments] = useState([]);
 
   useEffect(() => {
+    console.log(`ID ${user.id}`);
     const fetchUserComments = async () => {
       try {
-        const response = await axios.get(`/api/comments?userId=${user.id}`);
-        setUserComments(response.data);
+        const res = await api.get(`/api/comments/user/${user.id}`);
+        console.log(`res.data:`, res.data);
+
+        setUserComments(res.data);
       } catch (error) {
         console.error("Error fetching user comments:", error);
       }
