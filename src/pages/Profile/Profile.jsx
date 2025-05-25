@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Profile.module.css";
+import CommentList from "../../components/Comment/CommentList/CommentList";
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);
@@ -11,6 +13,22 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [formError, setFormError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [userComments, setUserComments] = useState([]);
+
+  useEffect(() => {
+    const fetchUserComments = async () => {
+      try {
+        const response = await axios.get(`/api/comments?userId=${user.id}`);
+        setUserComments(response.data);
+      } catch (error) {
+        console.error("Error fetching user comments:", error);
+      }
+    };
+
+    if (user?.id) {
+      fetchUserComments();
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,7 +44,7 @@ export default function Profile() {
 
     try {
       const result = await updateUser(formData);
-      
+
       if (result.success) {
         setSuccessMessage("Profile updated successfully!");
         setIsEditing(false);
@@ -42,10 +60,10 @@ export default function Profile() {
   return (
     <div className={styles.profileContainer}>
       <h2>Your Profile</h2>
-      
+
       {formError && <div className={styles.error}>{formError}</div>}
       {successMessage && <div className={styles.success}>{successMessage}</div>}
-      
+
       {!isEditing ? (
         <div className={styles.profileInfo}>
           <div className={styles.infoItem}>
@@ -59,11 +77,13 @@ export default function Profile() {
           <div className={styles.infoItem}>
             <span className={styles.label}>Account Created:</span>
             <span className={styles.value}>
-              {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
+              {user?.createdAt
+                ? new Date(user.createdAt).toLocaleDateString()
+                : "N/A"}
             </span>
           </div>
-          <button 
-            className={styles.editButton} 
+          <button
+            className={styles.editButton}
             onClick={() => setIsEditing(true)}
           >
             Edit Profile
@@ -82,7 +102,7 @@ export default function Profile() {
               required
             />
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
             <input
@@ -94,13 +114,13 @@ export default function Profile() {
               required
             />
           </div>
-          
+
           <div className={styles.buttonGroup}>
             <button type="submit" className={styles.saveButton}>
               Save Changes
             </button>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className={styles.cancelButton}
               onClick={() => {
                 setIsEditing(false);
@@ -115,6 +135,8 @@ export default function Profile() {
           </div>
         </form>
       )}
+      <h3>Your Comments</h3>
+      <CommentList comments={userComments} />
     </div>
   );
 }
