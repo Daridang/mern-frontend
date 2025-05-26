@@ -12,14 +12,17 @@ export default function CommentForm({ onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <textarea
+        className={styles.textarea}
         placeholder="Write a comment..."
         value={text}
         onChange={(e) => setText(e.target.value)}
         rows={3}
       />
-      <button type="submit">Post Comment</button>
+      <button className={styles.button} type="submit">
+        Post Comment
+      </button>
     </form>
   );
 }
