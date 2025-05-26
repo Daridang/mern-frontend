@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styles from "./Comment.module.css";
 
 const Comment = ({
   avatar,
@@ -21,17 +22,17 @@ const Comment = ({
   };
 
   return (
-    <div className="comment">
+    <div className={styles.comment}>
       <img
         src={avatar}
         alt={`${username}'s avatar`}
-        className="comment-avatar"
+        className={styles.commentAvatar}
       />
-      <div className="comment-content">
+      <div className={styles.commentContent}>
         <h4>{username}</h4>
         <p>{text}</p>
         <small>{new Date(date).toLocaleDateString()}</small>
-        <div className="comment-actions">
+        <div className={styles.commentActions}>
           <button onClick={handleLikeToggle}>
             {liked ? "Unlike" : "Like"}
           </button>
