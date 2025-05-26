@@ -10,7 +10,7 @@ const CommentList = ({
   onDelete,
 }) => {
   return (
-    <div className="comment-list">
+    <div className={styles.list}>
       {comments.map((comment) => (
         <Comment
           key={comment._id}
