@@ -18,7 +18,7 @@ const CommentList = ({
           username={comment.username}
           text={comment.text}
           date={comment.createdAt}
-          likes={comment.likes || 0}
+          likes={comment.likesCount || 0}
           isEditable={currentUserId === comment.userId}
           onLikeToggle={() => onLikeToggle(comment._id)}
           onEdit={() => onEdit(comment._id)}
