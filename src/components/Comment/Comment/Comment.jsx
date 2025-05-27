@@ -6,19 +6,19 @@ const Comment = ({
   username,
   text,
   date,
-  likes: initialLikes,
+  likes,
+  isLikedByCurrentUser,
   onEdit,
   onDelete,
   isEditable,
   onLikeToggle,
 }) => {
-  const [liked, setLiked] = useState(false);
-  const [likes, setLikes] = useState(initialLikes);
-
-  const handleLikeToggle = () => {
-    setLiked((prev) => !prev);
-    setLikes((prev) => (liked ? prev - 1 : prev + 1));
-    onLikeToggle();
+  const handleLikeToggle = async () => {
+    try {
+      await onLikeToggle();
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
   };
 
   return (
@@ -34,7 +34,7 @@ const Comment = ({
         <small>{new Date(date).toLocaleDateString()}</small>
         <div className={styles.commentActions}>
           <button onClick={handleLikeToggle}>
-            {liked ? "Unlike" : "Like"}
+            {isLikedByCurrentUser ? "Unlike" : "Like"}
           </button>
           <span>{likes} likes</span>
           {isEditable && (

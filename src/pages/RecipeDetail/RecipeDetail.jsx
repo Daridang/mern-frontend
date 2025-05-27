@@ -19,7 +19,7 @@ export default function RecipeDetail() {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -56,14 +56,13 @@ export default function RecipeDetail() {
     try {
       const res = await api.patch(`/api/comments/${commentId}/like`);
       setComments((prev) =>
-        prev.map((comment) =>
-          comment._id === commentId
-            ? { ...comment, likes: res.data.likes }
-            : comment
-        )
+        prev.map((comment) => (comment._id === commentId ? res.data : comment))
       );
     } catch (err) {
       console.error("Ошибка при лайке:", err);
+      throw new Error(
+        err.response?.data?.message || "Нельзя лайкнуть свой комментарий"
+      );
     }
   };
 
@@ -126,7 +125,7 @@ export default function RecipeDetail() {
         <h3>Comments</h3>
         <CommentList
           comments={comments}
-          currentUserId={currentUser?._id}
+          currentUserId={user?.id || null}
           onLikeToggle={handleLikeToggle}
           onEdit={handleEditComment}
           onDelete={handleDeleteComment}

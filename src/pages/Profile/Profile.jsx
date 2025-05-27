@@ -60,6 +60,34 @@ export default function Profile() {
     }
   };
 
+  const handleEditComment = async (commentId, newText) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}`, {
+        text: newText,
+      });
+      setUserComments((prev) =>
+        prev.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, text: res.data.text }
+            : comment
+        )
+      );
+    } catch (err) {
+      console.error("Ошибка при редактировании:", err);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await api.delete(`/api/comments/${commentId}`);
+      setUserComments((prev) =>
+        prev.filter((comment) => comment._id !== commentId)
+      );
+    } catch (err) {
+      console.error("Ошибка при удалении:", err);
+    }
+  };
+
   return (
     <div className={styles.profileContainer}>
       <h2>Your Profile</h2>
@@ -139,7 +167,13 @@ export default function Profile() {
         </form>
       )}
       <h3>Your Comments</h3>
-      <CommentList comments={userComments} />
+      <CommentList
+        comments={userComments}
+        currentUserId={user.id}
+        // onLikeToggle={handleLikeToggle}
+        onEdit={handleEditComment}
+        onDelete={handleDeleteComment}
+      />
     </div>
   );
 }
