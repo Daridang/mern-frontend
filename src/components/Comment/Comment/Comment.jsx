@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styles from "./Comment.module.css";
 
 const Comment = ({
