@@ -60,6 +60,20 @@ export default function Profile() {
     }
   };
 
+  const handleLikeToggle = async (commentId) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}/like`);
+      setUserComments((prev) =>
+        prev.map((comment) => (comment._id === commentId ? res.data : comment))
+      );
+    } catch (err) {
+      console.error("Ошибка при лайке:", err);
+      throw new Error(
+        err.response?.data?.message || "Нельзя лайкнуть свой комментарий"
+      );
+    }
+  };
+
   const handleEditComment = async (commentId, newText) => {
     try {
       const res = await api.patch(`/api/comments/${commentId}`, {
@@ -170,7 +184,7 @@ export default function Profile() {
       <CommentList
         comments={userComments}
         currentUserId={user.id}
-        // onLikeToggle={handleLikeToggle}
+        onLikeToggle={handleLikeToggle}
         onEdit={handleEditComment}
         onDelete={handleDeleteComment}
       />
