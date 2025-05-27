@@ -1,6 +1,7 @@
 // src/components/RecipeForm/RecipeForm.jsx
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import BasicInfo from "./BasicInfo";
 import ImageUpload from "./ImageUpload";
 import IngredientsSection from "./IngredientsSection";
@@ -10,6 +11,7 @@ import ExtrasSection from "./ExtrasSection";
 import styles from "./RecipeForm.module.css";
 
 export default function RecipeForm() {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   // Основные поля
   const [title, setTitle] = useState("");
@@ -125,6 +127,7 @@ export default function RecipeForm() {
     formData.append("serving_size", servingSize);
     formData.append("prep_time", prepTime);
     formData.append("temperature", temperature);
+    formData.append("author", user.id);
     if (imageFile) formData.append("image", imageFile);
 
     formData.append(

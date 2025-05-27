@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Profile.module.css";
+import CommentList from "../../components/Comment/CommentList/CommentList";
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);
@@ -11,6 +13,25 @@ export default function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [formError, setFormError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const [userComments, setUserComments] = useState([]);
+
+  useEffect(() => {
+    console.log(`ID ${user.id}`);
+    const fetchUserComments = async () => {
+      try {
+        const res = await api.get(`/api/comments/user/${user.id}`);
+        console.log(`res.data:`, res.data);
+
+        setUserComments(res.data);
+      } catch (error) {
+        console.error("Error fetching user comments:", error);
+      }
+    };
+
+    if (user?.id) {
+      fetchUserComments();
+    }
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({
@@ -26,7 +47,7 @@ export default function Profile() {
 
     try {
       const result = await updateUser(formData);
-      
+
       if (result.success) {
         setSuccessMessage("Profile updated successfully!");
         setIsEditing(false);
@@ -39,13 +60,55 @@ export default function Profile() {
     }
   };
 
+  const handleLikeToggle = async (commentId) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}/like`);
+      setUserComments((prev) =>
+        prev.map((comment) => (comment._id === commentId ? res.data : comment))
+      );
+    } catch (err) {
+      console.error("Ошибка при лайке:", err);
+      throw new Error(
+        err.response?.data?.message || "Нельзя лайкнуть свой комментарий"
+      );
+    }
+  };
+
+  const handleEditComment = async (commentId, newText) => {
+    try {
+      const res = await api.patch(`/api/comments/${commentId}`, {
+        text: newText,
+      });
+      setUserComments((prev) =>
+        prev.map((comment) =>
+          comment._id === commentId
+            ? { ...comment, text: res.data.text }
+            : comment
+        )
+      );
+    } catch (err) {
+      console.error("Ошибка при редактировании:", err);
+    }
+  };
+
+  const handleDeleteComment = async (commentId) => {
+    try {
+      await api.delete(`/api/comments/${commentId}`);
+      setUserComments((prev) =>
+        prev.filter((comment) => comment._id !== commentId)
+      );
+    } catch (err) {
+      console.error("Ошибка при удалении:", err);
+    }
+  };
+
   return (
     <div className={styles.profileContainer}>
       <h2>Your Profile</h2>
-      
+
       {formError && <div className={styles.error}>{formError}</div>}
       {successMessage && <div className={styles.success}>{successMessage}</div>}
-      
+
       {!isEditing ? (
         <div className={styles.profileInfo}>
           <div className={styles.infoItem}>
@@ -59,11 +122,13 @@ export default function Profile() {
           <div className={styles.infoItem}>
             <span className={styles.label}>Account Created:</span>
             <span className={styles.value}>
-              {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "N/A"}
+              {user?.createdAt
+                ? new Date(user.createdAt).toLocaleDateString()
+                : "N/A"}
             </span>
           </div>
-          <button 
-            className={styles.editButton} 
+          <button
+            className={styles.editButton}
             onClick={() => setIsEditing(true)}
           >
             Edit Profile
@@ -82,7 +147,7 @@ export default function Profile() {
               required
             />
           </div>
-          
+
           <div className={styles.formGroup}>
             <label htmlFor="email">Email</label>
             <input
@@ -94,13 +159,13 @@ export default function Profile() {
               required
             />
           </div>
-          
+
           <div className={styles.buttonGroup}>
             <button type="submit" className={styles.saveButton}>
               Save Changes
             </button>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className={styles.cancelButton}
               onClick={() => {
                 setIsEditing(false);
@@ -115,6 +180,14 @@ export default function Profile() {
           </div>
         </form>
       )}
+      <h3>Your Comments</h3>
+      <CommentList
+        comments={userComments}
+        currentUserId={user.id}
+        onLikeToggle={handleLikeToggle}
+        onEdit={handleEditComment}
+        onDelete={handleDeleteComment}
+      />
     </div>
   );
 }

@@ -14,7 +14,7 @@ export default function RecipesCatalog() {
         if (!res.ok) throw new Error("Ошибка загрузки каталога");
         return res.json();
       })
-      .then((data) => setRecipes(data))
+      .then((data) => setRecipes(data.recipes))
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false));
   }, []);
