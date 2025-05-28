@@ -18,7 +18,7 @@
   grid-auto-rows: 256px;
   gap: 40px;
 
-  max-height: calc(256px * 2 + 50px);
+  /* max-height: calc(256px * 2 + 50px); */
   overflow-y: auto;
   scrollbar-gutter: stable both-edges;
   justify-content: center;
@@ -96,4 +96,34 @@
     grid-template-columns: 1fr;
     max-width: 260px;
   }
+}
+
+.pagination {
+  margin-top: 24px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination button {
+  background: #e2eaf1;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.pagination button:disabled {
+  background: #f1f1f1;
+  color: #aaa;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1rem;
+  font-weight: 500;
 }
