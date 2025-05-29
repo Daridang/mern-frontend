@@ -10,7 +10,7 @@ export default function Hero() {
       <div className="container">
         <div className={styles.heroContentWrapper}>
           <div className={styles.imageWrapper}>
-            <img src={heroImage} alt="Космическое блюдо" />
+            <img src={heroImage} alt="Space dish" />
           </div>
           <div className={styles.textWrapper}>
             <h1>Welcome to the Space Cafe! </h1>

@@ -2,7 +2,6 @@
   margin-bottom: 18px;
 }
 
-/* TitleSection — если есть отдельный класс, например .titleSection, иначе используем селектор по компоненту */
 :global(.titleSection) {
   margin-bottom: 24px;
 }

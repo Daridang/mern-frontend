@@ -9,7 +9,6 @@ const CommentList = ({
   onEdit,
   onDelete,
 }) => {
-  console.log(`wtf CommentList: ${JSON.stringify(comments)}`);
   return (
     <div className={styles.list}>
       {comments.map((comment) => (

@@ -28,7 +28,6 @@ export default function RecipeDetail() {
         const recipeRes = await api.get(`/api/recipes/${id}`);
         setRecipe(recipeRes.data);
 
-        // Проверяем, лайкнул ли пользователь (если он есть)
         if (user && recipeRes.data.likes) {
           setLiked(recipeRes.data.likes.includes(user.id));
         }
@@ -36,7 +35,7 @@ export default function RecipeDetail() {
         const commentRes = await api.get(`/api/comments/recipe/${id}`);
         setComments(commentRes.data);
       } catch (err) {
-        setError("Ошибка загрузки данных");
+        setError("Data loading error");
         console.error(err);
       } finally {
         setLoading(false);
@@ -65,10 +64,8 @@ export default function RecipeDetail() {
         prev.map((comment) => (comment._id === commentId ? res.data : comment))
       );
     } catch (err) {
-      console.error("Ошибка при лайке:", err);
-      throw new Error(
-        err.response?.data?.message || "Нельзя лайкнуть свой комментарий"
-      );
+      console.error("Error when liking:", err);
+      throw new Error(err.response?.data?.message || "Can't like your comment");
     }
   };
 
@@ -85,7 +82,8 @@ export default function RecipeDetail() {
         )
       );
     } catch (err) {
-      console.error("Ошибка при редактировании:", err);
+      console.error("Error when editing:", err);
+      throw new Error(err.response?.data?.message || "Can't edit your comment");
     }
   };
 
@@ -96,7 +94,10 @@ export default function RecipeDetail() {
         prev.filter((comment) => comment._id !== commentId)
       );
     } catch (err) {
-      console.error("Ошибка при удалении:", err);
+      console.error("Error when deleting:", err);
+      throw new Error(
+        err.response?.data?.message || "Can't delete your comment"
+      );
     }
   };
 
@@ -109,18 +110,15 @@ export default function RecipeDetail() {
         likesCount: res.data.likesCount,
       }));
     } catch (err) {
-      console.error("Ошибка при лайке рецепта:", err);
+      console.error("Error when liking recipe:", err);
     }
   };
 
-  // Проверка авторства
   const isAuthor = user && recipe && user.id === recipe.author.id;
-
-  // Проверка гость (не автор и не залогинен)
   const isGuest = !user || user.id !== recipe?.author?.id;
 
-  if (loading) return <p>Загрузка…</p>;
-  if (error) return <p>Ошибка: {error}</p>;
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className={styles.wrap}>
