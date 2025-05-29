@@ -1,0 +1,39 @@
+.heading {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.text {
+  margin-bottom: 24px;
+  text-align: center;
+  color: #444;
+}
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+.signupBtn {
+  padding: 8px 18px;
+  background: #e2f1e2;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.signupBtn:hover {
+  background: #c6eac6;
+}
+.loginBtn {
+  padding: 8px 18px;
+  background: #e2eaf1;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.loginBtn:hover {
+  background: #c6d6e8;
+}

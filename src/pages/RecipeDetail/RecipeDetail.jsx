@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./RecipeDetail.module.css";
+import RegisterModal from "../../components/Modal/RegisterModal/RegisterModal";
 
 import TitleSection from "../../components/RecipeDetail/TitleSection/TitleSection";
 import MetaInfo from "../../components/RecipeDetail/MetaInfo/MetaInfo";
@@ -21,6 +22,7 @@ export default function RecipeDetail() {
   const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
   const [liked, setLiked] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -102,6 +104,11 @@ export default function RecipeDetail() {
   };
 
   const handleRecipeLike = async () => {
+    if (!user) {
+      setShowRegisterModal(true);
+      return;
+    }
+
     try {
       const res = await api.post(`/api/recipes/${id}/like`);
       setLiked(res.data.liked);
@@ -110,7 +117,11 @@ export default function RecipeDetail() {
         likesCount: res.data.likesCount,
       }));
     } catch (err) {
-      console.error("Error when liking recipe:", err);
+      if (err.response?.status === 401) {
+        setShowRegisterModal(true);
+      } else {
+        console.error("Error when liking recipe:", err);
+      }
     }
   };
 
@@ -201,6 +212,11 @@ export default function RecipeDetail() {
           onDelete={handleDeleteComment}
         />
         <CommentForm onSubmit={handleAddComment} />
+
+        <RegisterModal
+          isOpen={showRegisterModal}
+          onClose={() => setShowRegisterModal(false)}
+        />
       </div>
     </div>
   );
