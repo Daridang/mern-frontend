@@ -94,6 +94,12 @@ export default function RecipeDetail() {
     }
   };
 
+  // Проверка авторства
+  const isAuthor = user && recipe && user.id === recipe.author.id;
+
+  // Проверка гость (не автор и не залогинен)
+  const isGuest = !user || user.id !== recipe?.author?.id;
+
   if (loading) return <p>Загрузка…</p>;
   if (error) return <p>Ошибка: {error}</p>;
 
@@ -104,12 +110,47 @@ export default function RecipeDetail() {
           <Link to="/">Home</Link> &gt; <span>{recipe.title}</span>
         </div>
 
+        {/* Заголовок и описание */}
         <TitleSection title={recipe.title} description={recipe.description} />
-        <img
-          src={recipe.image}
-          alt={recipe.title}
-          className={styles.mainImage}
-        />
+
+        {/* Блок: картинка + ингредиенты + автор */}
+        <div className={styles.topBlock}>
+          <img
+            src={recipe.image}
+            alt={recipe.title}
+            className={styles.mainImage}
+          />
+          <div className={styles.sideInfo}>
+            {/* Автор */}
+            <div className={styles.author}>
+              <img
+                src={recipe.author.avatar || "/default-avatar.png"}
+                alt={recipe.author.name}
+                className={styles.avatar}
+              />
+              <a href="#" className={styles.authorName}>
+                {recipe.author.name}
+              </a>
+            </div>
+            {/* Ингредиенты */}
+            <Ingredients groups={recipe.ingredients.groups} />
+            {/* Кнопки */}
+            <div className={styles.actions}>
+              {isAuthor && (
+                <>
+                  <button className={styles.editBtn}>Edit</button>
+                  <button className={styles.deleteBtn}>Delete</button>
+                </>
+              )}
+              {isGuest && <button className={styles.likeBtn}>♥</button>}
+              <span className={styles.likesCount}>
+                {recipe.likesCount} лайков
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Описание и остальное */}
         <MetaInfo
           category={recipe.category}
           yieldInfo={recipe.yield}
@@ -117,12 +158,12 @@ export default function RecipeDetail() {
           prepTime={recipe.prep_time}
           temperature={recipe.temperature}
         />
-        <Ingredients groups={recipe.ingredients.groups} />
         <Equipment items={recipe.equipment} />
         <Instructions groups={recipe.instructions.groups} />
         <Extras items={recipe.extras} />
 
-        <h3>Comments</h3>
+        {/* Комментарии */}
+        <h3>Комментарии</h3>
         <CommentList
           comments={comments}
           currentUserId={user?.id || null}
