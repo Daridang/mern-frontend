@@ -20,12 +20,18 @@ export default function RecipeDetail() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
+  const [liked, setLiked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const recipeRes = await api.get(`/api/recipes/${id}`);
         setRecipe(recipeRes.data);
+
+        // Проверяем, лайкнул ли пользователь (если он есть)
+        if (user && recipeRes.data.likes) {
+          setLiked(recipeRes.data.likes.includes(user.id));
+        }
 
         const commentRes = await api.get(`/api/comments/recipe/${id}`);
         setComments(commentRes.data);
@@ -38,7 +44,7 @@ export default function RecipeDetail() {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, user]);
 
   const handleAddComment = async (text) => {
     try {
@@ -94,6 +100,19 @@ export default function RecipeDetail() {
     }
   };
 
+  const handleRecipeLike = async () => {
+    try {
+      const res = await api.post(`/api/recipes/${id}/like`);
+      setLiked(res.data.liked);
+      setRecipe((prev) => ({
+        ...prev,
+        likesCount: res.data.likesCount,
+      }));
+    } catch (err) {
+      console.error("Ошибка при лайке рецепта:", err);
+    }
+  };
+
   // Проверка авторства
   const isAuthor = user && recipe && user.id === recipe.author.id;
 
@@ -124,7 +143,10 @@ export default function RecipeDetail() {
             {/* Автор */}
             <div className={styles.author}>
               <img
-                src={recipe.author.avatar || "/default-avatar.png"}
+                src={
+                  recipe.author.avatar ||
+                  `https://robohash.org/${recipe.author._id}`
+                }
                 alt={recipe.author.name}
                 className={styles.avatar}
               />
@@ -142,9 +164,18 @@ export default function RecipeDetail() {
                   <button className={styles.deleteBtn}>Delete</button>
                 </>
               )}
-              {isGuest && <button className={styles.likeBtn}>♥</button>}
+              {isGuest && (
+                <button
+                  className={styles.likeBtn}
+                  onClick={handleRecipeLike}
+                  aria-pressed={liked}
+                  style={liked ? { color: "#e74c3c" } : {}}
+                >
+                  ♥
+                </button>
+              )}
               <span className={styles.likesCount}>
-                {recipe.likesCount} лайков
+                {recipe.likesCount} likes
               </span>
             </div>
           </div>
