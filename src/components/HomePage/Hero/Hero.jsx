@@ -1,5 +1,6 @@
 // src/components/Hero/Hero.jsx
 import { useNavigate } from "react-router-dom";
+import { authNavigate } from "../../../utils/authNavigate";
 import React, { useContext } from "react";
 import styles from "./Hero.module.css";
 import heroImage from "../../../assets/space-hero.webp";
@@ -10,11 +11,7 @@ export default function Hero() {
   const navigate = useNavigate();
 
   const handleCreateRecipe = () => {
-    if (!token) {
-      navigate("/login", { state: { from: { pathname: "/create" } } });
-    } else {
-      navigate("/create");
-    }
+    authNavigate(navigate, !!token, "/create");
   };
 
   return (
