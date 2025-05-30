@@ -1,10 +1,22 @@
 // src/components/Hero/Hero.jsx
-import { Link } from "react-router-dom";
-import React from "react";
+import { useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
 import styles from "./Hero.module.css";
 import heroImage from "../../../assets/space-hero.webp";
+import { AuthContext } from "../../../context/AuthContext";
 
 export default function Hero() {
+  const { token } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleCreateRecipe = () => {
+    if (!token) {
+      navigate("/login");
+    } else {
+      navigate("/create");
+    }
+  };
+
   return (
     <section className={styles.hero}>
       <div className="container">
@@ -15,9 +27,9 @@ export default function Hero() {
           <div className={styles.textWrapper}>
             <h1>Welcome to the Space Cafe! </h1>
             <p>Discover recipes from all corners of the galaxy.</p>
-            <Link to="/create" className={styles.ctaButton}>
+            <button className={styles.ctaButton} onClick={handleCreateRecipe}>
               Create Your Recipe
-            </Link>
+            </button>
           </div>
         </div>
       </div>
