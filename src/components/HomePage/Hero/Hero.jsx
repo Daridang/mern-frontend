@@ -11,7 +11,7 @@ export default function Hero() {
 
   const handleCreateRecipe = () => {
     if (!token) {
-      navigate("/login");
+      navigate("/login", { state: { from: { pathname: "/create" } } });
     } else {
       navigate("/create");
     }

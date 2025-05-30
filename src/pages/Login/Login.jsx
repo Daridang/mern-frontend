@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Login.module.css";
 
@@ -13,6 +13,8 @@ export default function Login() {
 
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
     setFormData({
@@ -30,7 +32,7 @@ export default function Login() {
       const result = await login(formData);
 
       if (result.success) {
-        navigate("/");
+        navigate(from, { replace: true });
       } else {
         setFormError(result.error || "Login failed. Please try again.");
       }
