@@ -160,7 +160,7 @@ export default function RecipeDetail() {
                 alt={recipe.author.name}
                 className={styles.avatar}
               />
-              <a href="#" className={styles.authorName}>
+              <a href="/profile" className={styles.authorName}>
                 {recipe.author.name}
               </a>
             </div>
