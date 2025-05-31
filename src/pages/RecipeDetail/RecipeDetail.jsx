@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation } from "react-router-dom";
 import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./RecipeDetail.module.css";
@@ -23,6 +23,7 @@ export default function RecipeDetail() {
   const { user } = useContext(AuthContext);
   const [liked, setLiked] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -216,6 +217,7 @@ export default function RecipeDetail() {
         <RegisterModal
           isOpen={showRegisterModal}
           onClose={() => setShowRegisterModal(false)}
+          from={location.pathname}
         />
       </div>
     </div>
