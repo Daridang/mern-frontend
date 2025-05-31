@@ -1,21 +1,9 @@
 import React from "react";
 import Modal from "../Modal";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./RegisterModal.module.css";
 
 export default function RegisterModal({ isOpen, onClose, from }) {
-  const navigate = useNavigate();
-
-  const handleLogin = () => {
-    navigate("/login", { state: { from: { pathname: from } } });
-    onClose();
-  };
-
-  const handleRegister = () => {
-    navigate("/register", { state: { from: { pathname: from } } });
-    onClose();
-  };
-
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className={styles.heading}>Sign up or log in</h2>
