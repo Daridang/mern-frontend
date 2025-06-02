@@ -73,8 +73,9 @@ export default function RecipeDetail() {
   };
 
   const handleEditComment = async (commentId, newText) => {
+    console.log(commentId, newText);
     try {
-      const res = await api.patch(`/api/comments/${commentId}`, {
+      const res = await api.put(`/api/comments/${commentId}`, {
         text: newText,
       });
       setComments((prev) =>

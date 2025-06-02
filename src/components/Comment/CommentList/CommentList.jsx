@@ -22,7 +22,7 @@ const CommentList = ({
           isEditable={currentUserId === comment.author._id}
           isLikedByCurrentUser={comment.likes.includes(currentUserId) || false}
           onLikeToggle={() => onLikeToggle(comment._id)}
-          onEdit={() => onEdit(comment._id)}
+          onEdit={(newText) => onEdit(comment._id, newText)}
           onDelete={() => onDelete(comment._id)}
         />
       ))}
