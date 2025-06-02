@@ -76,7 +76,7 @@ export default function Profile() {
 
   const handleEditComment = async (commentId, newText) => {
     try {
-      const res = await api.patch(`/api/comments/${commentId}`, {
+      const res = await api.put(`/api/comments/${commentId}`, {
         text: newText,
       });
       setUserComments((prev) =>
