@@ -61,6 +61,10 @@ export default function RecipeDetail() {
   };
 
   const handleLikeToggle = async (commentId) => {
+       if (!user) {
+         setShowRegisterModal(true);
+         return;
+       }
     try {
       const res = await api.patch(`/api/comments/${commentId}/like`);
       setComments((prev) =>
