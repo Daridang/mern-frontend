@@ -8,7 +8,7 @@ export default function RegisterModal({ isOpen, onClose, from }) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <h2 className={styles.heading}>Sign up or log in</h2>
       <p className={styles.text}>
-        Only registered users can like recipes. Please sign up or log in to
+        Please sign up or log in to
         continue.
       </p>
       <div className={styles.actions}>

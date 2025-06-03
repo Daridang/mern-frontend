@@ -71,3 +71,37 @@
   font-size: 1rem;
   font-weight: 500;
 }
+
+.loginPrompt {
+  background: #f1f9e2;
+  border-radius: 8px;
+  padding: 24px 20px;
+  margin: 24px 0;
+  text-align: center;
+  color: #235372;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px #0001;
+}
+
+.loginPrompt p {
+  margin: 0;
+}
+
+.loginBtn {
+  background: #ccecde;
+  color: #235372;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 6px;
+}
+
+.loginBtn:hover {
+  background: #7caf99;
+  color: #fff;
+}

@@ -61,10 +61,10 @@ export default function RecipeDetail() {
   };
 
   const handleLikeToggle = async (commentId) => {
-       if (!user) {
-         setShowRegisterModal(true);
-         return;
-       }
+    if (!user) {
+      setShowRegisterModal(true);
+      return;
+    }
     try {
       const res = await api.patch(`/api/comments/${commentId}/like`);
       setComments((prev) =>
@@ -217,7 +217,22 @@ export default function RecipeDetail() {
           onEdit={handleEditComment}
           onDelete={handleDeleteComment}
         />
-        <CommentForm onSubmit={handleAddComment} />
+        {user && <CommentForm onSubmit={handleAddComment} />}
+        {!user && (
+          <div className={styles.loginPrompt}>
+            <p>
+              To leave a comment,{" "}
+              <button
+                type="button"
+                className={styles.loginBtn}
+                onClick={() => setShowRegisterModal(true)}
+              >
+                Log in or sign up
+              </button>
+              .
+            </p>
+          </div>
+        )}
 
         <RegisterModal
           isOpen={showRegisterModal}
