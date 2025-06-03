@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect, useCallback } from "react";
 import { Link, useParams, useLocation } from "react-router-dom";
 import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
@@ -134,6 +134,25 @@ export default function RecipeDetail() {
   const isAuthor = user && recipe && user.id === recipe.author.id;
   const isGuest = !user || user.id !== recipe?.author?.id;
 
+  // Хук useAuthAction
+  function useAuthAction(user, openModal) {
+    return useCallback(
+      (action) =>
+        (...args) => {
+          if (!user) {
+            openModal(true);
+            return;
+          }
+          return action(...args);
+        },
+      [user, openModal]
+    );
+  }
+
+  const withAuth = useAuthAction(user, setShowRegisterModal);
+  const handleAddCommentAuth = withAuth(handleAddComment);
+  const handleLikeToggleAuth = withAuth(handleLikeToggle);
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -213,11 +232,11 @@ export default function RecipeDetail() {
         <CommentList
           comments={comments}
           currentUserId={user?.id || null}
-          onLikeToggle={handleLikeToggle}
+          onLikeToggle={handleLikeToggleAuth}
           onEdit={handleEditComment}
           onDelete={handleDeleteComment}
         />
-        {user && <CommentForm onSubmit={handleAddComment} />}
+        {user && <CommentForm onSubmit={handleAddCommentAuth} />}
         {!user && (
           <div className={styles.loginPrompt}>
             <p>
