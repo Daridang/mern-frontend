@@ -46,7 +46,6 @@ export default function Profile() {
     }
   }, [activeTab]);
 
-  // feat(profile): added tabs for own and liked comments of the user
 
   const handleChange = (e) => {
     setFormData({
