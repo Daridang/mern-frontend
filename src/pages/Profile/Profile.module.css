@@ -59,7 +59,8 @@
   margin-top: 10px;
 }
 
-.editButton, .saveButton {
+.editButton,
+.saveButton {
   background-color: #4a6fa5;
   color: white;
   border: none;
@@ -70,7 +71,8 @@
   transition: background-color 0.2s;
 }
 
-.editButton:hover, .saveButton:hover {
+.editButton:hover,
+.saveButton:hover {
   background-color: #3a5a8c;
 }
 
@@ -105,4 +107,25 @@
   border-radius: 4px;
   margin-bottom: 16px;
   font-size: 14px;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.tabs button {
+  padding: 8px 18px;
+  border: none;
+  background: #ccecde;
+  border-radius: 4px 4px 0 0;
+  font-size: 1rem;
+  cursor: pointer;
+  color: #235372;
+  transition: background 0.2s;
+}
+.tabs .activeTab {
+  background: #7caf99;
+  color: #fff;
+  font-weight: bold;
 }

@@ -14,6 +14,8 @@ export default function Profile() {
   const [formError, setFormError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const [userComments, setUserComments] = useState([]);
+  const [activeTab, setActiveTab] = useState("my");
+  const [likedComments, setLikedComments] = useState([]);
 
   useEffect(() => {
     console.log(`ID ${user.id}`);
@@ -32,6 +34,19 @@ export default function Profile() {
       fetchUserComments();
     }
   }, [user]);
+
+  useEffect(() => {
+    if (activeTab === "liked" && likedComments.length === 0) {
+      api
+        .get(`/api/comments/liked`)
+        .then((res) => setLikedComments(res.data))
+        .catch((err) =>
+          console.error("Ошибка при загрузке понравившихся:", err)
+        );
+    }
+  }, [activeTab]);
+
+  // feat(profile): added tabs for own and liked comments of the user
 
   const handleChange = (e) => {
     setFormData({
@@ -180,14 +195,38 @@ export default function Profile() {
           </div>
         </form>
       )}
-      <h3>Your Comments</h3>
-      <CommentList
-        comments={userComments}
-        currentUserId={user.id}
-        onLikeToggle={handleLikeToggle}
-        onEdit={handleEditComment}
-        onDelete={handleDeleteComment}
-      />
+      <div className={styles.tabs}>
+        <button
+          className={activeTab === "my" ? styles.activeTab : ""}
+          onClick={() => setActiveTab("my")}
+        >
+          Мои комментарии
+        </button>
+        <button
+          className={activeTab === "liked" ? styles.activeTab : ""}
+          onClick={() => setActiveTab("liked")}
+        >
+          Понравившиеся
+        </button>
+      </div>
+      {activeTab === "my" && (
+        <CommentList
+          comments={userComments}
+          currentUserId={user.id}
+          onLikeToggle={handleLikeToggle}
+          onEdit={handleEditComment}
+          onDelete={handleDeleteComment}
+        />
+      )}
+      {activeTab === "liked" && (
+        <CommentList
+          comments={likedComments}
+          currentUserId={user.id}
+          onLikeToggle={handleLikeToggle}
+          onEdit={handleEditComment}
+          onDelete={handleDeleteComment}
+        />
+      )}
     </div>
   );
 }
