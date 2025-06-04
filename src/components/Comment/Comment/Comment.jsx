@@ -84,9 +84,11 @@ const Comment = ({
             <p>{text}</p>
             <small>{new Date(date).toLocaleDateString()}</small>
             <div className={styles.commentActions}>
-              <button onClick={handleLikeToggle}>
-                {isLikedByCurrentUser ? "Unlike" : "Like"}
-              </button>
+              {!isEditable && (
+                <button onClick={handleLikeToggle}>
+                  {isLikedByCurrentUser ? "Unlike" : "Like"}
+                </button>
+              )}
               <span>{likes} likes</span>
               {isEditable && (
                 <>
