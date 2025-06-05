@@ -3,6 +3,7 @@ import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Profile.module.css";
 import CommentList from "../../components/Comment/CommentList/CommentList";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);
@@ -16,6 +17,8 @@ export default function Profile() {
   const [userComments, setUserComments] = useState([]);
   const [activeTab, setActiveTab] = useState("my");
   const [likedComments, setLikedComments] = useState([]);
+  const [userRecipes, setUserRecipes] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(`ID ${user.id}`);
@@ -46,6 +49,14 @@ export default function Profile() {
     }
   }, [activeTab]);
 
+  useEffect(() => {
+    if (activeTab === "recipes" && userRecipes.length === 0) {
+      api
+        .get(`/api/recipes/user/${user.id}`)
+        .then((res) => setUserRecipes(res.data))
+        .catch((err) => console.error("Error fetching user recipes:", err));
+    }
+  }, [activeTab]);
 
   const handleChange = (e) => {
     setFormData({
@@ -207,6 +218,12 @@ export default function Profile() {
         >
           Понравившиеся
         </button>
+        <button
+          className={activeTab === "recipes" ? styles.activeTab : ""}
+          onClick={() => setActiveTab("recipes")}
+        >
+          Мои рецепты
+        </button>
       </div>
       {activeTab === "my" && (
         <CommentList
@@ -225,6 +242,31 @@ export default function Profile() {
           onEdit={handleEditComment}
           onDelete={handleDeleteComment}
         />
+      )}
+      {activeTab === "recipes" && (
+        <div className={styles.recipeList}>
+          {userRecipes.length === 0 ? (
+            <p>You have no recipes yet.</p>
+          ) : (
+            userRecipes.map((recipe) => (
+              <div
+                key={recipe._id}
+                className={styles.recipeCard}
+                onClick={() => navigate(`/recipes/${recipe._id}`)}
+              >
+                <img
+                  src={recipe.image}
+                  alt={recipe.title}
+                  className={styles.recipeImage}
+                />
+                <div>
+                  <h4>{recipe.title}</h4>
+                  <p>{recipe.category}</p>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       )}
     </div>
   );
