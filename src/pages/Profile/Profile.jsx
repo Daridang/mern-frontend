@@ -3,7 +3,7 @@ import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./Profile.module.css";
 import CommentList from "../../components/Comment/CommentList/CommentList";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Profile() {
   const { user, updateUser } = useContext(AuthContext);
@@ -19,6 +19,7 @@ export default function Profile() {
   const [likedComments, setLikedComments] = useState([]);
   const [userRecipes, setUserRecipes] = useState([]);
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     console.log(`ID ${user.id}`);
@@ -57,6 +58,11 @@ export default function Profile() {
         .catch((err) => console.error("Error fetching user recipes:", err));
     }
   }, [activeTab]);
+
+  useEffect(() => {
+    const tab = searchParams.get("tab");
+    if (tab) setActiveTab(tab);
+  }, [searchParams]);
 
   const handleChange = (e) => {
     setFormData({
@@ -125,6 +131,11 @@ export default function Profile() {
     } catch (err) {
       console.error("Ошибка при удалении:", err);
     }
+  };
+
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+    setSearchParams({ tab });
   };
 
   return (
@@ -208,19 +219,19 @@ export default function Profile() {
       <div className={styles.tabs}>
         <button
           className={activeTab === "my" ? styles.activeTab : ""}
-          onClick={() => setActiveTab("my")}
+          onClick={() => handleTabChange("my")}
         >
           Мои комментарии
         </button>
         <button
           className={activeTab === "liked" ? styles.activeTab : ""}
-          onClick={() => setActiveTab("liked")}
+          onClick={() => handleTabChange("liked")}
         >
           Понравившиеся
         </button>
         <button
           className={activeTab === "recipes" ? styles.activeTab : ""}
-          onClick={() => setActiveTab("recipes")}
+          onClick={() => handleTabChange("recipes")}
         >
           Мои рецепты
         </button>
