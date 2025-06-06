@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useCallback } from "react";
-import { Link, useParams, useLocation } from "react-router-dom";
+import { Link, useParams, useLocation, useNavigate } from "react-router-dom";
 import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
 import styles from "./RecipeDetail.module.css";
@@ -24,6 +24,7 @@ export default function RecipeDetail() {
   const [liked, setLiked] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -131,6 +132,16 @@ export default function RecipeDetail() {
     }
   };
 
+  const handleDeleteRecipe = async () => {
+    if (!window.confirm("Are you sure you want to delete this recipe?")) return;
+    try {
+      await api.delete(`/api/recipes/${id}`);
+      navigate("/#catalog");
+    } catch (err) {
+      console.error("Failed to delete recipe:", err);
+    }
+  };
+
   const isAuthor = user && recipe && user.id === recipe.author.id;
   const isGuest = !user || user.id !== recipe?.author?.id;
 
@@ -195,7 +206,12 @@ export default function RecipeDetail() {
               {isAuthor && (
                 <>
                   <button className={styles.editBtn}>Edit</button>
-                  <button className={styles.deleteBtn}>Delete</button>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={handleDeleteRecipe}
+                  >
+                    Delete
+                  </button>
                 </>
               )}
               {isGuest && (
