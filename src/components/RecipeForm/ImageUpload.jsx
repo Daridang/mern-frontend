@@ -2,43 +2,60 @@
 import React, { useState, useEffect } from "react";
 import styles from "./RecipeForm.module.css";
 
-export default function ImageUpload({ imageFile, setImageFile }) {
+export default function ImageUpload({
+  imageFile,
+  setImageFile,
+  existingImage,
+  setExistingImage,
+}) {
   const [previewUrl, setPreviewUrl] = useState(null);
 
-  // Create a preview URL when imageFile changes
+  // Create a preview URL when imageFile or existingImage changes
   useEffect(() => {
-    if (!imageFile) {
+    if (imageFile) {
+      const objectUrl = URL.createObjectURL(imageFile);
+      setPreviewUrl(objectUrl);
+      return () => URL.revokeObjectURL(objectUrl);
+    } else if (existingImage) {
+      setPreviewUrl(existingImage);
+    } else {
       setPreviewUrl(null);
-      return;
     }
-
-    // Create a URL for the file
-    const objectUrl = URL.createObjectURL(imageFile);
-    setPreviewUrl(objectUrl);
-
-    // Clean up the URL when component unmounts or imageFile changes
-    return () => URL.revokeObjectURL(objectUrl);
-  }, [imageFile]);
+  }, [imageFile, existingImage]);
 
   const handleOnChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // You can add validation here if needed
-      // For example, check file type or size
       setImageFile(file);
+      setExistingImage(null);
+    } else {
+      setImageFile(null);
     }
+  };
+
+  const handleRemoveImage = () => {
+    setImageFile(null);
+    setExistingImage(null);
+    setPreviewUrl(null);
   };
 
   return (
     <section className={styles.section}>
       <h3>Image</h3>
-      {previewUrl && (
+      {(previewUrl || existingImage) && (
         <div className={styles.imagePreview}>
           <img
-            src={previewUrl}
+            src={previewUrl || existingImage}
             alt="Recipe preview"
             className={styles.previewImage}
           />
+          <button
+            type="button"
+            onClick={handleRemoveImage}
+            className={styles.removeImageBtn}
+          >
+            Remove Image
+          </button>
         </div>
       )}
       <input type="file" accept="image/*" onChange={handleOnChange} />

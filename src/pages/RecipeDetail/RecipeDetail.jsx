@@ -179,24 +179,30 @@ export default function RecipeDetail() {
 
         {/* Блок: картинка + ингредиенты + автор */}
         <div className={styles.topBlock}>
-          <img
-            src={recipe.image}
-            alt={recipe.title}
-            className={styles.mainImage}
-          />
+          {recipe.image ? (
+            <img
+              src={recipe.image}
+              alt={recipe.title}
+              className={styles.mainImage}
+            />
+          ) : (
+            <div className={styles.noImage}>No Image Available</div>
+          )}
           <div className={styles.sideInfo}>
             {/* Автор */}
             <div className={styles.author}>
               <img
                 src={
-                  recipe.author.avatar ||
-                  `https://robohash.org/${recipe.author._id}`
+                  recipe.author?.avatar ||
+                  (recipe.author?._id
+                    ? `https://robohash.org/${recipe.author._id}`
+                    : `https://robohash.org/default`)
                 }
-                alt={recipe.author.name}
+                alt={recipe.author?.name}
                 className={styles.avatar}
               />
               <a href="/profile" className={styles.authorName}>
-                {recipe.author.name}
+                {recipe.author?.name}
               </a>
             </div>
             {/* Ингредиенты */}
@@ -205,7 +211,12 @@ export default function RecipeDetail() {
             <div className={styles.actions}>
               {isAuthor && (
                 <>
-                  <button className={styles.editBtn}>Edit</button>
+                  <button
+                    className={styles.editBtn}
+                    onClick={() => navigate(`/create/${id}`)}
+                  >
+                    Edit
+                  </button>
                   <button
                     className={styles.deleteBtn}
                     onClick={handleDeleteRecipe}

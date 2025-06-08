@@ -1,7 +1,8 @@
 // src/components/RecipeForm/RecipeForm.jsx
-import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
+import api from "../../axiosConfig";
 import BasicInfo from "./BasicInfo";
 import ImageUpload from "./ImageUpload";
 import IngredientsSection from "./IngredientsSection";
@@ -13,6 +14,8 @@ import styles from "./RecipeForm.module.css";
 export default function RecipeForm() {
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { id: recipeId } = useParams();
+
   // Основные поля
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -22,6 +25,10 @@ export default function RecipeForm() {
   const [prepTime, setPrepTime] = useState("");
   const [temperature, setTemperature] = useState("");
   const [imageFile, setImageFile] = useState(null);
+  const [existingImage, setExistingImage] = useState("");
+  const [loading, setLoading] = useState(true);
+
+  const [error, setError] = useState("");
 
   // Ингредиенты
   const [ingredientsGroups, setIngredientsGroups] = useState([
@@ -38,6 +45,48 @@ export default function RecipeForm() {
 
   // Экстры
   const [extras, setExtras] = useState([""]);
+
+  useEffect(() => {
+    if (recipeId) {
+      // Editing existing recipe
+      const fetchRecipe = async () => {
+        try {
+          const res = await api.get(`/api/recipes/${recipeId}`);
+          const recipeData = res.data;
+
+          setTitle(recipeData.title || "");
+          setDescription(recipeData.description || "");
+          setCategory(recipeData.category || "");
+          setYieldInfo(recipeData.yield || "");
+          setServingSize(recipeData.serving_size || "");
+          setPrepTime(recipeData.prep_time || "");
+          setTemperature(recipeData.temperature || "");
+          setExistingImage(recipeData.image || ""); // Set existing image URL
+
+          setIngredientsGroups(
+            recipeData.ingredients?.groups || [
+              { name: "", items: [{ item: "", amount: "" }] },
+            ]
+          );
+          setEquipment(recipeData.equipment || [""]);
+          setInstructionsGroups(
+            recipeData.instructions?.groups || [{ name: "", steps: [""] }]
+          );
+          setExtras(recipeData.extras || [""]);
+        } catch (err) {
+          console.error("Error fetching recipe for edit:", err);
+          setError("Failed to load recipe for editing.");
+          navigate("/recipes");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchRecipe();
+    } else {
+      // Creating new recipe
+      setLoading(false);
+    }
+  }, [recipeId, navigate]);
 
   // --- Handlers для Ingredients ---
   const handleAddGroup = () => {
@@ -127,8 +176,18 @@ export default function RecipeForm() {
     formData.append("serving_size", servingSize);
     formData.append("prep_time", prepTime);
     formData.append("temperature", temperature);
-    formData.append("author", user.id);
-    if (imageFile) formData.append("image", imageFile);
+    // Only append author if creating a new recipe
+    if (!recipeId) {
+      formData.append("author", user.id);
+    }
+
+    // Handle image update for both new and existing recipes
+    if (imageFile) {
+      formData.append("image", imageFile);
+    } else if (recipeId && !existingImage) {
+      // If in edit mode and image was removed (existingImage is empty), send a flag
+      formData.append("clearImage", "true");
+    }
 
     formData.append(
       "ingredients",
@@ -142,31 +201,41 @@ export default function RecipeForm() {
     formData.append("extras", JSON.stringify(extras));
 
     try {
-      const res = await fetch(
-        `${
-          process.env.REACT_APP_API_URL || "http://localhost:5000"
-        }/api/recipes`,
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      if (!res.ok) {
-        const text = await res.text();
-        throw new Error(`Server responded ${res.status}: ${text}`);
+      let res;
+      if (recipeId) {
+        // Update existing recipe
+        res = await api.put(`/api/recipes/${recipeId}`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      } else {
+        // Create new recipe
+        res = await api.post("/api/recipes", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
       }
-      const data = await res.json();
-      console.log("Recipe created:", data);
-
-      navigate("/");
+      const data = res.data;
+      navigate(`/recipes/${data._id}`);
     } catch (err) {
-      console.error("Error creating recipe", err, err.message);
+      console.error(
+        recipeId ? "Error updating recipe" : "Error creating recipe",
+        err,
+        err.message
+      );
+      setError(err.response?.data?.error || "An error occurred.");
     }
   };
 
+  if (loading) return <p>Loading form...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>New Recipe</h2>
+      <h2>{recipeId ? "Edit Recipe" : "New Recipe"}</h2>
+      {error && <div className={styles.error}>{error}</div>}
       <BasicInfo
         {...{
           title,
@@ -185,7 +254,9 @@ export default function RecipeForm() {
           setTemperature,
         }}
       />
-      <ImageUpload {...{ imageFile, setImageFile }} />
+      <ImageUpload
+        {...{ imageFile, setImageFile, existingImage, setExistingImage }}
+      />
       <IngredientsSection
         {...{
           groups: ingredientsGroups,
@@ -220,7 +291,7 @@ export default function RecipeForm() {
         {...{ extras, handleAddExtra, handleRemoveExtra, handleExtraChange }}
       />
       <button type="submit" className={styles.submitBtn}>
-        Create Recipe
+        {recipeId ? "Update Recipe" : "Create Recipe"}
       </button>
     </form>
   );

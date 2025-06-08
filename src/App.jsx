@@ -23,7 +23,7 @@ export default function App() {
 
             {/* Protected routes */}
             <Route
-              path="/create"
+              path="/create/:id?"
               element={
                 <ProtectedRoute>
                   <RecipeForm />

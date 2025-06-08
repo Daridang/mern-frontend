@@ -22,12 +22,9 @@ export default function Profile() {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    console.log(`ID ${user.id}`);
     const fetchUserComments = async () => {
       try {
         const res = await api.get(`/api/comments/user/${user.id}`);
-        console.log(`res.data:`, res.data);
-
         setUserComments(res.data);
       } catch (error) {
         console.error("Error fetching user comments:", error);
@@ -151,7 +148,6 @@ export default function Profile() {
       setFormError("");
       setSuccessMessage("");
       const result = await deleteUser();
-      console.log(`result:`, result);
       if (result.success) {
         setSuccessMessage("Profile deleted successfully!");
         navigate("/");
