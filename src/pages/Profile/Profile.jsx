@@ -147,6 +147,11 @@ export default function Profile() {
 
       {!isEditing ? (
         <div className={styles.profileInfo}>
+            <img
+              src={`https://robohash.org/${user.id}`}
+              alt="User Avatar"
+              className={styles.profileAvatar}
+            />
           <div className={styles.infoItem}>
             <span className={styles.label}>Name:</span>
             <span className={styles.value}>{user?.name}</span>

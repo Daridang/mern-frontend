@@ -9,6 +9,19 @@
 
 .profileInfo {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profileAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #ccecde;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .infoItem {
