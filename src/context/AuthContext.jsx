@@ -135,6 +135,28 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const deleteUser = async () => {
+    try {
+      setError(null);
+      const response = await api.delete("/api/auth/delete-profile");
+      if (response.status === 200) {
+        logout(); // Log out the user after successful deletion
+        return { success: true };
+      } else {
+        return { success: false, error: "Failed to delete profile." };
+      }
+    } catch (error) {
+      setError(
+        error.response?.data?.error ||
+          "Failed to delete profile. Please try again."
+      );
+      return {
+        success: false,
+        error: error.response?.data?.error || "Deletion failed",
+      };
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -147,6 +169,7 @@ export const AuthProvider = ({ children }) => {
         logout,
         updateUser,
         changePassword,
+        deleteUser,
       }}
     >
       {children}

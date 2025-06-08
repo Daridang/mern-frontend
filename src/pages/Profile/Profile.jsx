@@ -6,7 +6,7 @@ import CommentList from "../../components/Comment/CommentList/CommentList";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Profile() {
-  const { user, updateUser } = useContext(AuthContext);
+  const { user, updateUser, deleteUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     name: user?.name || "",
     email: user?.email || "",
@@ -138,6 +138,32 @@ export default function Profile() {
     setSearchParams({ tab });
   };
 
+  const handleDeleteProfile = async () => {
+    if (
+      !window.confirm(
+        "Are you sure you want to delete your profile? This action cannot be undone."
+      )
+    ) {
+      return;
+    }
+
+    try {
+      setFormError("");
+      setSuccessMessage("");
+      const result = await deleteUser();
+      console.log(`result:`, result);
+      if (result.success) {
+        setSuccessMessage("Profile deleted successfully!");
+        navigate("/");
+      } else {
+        setFormError(result.error || "Failed to delete profile.");
+      }
+    } catch (error) {
+      setFormError("An unexpected error occurred during profile deletion.");
+      console.error("Error deleting profile:", error);
+    }
+  };
+
   return (
     <div className={styles.profileContainer}>
       <h2>Your Profile</h2>
@@ -147,11 +173,11 @@ export default function Profile() {
 
       {!isEditing ? (
         <div className={styles.profileInfo}>
-            <img
-              src={`https://robohash.org/${user.id}`}
-              alt="User Avatar"
-              className={styles.profileAvatar}
-            />
+          <img
+            src={`https://robohash.org/${user.id}`}
+            alt="User Avatar"
+            className={styles.profileAvatar}
+          />
           <div className={styles.infoItem}>
             <span className={styles.label}>Name:</span>
             <span className={styles.value}>{user?.name}</span>
@@ -168,12 +194,20 @@ export default function Profile() {
                 : "N/A"}
             </span>
           </div>
-          <button
-            className={styles.editButton}
-            onClick={() => setIsEditing(true)}
-          >
-            Edit Profile
-          </button>
+          <div className={styles.buttonGroup}>
+            <button
+              className={styles.editButton}
+              onClick={() => setIsEditing(true)}
+            >
+              Edit Profile
+            </button>
+            <button
+              className={styles.deleteProfileButton}
+              onClick={handleDeleteProfile}
+            >
+              Delete Profile
+            </button>
+          </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className={styles.form}>
