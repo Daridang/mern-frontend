@@ -107,3 +107,16 @@
   margin-bottom: 4px;
   font-size: 0.95em;
 }
+
+.replyFormContainer {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e0e0e0;
+  padding-bottom: 1rem;
+}
+
+.replies {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid #e0e0e0;
+}

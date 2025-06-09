@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styles from "./Comment.module.css";
+import CommentForm from "../CommentForm/CommentForm";
+import CommentList from "../CommentList/CommentList";
 
 const Comment = ({
+  commentId,
   avatar,
   username,
   text,
@@ -12,10 +15,14 @@ const Comment = ({
   onDelete,
   isEditable,
   onLikeToggle,
+  replies,
+  onAddReply,
+  currentUserId,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
   const [error, setError] = useState("");
+  const [showReplyForm, setShowReplyForm] = useState(false);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -49,10 +56,21 @@ const Comment = ({
     try {
       await onLikeToggle();
     } catch (error) {
-      // Можно показать ошибку пользователю
-      // setError("Ошибка при лайке");
       console.log(`Error: ${error}`);
     }
+  };
+
+  const handleReplyClick = () => {
+    setShowReplyForm((prev) => !prev);
+  };
+
+  const handleReplySubmit = async (replyText) => {
+    await onAddReply(replyText, commentId);
+    setShowReplyForm(false);
+  };
+
+  const handleReplyCancel = () => {
+    setShowReplyForm(false);
   };
 
   return (
@@ -96,8 +114,34 @@ const Comment = ({
                   <button onClick={onDelete}>Delete</button>
                 </>
               )}
+              <button onClick={handleReplyClick}>
+                {showReplyForm ? "Отменить ответ" : "Ответить"}
+              </button>
             </div>
           </>
+        )}
+
+        {showReplyForm &&
+          (currentUserId || typeof onAddReply === "function") && (
+            <div className={styles.replyFormContainer}>
+              <CommentForm
+                onSubmit={handleReplySubmit}
+                onCancel={handleReplyCancel}
+              />
+            </div>
+          )}
+
+        {replies && replies.length > 0 && (
+          <div className={styles.replies}>
+            <CommentList
+              comments={replies}
+              currentUserId={currentUserId}
+              onLikeToggle={onLikeToggle}
+              onEdit={onEdit}
+              onDelete={onDelete}
+              onAddReply={onAddReply}
+            />
+          </div>
         )}
       </div>
     </div>

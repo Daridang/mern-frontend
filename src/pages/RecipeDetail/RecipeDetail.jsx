@@ -49,13 +49,30 @@ export default function RecipeDetail() {
     fetchData();
   }, [id, user]);
 
-  const handleAddComment = async (text) => {
+  const handleAddComment = async (text, parentCommentId = null) => {
     try {
       const res = await api.post("/api/comments", {
         recipeId: id,
         text,
+        parentCommentId,
       });
-      setComments((prev) => [...prev, res.data]);
+      const newComment = res.data;
+
+      setComments((prevComments) => {
+        if (parentCommentId) {
+          return prevComments.map((comment) => {
+            if (comment._id === parentCommentId) {
+              return {
+                ...comment,
+                replies: [...(comment.replies || []), newComment],
+              };
+            }
+            return comment;
+          });
+        } else {
+          return [...prevComments, newComment];
+        }
+      });
     } catch (err) {
       console.error("Ошибка при добавлении комментария:", err);
     }
@@ -262,8 +279,14 @@ export default function RecipeDetail() {
           onLikeToggle={handleLikeToggleAuth}
           onEdit={handleEditComment}
           onDelete={handleDeleteComment}
+          onAddReply={handleAddCommentAuth}
         />
-        {user && <CommentForm onSubmit={handleAddCommentAuth} />}
+        {user && (
+          <CommentForm
+            onSubmit={handleAddCommentAuth}
+            placeholder="Написать комментарий..."
+          />
+        )}
         {!user && (
           <div className={styles.loginPrompt}>
             <p>

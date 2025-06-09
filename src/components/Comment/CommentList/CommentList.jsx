@@ -8,12 +8,14 @@ const CommentList = ({
   onLikeToggle,
   onEdit,
   onDelete,
+  onAddReply,
 }) => {
   return (
     <div className={styles.list}>
       {comments.map((comment) => (
         <Comment
           key={comment._id}
+          commentId={comment._id}
           avatar={`https://robohash.org/${comment.author._id}`}
           username={comment.author.name}
           text={comment.text}
@@ -24,6 +26,9 @@ const CommentList = ({
           onLikeToggle={() => onLikeToggle(comment._id)}
           onEdit={(newText) => onEdit(comment._id, newText)}
           onDelete={() => onDelete(comment._id)}
+          replies={comment.replies}
+          onAddReply={onAddReply}
+          currentUserId={currentUserId}
         />
       ))}
     </div>
