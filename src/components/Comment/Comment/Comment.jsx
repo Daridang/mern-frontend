@@ -12,7 +12,7 @@ const Comment = ({
   likes,
   isLikedByCurrentUser,
   onEdit,
-  onDelete,
+  onDeleteComment,
   isEditable,
   onLikeToggle,
   replies,
@@ -82,6 +82,8 @@ const Comment = ({
       />
       <div className={styles.commentContent}>
         <h4>{username}</h4>
+        {/* <h3>User ID: {currentUserId}</h3>
+        <h3>Comment ID: {commentId}</h3> */}
         {isEditing ? (
           <>
             <textarea
@@ -111,7 +113,13 @@ const Comment = ({
               {isEditable && (
                 <>
                   <button onClick={handleEditClick}>Edit</button>
-                  <button onClick={onDelete}>Delete</button>
+                  <button
+                    onClick={() => {
+                      onDeleteComment(commentId);
+                    }}
+                  >
+                    Delete
+                  </button>
                 </>
               )}
               <button onClick={handleReplyClick}>
@@ -138,7 +146,7 @@ const Comment = ({
               currentUserId={currentUserId}
               onLikeToggle={onLikeToggle}
               onEdit={onEdit}
-              onDelete={onDelete}
+              onDelete={onDeleteComment}
               onAddReply={onAddReply}
             />
           </div>

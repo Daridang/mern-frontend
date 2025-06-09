@@ -51,28 +51,16 @@ export default function RecipeDetail() {
 
   const handleAddComment = async (text, parentCommentId = null) => {
     try {
-      const res = await api.post("/api/comments", {
+      // 1. Send the new comment/reply to the backend
+      await api.post("/api/comments", {
         recipeId: id,
         text,
         parentCommentId,
       });
-      const newComment = res.data;
 
-      setComments((prevComments) => {
-        if (parentCommentId) {
-          return prevComments.map((comment) => {
-            if (comment._id === parentCommentId) {
-              return {
-                ...comment,
-                replies: [...(comment.replies || []), newComment],
-              };
-            }
-            return comment;
-          });
-        } else {
-          return [...prevComments, newComment];
-        }
-      });
+      // 2. Re-fetch all comments to ensure full, correctly nested and populated data
+      const commentRes = await api.get(`/api/comments/recipe/${id}`);
+      setComments(commentRes.data);
     } catch (err) {
       console.error("Ошибка при добавлении комментария:", err);
     }
@@ -116,9 +104,10 @@ export default function RecipeDetail() {
   const handleDeleteComment = async (commentId) => {
     try {
       await api.delete(`/api/comments/${commentId}`);
-      setComments((prev) =>
-        prev.filter((comment) => comment._id !== commentId)
-      );
+     
+      // Re-fetch all comments to ensure full, correctly nested and populated data
+      const commentRes = await api.get(`/api/comments/recipe/${id}`);
+      setComments(commentRes.data);
     } catch (err) {
       console.error("Error when deleting:", err);
       throw new Error(

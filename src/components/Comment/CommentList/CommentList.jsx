@@ -12,25 +12,29 @@ const CommentList = ({
 }) => {
   return (
     <div className={styles.list}>
-      {comments.map((comment) => (
-        <Comment
-          key={comment._id}
-          commentId={comment._id}
-          avatar={`https://robohash.org/${comment.author._id}`}
-          username={comment.author.name}
-          text={comment.text}
-          date={comment.createdAt}
-          likes={comment.likesCount || 0}
-          isEditable={currentUserId === comment.author._id}
-          isLikedByCurrentUser={comment.likes.includes(currentUserId) || false}
-          onLikeToggle={() => onLikeToggle(comment._id)}
-          onEdit={(newText) => onEdit(comment._id, newText)}
-          onDelete={() => onDelete(comment._id)}
-          replies={comment.replies}
-          onAddReply={onAddReply}
-          currentUserId={currentUserId}
-        />
-      ))}
+      {comments.map((comment) => {
+        return (
+          <Comment
+            key={comment._id}
+            commentId={comment._id}
+            avatar={`https://robohash.org/${comment.author._id}`}
+            username={comment.author.name}
+            text={comment.text}
+            date={comment.createdAt}
+            likes={comment.likesCount || 0}
+            isEditable={currentUserId === comment.author._id}
+            isLikedByCurrentUser={
+              comment.likes.includes(currentUserId) || false
+            }
+            onLikeToggle={() => onLikeToggle(comment._id)}
+            onEdit={(newText) => onEdit(comment._id, newText)}
+            onDeleteComment={onDelete}
+            replies={comment.replies}
+            onAddReply={onAddReply}
+            currentUserId={currentUserId}
+          />
+        );
+      })}
     </div>
   );
 };

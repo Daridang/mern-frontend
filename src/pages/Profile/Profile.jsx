@@ -122,9 +122,8 @@ export default function Profile() {
   const handleDeleteComment = async (commentId) => {
     try {
       await api.delete(`/api/comments/${commentId}`);
-      setUserComments((prev) =>
-        prev.filter((comment) => comment._id !== commentId)
-      );
+      const res = await api.get(`/api/comments/user/${user.id}`);
+      setUserComments(res.data);
     } catch (err) {
       console.error("Ошибка при удалении:", err);
     }
