@@ -13,3 +13,23 @@
   line-height: 1.6;
   color: #235372;
 }
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem; /* Adjust title font size for tablets */
+    margin-bottom: 10px;
+  }
+  .desc {
+    font-size: 1rem; /* Adjust description font size for tablets */
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 1.8rem; /* Further reduce title font size for mobile */
+    margin-bottom: 8px;
+  }
+  .desc {
+    font-size: 0.9rem; /* Further reduce description font size for mobile */
+  }
+}

@@ -120,3 +120,80 @@
   padding-left: 1rem;
   border-left: 2px solid #e0e0e0;
 }
+
+@media (max-width: 768px) {
+  .comment {
+    padding: 0.8rem; /* Adjust padding for tablets */
+    gap: 0.8rem;
+  }
+
+  .commentContent h4 {
+    font-size: 1rem;
+  }
+
+  .commentContent p {
+    font-size: 0.9rem;
+  }
+
+  .commentActions {
+    gap: 0.5rem; /* Reduce gap between actions */
+  }
+
+  .commentActions button {
+    font-size: 0.85rem;
+    padding: 0.2rem 0.4rem;
+  }
+
+  .replyFormContainer,
+  .replies {
+    padding-left: 0.8rem; /* Reduce padding for nested comments */
+  }
+}
+
+@media (max-width: 480px) {
+  .comment {
+    padding: 0.6rem; /* Further reduce padding for mobile */
+    gap: 0.6rem;
+  }
+
+  .commentAvatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .commentContent h4 {
+    font-size: 0.95rem;
+  }
+
+  .commentContent p {
+    font-size: 0.85rem;
+  }
+
+  .commentActions {
+    flex-direction: column; /* Stack actions vertically */
+    align-items: flex-start; /* Align actions to the left */
+    gap: 0.3rem;
+  }
+
+  .commentActions button {
+    width: 100%; /* Make buttons full width */
+    text-align: left;
+    padding: 0.4rem 0.2rem;
+  }
+
+  .commentActions span {
+    font-size: 0.8rem;
+  }
+
+  .replyFormContainer,
+  .replies {
+    padding-left: 0.5rem; /* Further reduce padding for deeply nested comments */
+    margin-left: -0.6rem; /* Compensate for comment padding to make it flush */
+    border-left: 1px solid #e0e0e0; /* Thinner border */
+  }
+
+  .textarea {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}

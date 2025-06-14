@@ -120,3 +120,80 @@ button:hover {
   background: #235372;
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .form {
+    margin: 20px auto; /* Adjust margin */
+    padding: 15px; /* Adjust padding */
+  }
+
+  .form h2 {
+    font-size: 24px; /* Adjust heading font size */
+    margin-bottom: 15px;
+  }
+
+  .row {
+    flex-direction: column; /* Stack columns vertically */
+    gap: 15px; /* Adjust gap */
+  }
+
+  .row label {
+    flex: auto; /* Remove flex 1 */
+  }
+
+  input,
+  textarea {
+    padding: 10px; /* Increase padding for touch targets */
+    font-size: 15px;
+  }
+
+  button {
+    padding: 8px 15px; /* Adjust button padding */
+    font-size: 15px;
+  }
+
+  .imagePreview {
+    max-width: 100%; /* Ensure image scales */
+  }
+
+  .itemRow,
+  .listRow {
+    flex-direction: column; /* Stack items vertically */
+    gap: 8px;
+  }
+
+  .itemRow input,
+  .listRow input {
+    width: 100%; /* Full width inputs */
+  }
+}
+
+@media (max-width: 480px) {
+  .form {
+    margin: 15px 10px; /* Further adjust margin */
+    padding: 10px; /* Further adjust padding */
+    max-width: none; /* Remove max-width on small screens */
+    width: auto; /* Allow auto width */
+  }
+
+  .form h2 {
+    font-size: 20px; /* Further reduce heading font size */
+    margin-bottom: 10px;
+  }
+
+  input,
+  textarea {
+    padding: 8px; /* Slightly smaller padding */
+    font-size: 14px;
+  }
+
+  button {
+    padding: 6px 12px; /* Slightly smaller padding */
+    font-size: 14px;
+  }
+
+  .submitBtn {
+    padding: 10px 0; /* Adjust submit button padding */
+    font-size: 1rem;
+  }
+}

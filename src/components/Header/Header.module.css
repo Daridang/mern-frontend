@@ -1,46 +1,129 @@
 /* src/components/Header/Header.module.css */
 .header {
+  background-color: #c0e0e7;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 24px;
-  background: var(--bacground-nav);
+  padding: 0 20px;
+  position: relative;
 }
+
 .logo {
+  font-family: Orbitron, sans-serif;
   font-size: 1.5rem;
-  color: #fff;
+  font-weight: 700;
+  color: var(--color-text);
 }
+
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .nav a {
-  margin-left: 16px;
-  color: #eee;
-  text-decoration: none;
+  color: var(--color-text);
   font-weight: 500;
   transition: color 0.2s;
 }
+
 .nav a:hover,
-.nav a.active {
-  color: #fff;
-  border-bottom: 2px solid #fff;
-}
-
-.authBtn {
-  background: #235372;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 8px;
-  color: white;
-  cursor: pointer;
-  font-weight: 500;
-  text-decoration: none;
-  transition: background 0.2s;
-  margin-left: 10px;
-}
-
-.authBtn:hover {
-  background: #ffffff44;
+.logout:hover {
+  color: #4a7c59;
 }
 
 .active {
-  font-weight: bold;
-  text-decoration: underline;
+  font-weight: 700;
+  color: #4a7c59;
+}
+
+.logout {
+  background-color: transparent;
+  border: none;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1001;
+}
+
+.bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: var(--color-text);
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px;
+    padding: 0 20px;
+  }
+
+  .logo {
+    margin-bottom: 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 100%;
+    background-color: #c0e0e7;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-out;
+    transform: translateY(-100%);
+    z-index: 1000;
+  }
+
+  .nav.open {
+    display: flex;
+    transform: translateY(0);
+  }
+
+  .nav a,
+  .logout {
+    width: auto;
+    text-align: center;
+    padding: 10px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+  }
+
+  .nav a,
+  .logout {
+    width: 100%;
+    text-align: center;
+    padding: 5px 0;
+  }
 }

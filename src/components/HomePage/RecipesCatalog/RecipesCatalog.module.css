@@ -78,10 +78,19 @@
 }
 
 @media (max-width: 900px) {
+  .catalog {
+    padding: 40px 0; /* Adjust padding for tablets */
+  }
+
+  .heading {
+    font-size: 1.8rem; /* Adjust heading font size for tablets */
+  }
+
   .grid {
     grid-template-columns: repeat(2, 260px);
   }
 }
+
 @media (max-width: 768px) {
   .grid::-webkit-scrollbar {
     display: none;
@@ -91,10 +100,24 @@
     scrollbar-width: none;
   }
 }
+
 @media (max-width: 600px) {
+  .catalog {
+    padding: 30px 0; /* Adjust padding for mobile */
+  }
+
+  .heading {
+    font-size: 1.5rem; /* Adjust heading font size for mobile */
+  }
+
   .grid {
     grid-template-columns: 1fr;
     max-width: 260px;
+  }
+
+  .pagination {
+    flex-direction: column; /* Stack pagination buttons vertically */
+    gap: 8px; /* Reduce gap */
   }
 }
 
