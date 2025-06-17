@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Comment.module.css";
 import CommentForm from "../CommentForm/CommentForm";
 import CommentList from "../CommentList/CommentList";
@@ -18,6 +19,7 @@ const Comment = ({
   replies,
   onAddReply,
   currentUserId,
+  authorId,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(text);
@@ -75,13 +77,17 @@ const Comment = ({
 
   return (
     <div className={styles.comment}>
-      <img
-        src={avatar}
-        alt={`${username}'s avatar`}
-        className={styles.commentAvatar}
-      />
+      <Link to={`/users/${authorId}`}>
+        <img
+          src={avatar}
+          alt={`${username}'s avatar`}
+          className={styles.commentAvatar}
+        />
+      </Link>
       <div className={styles.commentContent}>
-        <h4>{username}</h4>
+        <Link to={`/users/${authorId}`}>
+          <h4>{username}</h4>
+        </Link>
         {/* <h3>User ID: {currentUserId}</h3>
         <h3>Comment ID: {commentId}</h3> */}
         {isEditing ? (

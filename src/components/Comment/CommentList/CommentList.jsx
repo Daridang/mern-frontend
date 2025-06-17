@@ -35,6 +35,7 @@ const CommentList = ({
           replies={comment.replies}
           onAddReply={onAddReply}
           currentUserId={currentUserId}
+          authorId={comment.author._id}
         />
       ))}
     </div>
