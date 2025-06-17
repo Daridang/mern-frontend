@@ -1,0 +1,129 @@
+.profileContainer {
+  padding: 40px 0;
+  background-color: #f1f9e2;
+}
+
+.loading,
+.error,
+.notFound {
+  text-align: center;
+  padding: 20px;
+  font-size: 1.2rem;
+  color: #235372;
+}
+
+.heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  font-family: "Orbitron", sans-serif;
+  color: #235372;
+}
+
+.profileInfo {
+  display: flex;
+  align-items: center;
+  background-color: #fffde2;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.profileAvatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 30px;
+  border: 4px solid #c7e4d9;
+}
+
+.infoDetails {
+  flex-grow: 1;
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0d1538;
+  margin-bottom: 8px;
+}
+
+.joinDate,
+.recipesCount {
+  font-size: 1.1rem;
+  color: #235372;
+  margin-bottom: 4px;
+}
+
+.sectionHeading {
+  font-size: 2rem;
+  text-align: center;
+  margin: 50px 0 30px;
+  font-family: "Orbitron", sans-serif;
+  color: #235372;
+}
+
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.noRecipes {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #235372;
+  padding: 20px;
+}
+
+@media (max-width: 768px) {
+  .profileInfo {
+    flex-direction: column;
+    text-align: center;
+  }
+  .profileAvatar {
+    margin: 0 0 20px 0;
+  }
+  .name {
+    font-size: 1.5rem;
+  }
+  .joinDate,
+  .recipesCount {
+    font-size: 1rem;
+  }
+  .heading,
+  .sectionHeading {
+    font-size: 2rem;
+  }
+  .recipeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading,
+  .sectionHeading {
+    font-size: 1.8rem;
+  }
+  .profileAvatar {
+    width: 100px;
+    height: 100px;
+  }
+  .name {
+    font-size: 1.3rem;
+  }
+  .joinDate,
+  .recipesCount {
+    font-size: 0.9rem;
+  }
+  .recipeGrid {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin: 0 auto;
+  }
+}

@@ -11,6 +11,7 @@ import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import PublicProfile from "./pages/PublicProfile/PublicProfile";
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
           <Route element={<Layout />}>
             <Route path="/" element={<HomePage />} />
             <Route path="/recipes/:id" element={<RecipeDetail />} />
+            <Route path="/users/:id" element={<PublicProfile />} />
 
             {/* Protected routes */}
             <Route

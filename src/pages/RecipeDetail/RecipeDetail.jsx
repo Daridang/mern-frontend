@@ -104,7 +104,7 @@ export default function RecipeDetail() {
   const handleDeleteComment = async (commentId) => {
     try {
       await api.delete(`/api/comments/${commentId}`);
-     
+
       // Re-fetch all comments to ensure full, correctly nested and populated data
       const commentRes = await api.get(`/api/comments/recipe/${id}`);
       setComments(commentRes.data);
@@ -207,9 +207,12 @@ export default function RecipeDetail() {
                 alt={recipe.author?.name}
                 className={styles.avatar}
               />
-              <a href="/profile" className={styles.authorName}>
+              <Link
+                to={`/users/${recipe.author._id}`}
+                className={styles.authorName}
+              >
                 {recipe.author?.name}
-              </a>
+              </Link>
             </div>
             {/* Ингредиенты */}
             <Ingredients groups={recipe.ingredients.groups} />
