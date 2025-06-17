@@ -14,7 +14,7 @@ export default function PublicProfile() {
   useEffect(() => {
     const fetchUserProfile = async () => {
       try {
-        const res = await api.get(`/api/users/${id}`);
+        const res = await api.get(`/api/auth/users/${id}`);
         setUserProfile(res.data.user);
         setUserRecipes(res.data.recipes);
       } catch (err) {
