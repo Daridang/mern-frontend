@@ -114,11 +114,26 @@ button:hover {
 
 .submitBtn {
   width: 100%;
-  margin-top: 24px;
+  margin-top: 20px;
   padding: 12px 0;
   font-size: 1.2rem;
   background: #235372;
   color: #fff;
+}
+
+.fillFromJsonBtn {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: background-color 0.2s ease;
+}
+
+.fillFromJsonBtn:hover {
+  background-color: #e0e0e0;
 }
 
 @media (max-width: 768px) {

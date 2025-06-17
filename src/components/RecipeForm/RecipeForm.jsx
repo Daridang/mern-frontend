@@ -165,6 +165,45 @@ export default function RecipeForm() {
     setExtras(arr);
   };
 
+  // New handler for filling from JSON
+  const handleFillFromJson = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      try {
+        const json = JSON.parse(event.target.result);
+        // Populate form fields
+        setTitle(json.title || "");
+        setDescription(json.description || "");
+        setCategory(json.category || "");
+        setYieldInfo(json.yield || "");
+        setServingSize(json.serving_size || "");
+        setPrepTime(json.prep_time || "");
+        setTemperature(json.temperature || "");
+        // Note: Image cannot be directly set from a JSON path without a file upload
+        // setExistingImage(json.image || ""); // This would only work if it's a URL already accessible
+
+        setIngredientsGroups(
+          json.ingredients?.groups || [
+            { name: "", items: [{ item: "", amount: "" }] },
+          ]
+        );
+        setEquipment(json.equipment || [""]);
+        setInstructionsGroups(
+          json.instructions?.groups || [{ name: "", steps: [""] }]
+        );
+        setExtras(json.extras || [""]);
+        setError("");
+      } catch (err) {
+        setError("Invalid JSON file.");
+        console.error("Error parsing JSON:", err);
+      }
+    };
+    reader.readAsText(file);
+  };
+
   // --- Submit ---
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -236,6 +275,22 @@ export default function RecipeForm() {
     <form className={styles.form} onSubmit={handleSubmit}>
       <h2>{recipeId ? "Edit Recipe" : "New Recipe"}</h2>
       {error && <div className={styles.error}>{error}</div>}
+
+      <input
+        type="file"
+        id="jsonUpload"
+        accept=".json"
+        onChange={handleFillFromJson}
+        style={{ display: "none" }}
+      />
+      <button
+        type="button"
+        className={styles.fillFromJsonBtn}
+        onClick={() => document.getElementById("jsonUpload").click()}
+      >
+        Заполнить из JSON
+      </button>
+
       <BasicInfo
         {...{
           title,
