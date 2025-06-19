@@ -129,8 +129,16 @@ export default function AdminUserProfile() {
         </div>
 
         <div className={styles.profileInfo}>
-          <div className={styles.avatarPlaceholder}></div>{" "}
-          {/* Placeholder for avatar */}
+          <img
+            src={
+              userProfile.avatar ||
+              (userProfile._id
+                ? `https://robohash.org/${userProfile._id}`
+                : `https://robohash.org/default`)
+            }
+            alt={userProfile.name}
+            className={styles.profileAvatar}
+          />
           <div className={styles.infoDetails}>
             <div className={styles.infoItem}>
               <label className={styles.label}>ID:</label>

@@ -54,16 +54,13 @@
   margin-bottom: 30px;
 }
 
-.avatarPlaceholder {
+.profileAvatar {
   width: 120px;
   height: 120px;
-  background-color: #c7e4d9;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.8rem;
-  color: #235372;
+  object-fit: cover;
+  margin-right: 30px;
+  border: 4px solid #c7e4d9;
   flex-shrink: 0;
 }
 
