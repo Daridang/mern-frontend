@@ -184,6 +184,21 @@
   text-align: center;
 }
 
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.noContent {
+  text-align: center;
+  font-style: italic;
+  color: #555;
+  padding: 20px;
+}
+
 /* Responsive Styles */
 @media (max-width: 768px) {
   .profileHeader {
@@ -202,8 +217,9 @@
     text-align: center;
   }
 
-  .avatarPlaceholder {
+  .profileAvatar {
     margin-bottom: 20px;
+    margin-right: 0;
   }
 
   .infoItem {
@@ -221,6 +237,11 @@
   .editInput {
     width: calc(100% - 20px); /* Adjust for padding */
   }
+
+  .recipeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -234,5 +255,11 @@
 
   .actions {
     flex-direction: column;
+  }
+
+  .recipeGrid {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin: 0 auto;
   }
 }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import api from "../../../axiosConfig";
 import { AuthContext } from "../../../context/AuthContext";
 import styles from "./AdminUserProfile.module.css";
 
 import RecipeCard from "../../HomePage/RecipeCard/RecipeCard";
 import Comment from "../../Comment/Comment/Comment";
+import CommentList from "../../Comment/CommentList/CommentList";
 
 export default function AdminUserProfile() {
   const { id } = useParams();
@@ -22,6 +23,8 @@ export default function AdminUserProfile() {
     role: "",
     isActive: false,
   });
+  const [userRecipes, setUserRecipes] = useState([]);
+  const [userComments, setUserComments] = useState([]);
 
   useEffect(() => {
     if (!currentUser || currentUser.role !== "admin") {
@@ -34,12 +37,14 @@ export default function AdminUserProfile() {
         setLoading(true);
         setError("");
         const res = await api.get(`/api/admin/users/${id}`);
-        setUserProfile(res.data);
+        setUserProfile(res.data.user);
+        setUserRecipes(res.data.recipes);
+        setUserComments(res.data.comments);
         setEditableFields({
-          name: res.data.name,
-          email: res.data.email,
-          role: res.data.role,
-          isActive: res.data.isActive,
+          name: res.data.user.name,
+          email: res.data.user.email,
+          role: res.data.user.role,
+          isActive: res.data.user.isActive,
         });
       } catch (err) {
         console.error("Error fetching user profile:", err);
@@ -250,12 +255,48 @@ export default function AdminUserProfile() {
         {/* Placeholder for user's recipes and comments */}
         <div className={styles.userContentSections}>
           <h3 className={styles.sectionHeading}>Рецепты пользователя</h3>
-          {/* Render user's recipes here */}
-          <p>Список рецептов этого пользователя будет здесь.</p>
+          {userRecipes.length > 0 ? (
+            <div className={styles.recipeGrid}>
+              {userRecipes.map((r) => (
+                <Link to={`/admin/recipes/${r._id}`} key={r._id}>
+                  <RecipeCard
+                    id={r._id}
+                    title={r.title}
+                    price={r.price || "$–"}
+                    img={r.image}
+                  />
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.noContent}>
+              Этот пользователь пока не опубликовал ни одного рецепта.
+            </p>
+          )}
 
           <h3 className={styles.sectionHeading}>Комментарии пользователя</h3>
-          {/* Render user's comments here */}
-          <p>Список комментариев этого пользователя будет здесь.</p>
+          {userComments.length > 0 ? (
+            <CommentList
+              comments={userComments}
+              currentUserId={currentUser?.id || null}
+              onLikeToggle={(commentId) =>
+                console.log(`Toggle like for comment ${commentId}`)
+              }
+              onEdit={(commentId, newText) =>
+                console.log(`Edit comment ${commentId}: ${newText}`)
+              }
+              onDelete={(commentId) =>
+                console.log(`Delete comment ${commentId}`)
+              }
+              onAddReply={(replyText, parentId) =>
+                console.log(`Add reply to ${parentId}: ${replyText}`)
+              }
+            />
+          ) : (
+            <p className={styles.noContent}>
+              Этот пользователь пока не оставил ни одного комментария.
+            </p>
+          )}
         </div>
       </div>
     </div>
