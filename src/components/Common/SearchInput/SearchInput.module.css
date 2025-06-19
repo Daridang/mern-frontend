@@ -1,0 +1,24 @@
+.searchInput {
+  padding: 10px 15px;
+  border: 2px solid #c7e4d9;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #235372;
+  background-color: #fff;
+  flex: 1;
+  min-width: 200px;
+}
+
+@media (max-width: 768px) {
+  .searchInput {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 480px) {
+  .searchInput {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+}

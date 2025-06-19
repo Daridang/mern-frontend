@@ -1,0 +1,36 @@
+/*
+* Styles for AdminPanel component
+*/
+.adminPanel {
+  padding: 40px 0;
+  background-color: #f1f9e2;
+  min-height: calc(100vh - 130px); /* Adjust based on header/footer height */
+}
+
+.heading {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 30px;
+  font-family: "Orbitron", sans-serif;
+  color: #235372;
+}
+
+/* General error style for the panel itself */
+.error {
+  text-align: center;
+  color: #e74c3c;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .heading {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.8rem;
+  }
+}

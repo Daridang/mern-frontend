@@ -12,6 +12,8 @@ import Register from "./pages/Register/Register";
 import Profile from "./pages/Profile/Profile";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicProfile from "./pages/PublicProfile/PublicProfile";
+import AdminPanel from "./pages/AdminPanel/AdminPanel";
+import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 
 export default function App() {
   return (
@@ -38,6 +40,16 @@ export default function App() {
                 <ProtectedRoute>
                   <Profile />
                 </ProtectedRoute>
+              }
+            />
+
+            {/* Admin routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminPanel />
+                </AdminRoute>
               }
             />
 
