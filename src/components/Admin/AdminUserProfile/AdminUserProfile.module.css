@@ -1,0 +1,241 @@
+.profileContainer {
+  padding: 40px 0;
+  background-color: #f1f9e2;
+  min-height: calc(100vh - 130px);
+  color: #235372;
+}
+
+.loading,
+.error,
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 50px;
+}
+
+.error {
+  color: #e74c3c;
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.heading {
+  font-size: 2.5rem;
+  font-family: "Orbitron", sans-serif;
+  color: #0d1538;
+}
+
+.backButton {
+  background-color: #ccecde;
+  color: #235372;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.backButton:hover {
+  background-color: #7caf99;
+}
+
+.profileInfo {
+  background-color: #fffde2;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.avatarPlaceholder {
+  width: 120px;
+  height: 120px;
+  background-color: #c7e4d9;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #235372;
+  flex-shrink: 0;
+}
+
+.infoDetails {
+  flex-grow: 1;
+}
+
+.infoItem {
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.infoItem:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-weight: 600;
+  margin-right: 10px;
+  color: #0d1538;
+  min-width: 150px; /* Adjust as needed */
+}
+
+.value {
+  flex-grow: 1;
+}
+
+.editInput {
+  padding: 8px 12px;
+  border: 1px solid #c7e4d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.checkboxInput {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.editButton {
+  background-color: #ccecde;
+  color: #235372;
+}
+
+.editButton:hover {
+  background-color: #7caf99;
+}
+
+.saveButton {
+  background-color: #4caf50;
+  color: white;
+}
+
+.saveButton:hover {
+  background-color: #45a049;
+}
+
+.cancelButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #d32f2f;
+}
+
+.blockButton {
+  background-color: #ff9800;
+  color: white;
+}
+
+.blockButton:hover {
+  background-color: #fb8c00;
+}
+
+.unblockButton {
+  background-color: #2196f3;
+  color: white;
+}
+
+.unblockButton:hover {
+  background-color: #1976d2;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}
+
+.userContentSections {
+  margin-top: 50px;
+}
+
+.sectionHeading {
+  font-size: 1.8rem;
+  color: #0d1538;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .profileHeader {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .backButton {
+    margin-top: 15px;
+  }
+
+  .profileInfo {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .avatarPlaceholder {
+    margin-bottom: 20px;
+  }
+
+  .infoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 100%;
+  }
+
+  .label {
+    margin-right: 0;
+    margin-bottom: 5px;
+  }
+
+  .editInput {
+    width: calc(100% - 20px); /* Adjust for padding */
+  }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 2rem;
+  }
+
+  .profileInfo {
+    padding: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

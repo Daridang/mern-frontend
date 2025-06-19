@@ -91,7 +91,7 @@ export default function UserList() {
               <tr key={u.id}>
                 <td data-label="ID:">{u.id}</td>
                 <td data-label="Имя:">
-                  <Link to={`/users/${u.id}`}>{u.name}</Link>
+                  <Link to={`/admin/users/${u._id}`}>{u.name}</Link>
                 </td>
                 <td data-label="Email:">{u.email}</td>
                 <td data-label="Роль:">{u.role}</td>

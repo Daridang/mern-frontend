@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import PublicProfile from "./pages/PublicProfile/PublicProfile";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import AdminRoute from "./components/ProtectedRoute/AdminRoute";
+import AdminUserProfile from "./components/Admin/AdminUserProfile/AdminUserProfile";
 
 export default function App() {
   return (
@@ -49,6 +50,14 @@ export default function App() {
               element={
                 <AdminRoute>
                   <AdminPanel />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/users/:id"
+              element={
+                <AdminRoute>
+                  <AdminUserProfile />
                 </AdminRoute>
               }
             />
