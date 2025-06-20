@@ -1,14 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../../../axiosConfig";
 import { AuthContext } from "../../../context/AuthContext";
 import styles from "./AdminRecipeDetail.module.css";
-
-// Удаляем импорты компонентов RecipeDetail, так как будем реализовывать редактирование напрямую
-// import Ingredients from "../../RecipeDetail/Ingredients/Ingredients";
-// import Equipment from "../../RecipeDetail/Equipment/Equipment";
-// import Instructions from "../../RecipeDetail/Instructions/Instructions";
-// import Extras from "../../RecipeDetail/Extras/Extras";
 
 export default function AdminRecipeDetail() {
   const { id } = useParams();
@@ -399,6 +393,31 @@ export default function AdminRecipeDetail() {
           <button onClick={() => navigate(-1)} className={styles.backButton}>
             &larr; Назад к списку
           </button>
+          <div className={styles.actions}>
+            {isEditing ? (
+              <>
+                <button onClick={handleSave} className={styles.saveButton}>
+                  Сохранить
+                </button>
+                <button
+                  onClick={() => setIsEditing(false)}
+                  className={styles.cancelButton}
+                >
+                  Отмена
+                </button>
+              </>
+            ) : (
+              <button
+                onClick={() => setIsEditing(true)}
+                className={styles.editButton}
+              >
+                Редактировать
+              </button>
+            )}
+            <button onClick={handleDelete} className={styles.deleteButton}>
+              Удалить рецепт
+            </button>
+          </div>
         </div>
 
         <div className={styles.infoBlock}>
@@ -518,12 +537,7 @@ export default function AdminRecipeDetail() {
             <div className={styles.infoItem}>
               <label className={styles.label}>Автор:</label>
               {recipe.author ? (
-                <Link
-                  to={`/admin/users/${recipe.author._id}`}
-                  className={styles.authorLink}
-                >
-                  {recipe.author.name}
-                </Link>
+                <span className={styles.value}>{recipe.author.name}</span>
               ) : (
                 <span className={styles.value}>N/A</span>
               )}
@@ -549,32 +563,6 @@ export default function AdminRecipeDetail() {
               <span className={styles.value}>{recipe.commentsCount}</span>
             </div>
           </div>
-        </div>
-
-        <div className={styles.actions}>
-          {isEditing ? (
-            <>
-              <button onClick={handleSave} className={styles.saveButton}>
-                Сохранить
-              </button>
-              <button
-                onClick={() => setIsEditing(false)}
-                className={styles.cancelButton}
-              >
-                Отмена
-              </button>
-            </>
-          ) : (
-            <button
-              onClick={() => setIsEditing(true)}
-              className={styles.editButton}
-            >
-              Редактировать
-            </button>
-          )}
-          <button onClick={handleDelete} className={styles.deleteButton}>
-            Удалить рецепт
-          </button>
         </div>
 
         {/* Ingredients Section */}
@@ -661,7 +649,10 @@ export default function AdminRecipeDetail() {
               </button>
             </div>
           ) : editableFields.ingredients?.groups?.length > 0 ? (
-            <div className={styles.displayContent}>
+            <div
+              className={styles.displayContent}
+              onClick={() => setIsEditing(true)}
+            >
               {editableFields.ingredients.groups.map((group, grpIdx) => (
                 <div key={grpIdx} className={styles.displayGroup}>
                   {group.name && (
@@ -713,7 +704,10 @@ export default function AdminRecipeDetail() {
               </button>
             </div>
           ) : editableFields.equipment?.length > 0 ? (
-            <ul className={styles.displayList}>
+            <ul
+              className={styles.displayList}
+              onClick={() => setIsEditing(true)}
+            >
               {editableFields.equipment.map((item, idx) => (
                 <li key={idx} className={styles.displayItem}>
                   {item}
@@ -787,7 +781,10 @@ export default function AdminRecipeDetail() {
               </button>
             </div>
           ) : editableFields.instructions?.groups?.length > 0 ? (
-            <div className={styles.displayContent}>
+            <div
+              className={styles.displayContent}
+              onClick={() => setIsEditing(true)}
+            >
               {editableFields.instructions.groups.map((group, grpIdx) => (
                 <div key={grpIdx} className={styles.displayGroup}>
                   {group.name && (
@@ -838,7 +835,10 @@ export default function AdminRecipeDetail() {
               </button>
             </div>
           ) : editableFields.extras?.length > 0 ? (
-            <ul className={styles.displayList}>
+            <ul
+              className={styles.displayList}
+              onClick={() => setIsEditing(true)}
+            >
               {editableFields.extras.map((item, idx) => (
                 <li key={idx} className={styles.displayItem}>
                   {item}
