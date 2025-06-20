@@ -15,6 +15,8 @@ import PublicProfile from "./pages/PublicProfile/PublicProfile";
 import AdminPanel from "./pages/AdminPanel/AdminPanel";
 import AdminRoute from "./components/ProtectedRoute/AdminRoute";
 import AdminUserProfile from "./components/Admin/AdminUserProfile/AdminUserProfile";
+import AdminRecipeDetail from "./components/Admin/AdminRecipeDetail/AdminRecipeDetail";
+import AdminCommentDetail from "./components/Admin/AdminCommentDetail/AdminCommentDetail";
 
 export default function App() {
   return (
@@ -58,6 +60,22 @@ export default function App() {
               element={
                 <AdminRoute>
                   <AdminUserProfile />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/recipes/:id"
+              element={
+                <AdminRoute>
+                  <AdminRecipeDetail />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/comments/:id"
+              element={
+                <AdminRoute>
+                  <AdminCommentDetail />
                 </AdminRoute>
               }
             />

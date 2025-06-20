@@ -1,0 +1,190 @@
+.recipeListContainer {
+  margin-top: 30px;
+}
+
+.subHeading {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #0d1538;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.selectInput {
+  padding: 10px 15px;
+  border: 2px solid #c7e4d9;
+  border-radius: 6px;
+  font-size: 1rem;
+  color: #235372;
+  background-color: #fff;
+  flex: 1;
+  min-width: 200px;
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23235372" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  padding-right: 30px;
+}
+
+.recipeTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fffde2;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipeTable th,
+.recipeTable td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #c7e4d9;
+  text-align: left;
+  color: #235372;
+}
+
+.recipeTable th {
+  background-color: #c7e4d9;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.recipeTable tr:last-child td {
+  border-bottom: none;
+}
+
+.recipeTable tbody tr:hover {
+  background-color: #e0f2f7;
+}
+
+.loadingCell,
+.emptyCell {
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  color: #555;
+}
+
+.actionButton {
+  background-color: #ccecde;
+  color: #235372;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: 8px; /* Spacing between buttons */
+}
+
+.actionButton:hover {
+  background-color: #7caf99;
+}
+
+.deleteButton {
+  background-color: #f44336;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .subHeading {
+    font-size: 1.8rem;
+  }
+  .filters {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .selectInput {
+    width: 100%;
+    min-width: unset;
+  }
+  .recipeTable,
+  .recipeTable tbody,
+  .recipeTable th,
+  .recipeTable td,
+  .recipeTable tr {
+    display: block;
+  }
+  .recipeTable thead {
+    display: none;
+  }
+  .recipeTable tr {
+    margin-bottom: 15px;
+    border: 1px solid #c7e4d9;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .recipeTable td {
+    text-align: right;
+    padding-left: 50%;
+    position: relative;
+  }
+  .recipeTable td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 15px;
+    width: calc(50% - 30px);
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: 600;
+    color: #0d1538;
+  }
+  .recipeTable td:nth-of-type(1)::before {
+    content: "ID:";
+  }
+  .recipeTable td:nth-of-type(2)::before {
+    content: "Название:";
+  }
+  .recipeTable td:nth-of-type(3)::before {
+    content: "Категория:";
+  }
+  .recipeTable td:nth-of-type(4)::before {
+    content: "Автор:";
+  }
+  .recipeTable td:nth-of-type(5)::before {
+    content: "Дата создания:";
+  }
+  .recipeTable td:nth-of-type(6)::before {
+    content: "Действия:";
+  }
+  .actionButton {
+    width: calc(100% - 16px); /* Adjust for margin-right */
+    margin-top: 10px;
+    margin-right: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .subHeading {
+    font-size: 1.5rem;
+  }
+  .filters {
+    gap: 10px;
+  }
+  .selectInput {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
+  .recipeTable td {
+    padding: 10px 15px;
+    padding-left: 45%;
+  }
+  .recipeTable td::before {
+    width: calc(45% - 30px);
+  }
+}

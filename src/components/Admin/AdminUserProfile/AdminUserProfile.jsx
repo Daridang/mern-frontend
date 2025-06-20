@@ -257,13 +257,13 @@ export default function AdminUserProfile() {
           <h3 className={styles.sectionHeading}>Рецепты пользователя</h3>
           {userRecipes.length > 0 ? (
             <div className={styles.recipeGrid}>
-              {userRecipes.map((r) => (
-                <Link to={`/admin/recipes/${r._id}`} key={r._id}>
+              {userRecipes.map((recipe) => (
+                <Link to={`/admin/recipes/${recipe._id}`} key={recipe._id}>
                   <RecipeCard
-                    id={r._id}
-                    title={r.title}
-                    price={r.price || "$–"}
-                    img={r.image}
+                    id={recipe._id}
+                    title={recipe.title}
+                    price={recipe.price || "$–"}
+                    img={recipe.image}
                   />
                 </Link>
               ))}

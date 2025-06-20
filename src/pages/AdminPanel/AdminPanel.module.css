@@ -15,6 +15,40 @@
   color: #235372;
 }
 
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  padding: 10px 20px;
+  border: 2px solid #c7e4d9;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #235372;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tabs button:hover {
+  background-color: #e0f2f7;
+  border-color: #a7d9e0;
+}
+
+.tabs button.activeTab {
+  background-color: #ccecde;
+  border-color: #7caf99;
+  color: #0d1538;
+}
+
+.content {
+  padding: 20px 0;
+}
+
 /* General error style for the panel itself */
 .error {
   text-align: center;
@@ -27,10 +61,25 @@
   .heading {
     font-size: 2rem;
   }
+  .tabs {
+    gap: 10px;
+  }
+  .tabs button {
+    padding: 8px 15px;
+    font-size: 0.9rem;
+  }
 }
 
 @media (max-width: 480px) {
   .heading {
     font-size: 1.8rem;
+  }
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .tabs button {
+    width: 80%;
   }
 }
