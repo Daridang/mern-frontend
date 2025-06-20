@@ -202,6 +202,145 @@
   padding: 20px;
 }
 
+/* Styles for new editable sections */
+.section {
+  margin-top: 40px;
+  background-color: #fffde2;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.groupsContainer,
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Modified .group to remove distinct background and border */
+.group {
+  padding: 10px 0; /* Adjusted padding */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.groupInput,
+.listInput {
+  padding: 8px 12px;
+  border: 1px solid #c7e4d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.removeGroupBtn {
+  background-color: #f44336;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  align-self: flex-end;
+}
+
+.removeGroupBtn:hover {
+  background-color: #d32f2f;
+}
+
+.itemsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.itemRow,
+.listItemRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.itemInput,
+.amountInput,
+.listInput {
+  flex-grow: 1;
+}
+
+.textareaInput {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid #c7e4d9;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+}
+
+.removeItemBtn {
+  background-color: #f44336;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-weight: bold;
+}
+
+.removeItemBtn:hover {
+  background-color: #d32f2f;
+}
+
+.addItemBtn,
+.addGroupBtn {
+  background-color: #ccecde;
+  color: #235372;
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.addItemBtn:hover,
+.addGroupBtn:hover {
+  background-color: #7caf99;
+}
+
+/* Styles for displaying content when not editing */
+.displayContent {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.displayGroup {
+  border-radius: 8px;
+  padding: 10px 0; /* Adjusted padding */
+}
+
+.displayGroupName {
+  font-size: 1.2rem;
+  color: #0d1538;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.displayList {
+  list-style: none;
+  padding: 0;
+}
+
+.displayList li {
+  margin-bottom: 5px;
+  color: #235372;
+  line-height: 1.4;
+}
+
 /* Responsive Styles */
 @media (max-width: 992px) {
   .infoBlock {
@@ -242,6 +381,19 @@
   .editInput {
     width: 100%;
   }
+  .itemRow,
+  .listItemRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .removeItemBtn {
+    width: 100%;
+  }
+  .addItemBtn,
+  .addGroupBtn {
+    width: 100%;
+    align-self: center;
+  }
 }
 
 @media (max-width: 480px) {
@@ -258,5 +410,13 @@
   .actions button {
     width: 100%;
     margin-right: 0;
+  }
+  .section {
+    padding: 20px;
+  }
+  .groupInput,
+  .listInput,
+  .textareaInput {
+    font-size: 0.9rem;
   }
 }
