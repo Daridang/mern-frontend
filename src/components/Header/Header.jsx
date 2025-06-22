@@ -19,8 +19,8 @@ export default function Header() {
   };
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
+    <header className={styles.header}>
+      <div className={`${styles.headerContent} container`}>
         <div className={styles.logo}>🌌 SpaceCafe</div>
         <button className={styles.hamburger} onClick={toggleMenu}>
           <span className={styles.bar}></span>
@@ -68,7 +68,7 @@ export default function Header() {
             </>
           )}
         </nav>
-      </header>
-    </div>
+      </div>
+    </header>
   );
 }

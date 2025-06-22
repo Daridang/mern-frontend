@@ -1,16 +1,21 @@
 /* src/components/Header/Header.module.css */
-.header {
-  /* background-color: #c0e0e7; */
+
+.headerContent {
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
-  position: relative;
 
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
   border-top: 1px solid rgb(1, 89, 122);
+  border-left: 1px solid rgb(1, 89, 122);
+  border-right: 1px solid rgb(1, 89, 122);
+
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 2px rgba(72, 219, 251, 0.4);
 }
 
 .logo {

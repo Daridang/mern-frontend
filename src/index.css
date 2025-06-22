@@ -10,16 +10,7 @@ body {
   font-family: "Exo 2", sans-serif;
   color: var(--color-text);
 
-  /* overflow: hidden;
-  background-image: url("./assets/bg.webp");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  position: relative; */
-}
-
-#root {
-/* overflow: hidden; */
+  /* overflow: hidden; */
   background-image: url("./assets/bg.webp");
   background-size: cover;
   background-position: center;
@@ -27,7 +18,7 @@ body {
   position: relative;
 }
 
-#root::before {
+body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -39,7 +30,7 @@ body {
   pointer-events: none;
 }
 
-#root::after {
+body::after {
   content: "";
   position: absolute;
   top: 0;
@@ -51,12 +42,16 @@ body {
   pointer-events: none;
 }
 
+#root {
+  padding: 32px 0;
+}
+
 h1 {
   font-family: "Orbitron", sans-serif;
   font-weight: 700;
 }
 
 .container {
-  max-width: 970px;
+  max-width: 1024px;
   padding: 0 15px;
 }
