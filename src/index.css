@@ -9,6 +9,46 @@
 body {
   font-family: "Exo 2", sans-serif;
   color: var(--color-text);
+
+  /* overflow: hidden;
+  background-image: url("./assets/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; */
+}
+
+#root {
+/* overflow: hidden; */
+  background-image: url("./assets/bg.webp");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+#root::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to right, rgb(0, 0, 0), transparent);
+  z-index: 0;
+  pointer-events: none;
+}
+
+#root::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(to left, rgb(0, 0, 0), transparent);
+  z-index: 0;
+  pointer-events: none;
 }
 
 h1 {

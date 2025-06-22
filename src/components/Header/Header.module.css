@@ -1,12 +1,16 @@
 /* src/components/Header/Header.module.css */
 .header {
-  background-color: #c0e0e7;
+  /* background-color: #c0e0e7; */
   height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 20px;
   position: relative;
+
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-top: 1px solid rgb(1, 89, 122);
 }
 
 .logo {
