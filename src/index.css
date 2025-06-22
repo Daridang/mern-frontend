@@ -2,7 +2,8 @@
 
 :root {
   --color-btn-bg: #ccecde;
-  --color-text: #235372;
+  /* --color-text: #235372; */
+  --color-text: #fff;
   --bacground-nav: #c9e6e9;
 }
 

@@ -1,7 +1,11 @@
 /* src/components/Hero/Hero.module.css */
-.hero {
-  /* background-color: #f1f9e2; */
+
+.heroContent {
   padding: 50px 0;
+  border: 1px solid rgb(1, 89, 122);
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 2px rgba(72, 219, 251, 0.4);
 }
 
 .heroContentWrapper {
@@ -38,12 +42,13 @@
 .ctaButton {
   display: inline-block;
   padding: 12px 24px;
-  text-decoration: none;
-  background-color: #ccecde;
+  background-color: #003d40;
   color: var(--color-text);
   font-weight: 500;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  border-radius: 50px;
+  border: 2px solid #11f2f2;
+  box-shadow: 0 0 20px rgba(72, 219, 251, 0.8),
+    0 0 20px rgba(72, 219, 251, 0.8) inset;
 }
 
 .ctaButton:hover {

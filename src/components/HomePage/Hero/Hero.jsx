@@ -16,7 +16,7 @@ export default function Hero() {
 
   return (
     <section className={styles.hero}>
-      <div className="container">
+      <div className={`${styles.heroContent} container`}>
         <div className={styles.heroContentWrapper}>
           <div className={styles.imageWrapper}>
             <img src={heroImage} alt="Space dish" />

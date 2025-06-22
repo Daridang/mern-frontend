@@ -53,7 +53,7 @@ export default function RecipesCatalog() {
 
   return (
     <section className={styles.catalog}>
-      <div className="container">
+      <div className={`${styles.catalogContent} container`}>
         <h2 className={styles.heading}>Recipe Catalog</h2>
         <div className={styles.grid}>
           {recipes.length === 0 ? (

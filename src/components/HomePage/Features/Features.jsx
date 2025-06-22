@@ -9,7 +9,7 @@ import imgFlavors from "../../../assets/flavors.png";
 export default function Features() {
   return (
     <section className={styles.features}>
-      <div className="container">
+      <div className={`${styles.featuresContent} container`}>
         <h2 className={styles.title}>The Future of Cooking</h2>
         <div className={styles.items}>
           <div className={styles.item}>
