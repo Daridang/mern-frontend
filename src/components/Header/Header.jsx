@@ -21,7 +21,10 @@ export default function Header() {
   return (
     <header className={styles.header}>
       <div className={`${styles.headerContent} container`}>
-        <div className={styles.logo}>🌌 SpaceCafe</div>
+        <div className={styles.logo}>
+          <img src="../icon.svg" alt="icon" />
+          SpaceCafe
+        </div>
         <button className={styles.hamburger} onClick={toggleMenu}>
           <span className={styles.bar}></span>
           <span className={styles.bar}></span>
