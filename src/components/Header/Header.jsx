@@ -23,7 +23,7 @@ export default function Header() {
       <div className={`${styles.headerContent} container`}>
         <div className={styles.logo}>
           <img src="../icon.svg" alt="icon" />
-          SpaceCafe
+          SPACE CAFE
         </div>
         <button className={styles.hamburger} onClick={toggleMenu}>
           <span className={styles.bar}></span>
