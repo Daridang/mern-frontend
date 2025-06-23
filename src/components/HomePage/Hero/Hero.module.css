@@ -5,7 +5,7 @@
   border: 1px solid rgb(1, 89, 122);
   position: relative;
   z-index: 1;
-  box-shadow: 0 0 2px rgba(72, 219, 251, 0.4);
+  /* box-shadow: 0 0 2px rgba(72, 219, 251, 0.4); */
 }
 
 .heroContentWrapper {

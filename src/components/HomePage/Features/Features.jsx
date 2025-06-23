@@ -2,10 +2,6 @@
 import React from "react";
 import styles from "./Features.module.css";
 
-import imgIngredients from "../../../assets/ingredients.png";
-import imgTechniques from "../../../assets/techniques.png";
-import imgFlavors from "../../../assets/flavors.png";
-
 export default function Features() {
   return (
     <section className={styles.features}>
@@ -14,7 +10,7 @@ export default function Features() {
         <div className={styles.items}>
           <div className={styles.item}>
             <img
-              src={imgIngredients}
+              src="../../../icons/feat-icon-1.png"
               alt="Innovative Ingredients"
               className={styles.image}
             />
@@ -23,7 +19,7 @@ export default function Features() {
           </div>
           <div className={styles.item}>
             <img
-              src={imgTechniques}
+              src="../../../icons/feat-icon-2.png"
               alt="Advanced Techniques"
               className={styles.image}
             />
@@ -31,7 +27,11 @@ export default function Features() {
             <p>Modern methods of food preparation.</p>
           </div>
           <div className={styles.item}>
-            <img src={imgFlavors} alt="Bold Flavors" className={styles.image} />
+            <img
+              src="../../../icons/feat-icon-3.png"
+              alt="Bold Flavors"
+              className={styles.image}
+            />
             <h3>Bold Flavors</h3>
             <p>Taste profiles yet to be experienced.</p>
           </div>

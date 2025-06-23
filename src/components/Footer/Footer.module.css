@@ -14,11 +14,11 @@
   border-bottom: 1px solid rgb(1, 89, 122);
   border-left: 1px solid rgb(1, 89, 122);
   border-right: 1px solid rgb(1, 89, 122);
-  box-shadow: 0 0 8px rgba(72, 219, 251, 0.4); /* Subtle glow effect */
-  height: 100%; /* Ensure content fills the footer height */
-  display: flex; /* For centering the paragraph */
-  align-items: center; /* For centering the paragraph */
-  justify-content: center; /* For centering the paragraph */
+  /* box-shadow: 0 0 8px rgba(72, 219, 251, 0.4);  */
+  height: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media (max-width: 768px) {

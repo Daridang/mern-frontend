@@ -1,7 +1,8 @@
 /* src/components/Features/Features.module.css */
 
 .featuresContent {
-  padding: 50px 0;
+  padding: 50px 48px;
+  margin-bottom: 120px;
   border-left: 1px solid rgb(1, 89, 122);
   border-right: 1px solid rgb(1, 89, 122);
   border-bottom: 1px solid rgb(1, 89, 122);
@@ -28,6 +29,12 @@
 .item {
   flex: 1 1 calc(33.333% - 20px);
   text-align: center;
+  border: 1px solid rgb(1, 89, 122);
+  border-radius: 8px;
+  background: linear-gradient(to bottom, rgba(72, 219, 251, 0.1), transparent);
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .image {

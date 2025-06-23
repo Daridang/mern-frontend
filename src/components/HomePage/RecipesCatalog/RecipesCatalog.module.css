@@ -4,7 +4,7 @@
   padding: 50px 0;
   border: 1px solid rgb(1, 89, 122);
   border-radius: 12px;
-  box-shadow: 0 0 2px rgba(72, 219, 251, 0.4);
+  /* box-shadow: 0 0 2px rgba(72, 219, 251, 0.4); */
 }
 
 .heading {
