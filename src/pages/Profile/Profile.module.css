@@ -1,13 +1,21 @@
-.profileContainer {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+.profilePageWrapper {
+  margin-bottom: 70px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border: 1px solid rgb(1, 89, 122);
 }
 
-.profileContainer h2 {
+.profileContent {
+  max-width: 400px;
+  margin: 40px auto 30px auto;
+  padding: 20px;
+  background-color: #010d1bc2;
+  border-radius: 12px;
+  border: 1px solid rgb(1, 89, 122);
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+}
+
+.profileContent h2 {
   text-align: center;
   margin-bottom: 24px;
   color: var(--color-text);
@@ -27,14 +35,14 @@
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 20px;
-  border: 3px solid #ccecde;
+  border: 4px solid #c7e4d9;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .infoItem {
   margin-bottom: 15px;
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(72, 219, 251, 0.2);
   width: 100%;
 }
 
@@ -42,11 +50,11 @@
   font-weight: 600;
   display: inline-block;
   width: 150px;
-  color: #555;
+  color: var(--color-text);
 }
 
 .value {
-  color: #333;
+  color: var(--color-text);
 }
 
 .form {
@@ -56,36 +64,42 @@
   margin-top: 20px;
 }
 
-.formGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
 .formGroup label {
   font-weight: 600;
   font-size: 14px;
+  color: var(--color-text);
 }
 
 .formGroup input {
   padding: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid rgb(1, 89, 122);
   border-radius: 4px;
+  background-color: #0000006b;
   font-size: 16px;
+  color: var(--color-text);
+}
+
+.formGroup input:focus {
+  box-shadow: 0 0 20px rgba(72, 219, 251, 0.8);
+  transition: box-shadow 0.2s;
 }
 
 .buttonGroup {
   display: flex;
   gap: 10px;
   margin: 10px 0;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .editButton,
-.saveButton {
+.saveButton,
+.deleteProfileButton,
+.cancelButton {
   background-color: #4a6fa5;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 12px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -101,7 +115,7 @@
   background-color: #e74c3c;
   color: white;
   border: none;
-  padding: 10px 15px;
+  padding: 12px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -116,7 +130,7 @@
   background-color: #f5f5f5;
   color: #333;
   border: 1px solid #ddd;
-  padding: 10px 15px;
+  padding: 12px;
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
@@ -145,181 +159,226 @@
   font-size: 14px;
 }
 
+/* New wrapper for tabs and their content */
+.tabbedContentWrapper {
+  max-width: 970px;
+  margin: 30px auto;
+  background-color: #010d1bc2;
+  border-radius: 12px;
+  border: 1px solid rgb(1, 89, 122);
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  padding: 20px;
+}
+
 .tabs {
   display: flex;
-  gap: 12px;
+  justify-content: center;
+  margin-top: 0;
   margin-bottom: 20px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgb(1, 89, 122);
+  padding-bottom: 10px;
 }
+
 .tabs button {
-  padding: 8px 18px;
-  border: none;
-  background: #ccecde;
-  border-radius: 4px 4px 0 0;
-  font-size: 1rem;
-  cursor: pointer;
+  padding: 10px 20px;
+  border: 2px solid #c7e4d9;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
+  background-color: #fff;
   color: #235372;
-  transition: background 0.2s;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0;
 }
-.tabs .activeTab {
-  background: #7caf99;
-  color: #fff;
-  font-weight: bold;
+
+.tabs button:first-child {
+  border-top-left-radius: 6px;
+  border-left: 2px solid #c7e4d9;
+}
+
+.tabs button:last-child {
+  border-top-right-radius: 6px;
+  border-right: 2px solid #c7e4d9;
+}
+
+.tabs button:hover {
+  background-color: #e0f2f7;
+  border-color: #a7d9e0;
+  z-index: 1;
+}
+
+.tabs button.activeTab {
+  background: #ccecde;
+  border-color: #7caf99;
+  color: #0d1538;
+  z-index: 2;
+}
+
+.tabContent {
+  padding-top: 10px;
 }
 
 .recipeList {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 40px;
+  justify-content: center;
+  padding: 20px 0;
 }
 .recipeCard {
-  background: #f1f9e2;
+  background: linear-gradient(
+    to top right,
+    rgba(72, 219, 251, 0.1) 0%,
+    transparent 70%
+  );
+  border: 1px solid rgba(72, 219, 251, 0.7);
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  padding: 12px;
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  padding: 0;
   cursor: pointer;
-  width: 220px;
+  width: 260px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+.recipeCard:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), 0 0 12px rgba(72, 219, 251, 0.6);
+  border: 1px solid rgba(72, 219, 251, 0.7);
+}
+.recipeCard::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.recipeCard:hover::after {
+  opacity: 1;
+}
+
+.recipeImage {
+  width: 100%;
+  height: 196px;
+  object-fit: cover;
+  border-bottom: 1px solid rgba(72, 219, 251, 0.7);
+  transition: transform 0.3s ease;
+}
+.recipeCard:hover .recipeImage {
+  transform: scale(1.08) translateY(-4px);
+}
+
+.recipeCard > div {
+  padding: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: box-shadow 0.2s;
-}
-.recipeCard:hover {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
-.recipeImage {
+  height: 100%;
   width: 100%;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  margin-bottom: 10px;
+  background-color: transparent;
+  color: var(--color-text);
+}
+.recipeCard > div h4 {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 4px;
+  text-align: center;
+}
+.recipeCard > div p {
+  font-size: 0.9rem;
+  color: var(--color-text);
 }
 
-@media (max-width: 900px) {
-  .profileContainer {
-    max-width: 500px;
-  }
+.noContent {
+  text-align: center;
+  font-style: italic;
+  color: var(--color-text);
+  padding: 20px;
 }
 
 @media (max-width: 768px) {
-  .profileContainer {
-    margin: 20px auto;
+  .profileContent {
+    margin: 20px auto 20px auto;
     padding: 15px;
   }
-
-  .profileContainer h2 {
+  .profileContent h2 {
     font-size: 1.8rem;
     margin-bottom: 20px;
   }
-
-  .profileInfo {
-    align-items: flex-start;
-    padding: 0 10px;
+  .formGroup label,
+  .formGroup input,
+  .buttonGroup button {
+    font-size: 15px;
   }
-
-  .infoItem {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    padding-bottom: 8px;
-    width: 100%;
-    text-align: left;
+  .tabbedContentWrapper {
+    padding: 15px;
   }
-
-  .label {
-    width: auto;
-    margin-bottom: 3px;
-    font-size: 14px;
-  }
-
-  .value {
-    font-size: 16px;
-  }
-
-  .buttonGroup {
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 15px;
-  }
-
-  .tabs {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-  }
-
   .tabs button {
-    padding: 8px 12px;
+    padding: 8px 15px;
     font-size: 0.9rem;
+    border-left: 2px solid #c7e4d9;
+    border-right: 2px solid #c7e4d9;
+    border-top: 2px solid #c7e4d9;
+    border-bottom: none;
+    border-radius: 6px;
+    margin: 0 5px 10px 5px;
   }
-
-  .recipeList {
-    justify-content: center;
-    gap: 15px;
+  .tabs button:first-child,
+  .tabs button:last-child {
+    border-radius: 6px;
   }
-
-  .recipeCard {
-    width: calc(50% - 10px);
-    max-width: 220px;
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+    border-bottom: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+  .tabContent {
+    padding-top: 20px;
+  }
+  .recipeGrid {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .profileContainer {
-    margin: 15px 10px;
+  .profileContent {
+    margin: 15px 10px 15px 10px;
     padding: 15px;
-    max-width: none;
     width: auto;
+    max-width: none;
   }
-
-  .profileContainer h2 {
+  .profileContent h2 {
     font-size: 1.5rem;
     margin-bottom: 15px;
   }
-
-  .profileInfo {
-    align-items: center;
-    padding: 0;
-  }
-
-  .infoItem {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .buttonGroup {
-    flex-direction: column;
-    gap: 6px;
-  }
-
-  .editButton,
-  .saveButton,
-  .deleteProfileButton,
-  .cancelButton {
-    width: 100%;
-    padding: 8px;
+  .formGroup label,
+  .formGroup input,
+  .buttonGroup button {
     font-size: 14px;
   }
-
-  .tabs {
-    flex-direction: column;
-    width: 100%;
-    gap: 5px;
+  .buttonGroup button {
+    padding: 10px;
   }
-
+  .tabbedContentWrapper {
+    padding: 10px;
+  }
   .tabs button {
     width: 100%;
-    border-radius: 4px;
-    font-size: 1rem;
-    padding: 10px 0;
+    margin: 0 0 5px 0;
   }
-
-  .recipeList {
-    gap: 10px;
-  }
-
-  .recipeCard {
-    width: 100%;
+  .recipeGrid {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin: 0 auto;
   }
 }

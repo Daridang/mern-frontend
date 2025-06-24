@@ -103,6 +103,7 @@ export default function Profile() {
   };
 
   const handleEditComment = async (commentId, newText) => {
+    console.log(commentId, newText);
     try {
       const res = await api.put(`/api/comments/${commentId}`, {
         text: newText,
@@ -160,159 +161,169 @@ export default function Profile() {
   };
 
   return (
-    <div className={styles.profileContainer}>
-      <h2>Your Profile</h2>
+    <div className={`${styles.profilePageWrapper} container`}>
+      <div className={styles.profileContent}>
+        <h2>Your Profile</h2>
 
-      {formError && <div className={styles.error}>{formError}</div>}
-      {successMessage && <div className={styles.success}>{successMessage}</div>}
+        {formError && <div className={styles.error}>{formError}</div>}
+        {successMessage && (
+          <div className={styles.success}>{successMessage}</div>
+        )}
 
-      {!isEditing ? (
-        <div className={styles.profileInfo}>
-          <img
-            src={`https://robohash.org/${user.id}`}
-            alt="User Avatar"
-            className={styles.profileAvatar}
-          />
-          <div className={styles.infoItem}>
-            <span className={styles.label}>Name:</span>
-            <span className={styles.value}>{user?.name}</span>
-          </div>
-          <div className={styles.infoItem}>
-            <span className={styles.label}>Email:</span>
-            <span className={styles.value}>{user?.email}</span>
-          </div>
-          <div className={styles.infoItem}>
-            <span className={styles.label}>Account Created:</span>
-            <span className={styles.value}>
-              {user?.createdAt
-                ? new Date(user.createdAt).toLocaleDateString()
-                : "N/A"}
-            </span>
-          </div>
-          <div className={styles.buttonGroup}>
-            <button
-              className={styles.editButton}
-              onClick={() => setIsEditing(true)}
-            >
-              Edit Profile
-            </button>
-            <button
-              className={styles.deleteProfileButton}
-              onClick={handleDeleteProfile}
-            >
-              Delete Profile
-            </button>
-          </div>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <div className={styles.formGroup}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
+        {!isEditing ? (
+          <div className={styles.profileInfo}>
+            <img
+              src={`https://robohash.org/${user.id}`}
+              alt="User Avatar"
+              className={styles.profileAvatar}
             />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className={styles.buttonGroup}>
-            <button type="submit" className={styles.saveButton}>
-              Save Changes
-            </button>
-            <button
-              type="button"
-              className={styles.cancelButton}
-              onClick={() => {
-                setIsEditing(false);
-                setFormData({
-                  name: user?.name || "",
-                  email: user?.email || "",
-                });
-              }}
-            >
-              Cancel
-            </button>
-          </div>
-        </form>
-      )}
-      <div className={styles.tabs}>
-        <button
-          className={activeTab === "my" ? styles.activeTab : ""}
-          onClick={() => handleTabChange("my")}
-        >
-          Мои комментарии
-        </button>
-        <button
-          className={activeTab === "liked" ? styles.activeTab : ""}
-          onClick={() => handleTabChange("liked")}
-        >
-          Понравившиеся
-        </button>
-        <button
-          className={activeTab === "recipes" ? styles.activeTab : ""}
-          onClick={() => handleTabChange("recipes")}
-        >
-          Мои рецепты
-        </button>
-      </div>
-      {activeTab === "my" && (
-        <CommentList
-          comments={userComments}
-          currentUserId={user.id}
-          onLikeToggle={handleLikeToggle}
-          onEdit={handleEditComment}
-          onDelete={handleDeleteComment}
-        />
-      )}
-      {activeTab === "liked" && (
-        <CommentList
-          comments={likedComments}
-          currentUserId={user.id}
-          onLikeToggle={handleLikeToggle}
-          onEdit={handleEditComment}
-          onDelete={handleDeleteComment}
-        />
-      )}
-      {activeTab === "recipes" && (
-        <div className={styles.recipeList}>
-          {userRecipes.length === 0 ? (
-            <p>You have no recipes yet.</p>
-          ) : (
-            userRecipes.map((recipe) => (
-              <div
-                key={recipe._id}
-                className={styles.recipeCard}
-                onClick={() => navigate(`/recipes/${recipe._id}`)}
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Name:</span>
+              <span className={styles.value}>{user?.name}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Email:</span>
+              <span className={styles.value}>{user?.email}</span>
+            </div>
+            <div className={styles.infoItem}>
+              <span className={styles.label}>Account Created:</span>
+              <span className={styles.value}>
+                {user?.createdAt
+                  ? new Date(user.createdAt).toLocaleDateString()
+                  : "N/A"}
+              </span>
+            </div>
+            <div className={styles.buttonGroup}>
+              <button
+                className={styles.editButton}
+                onClick={() => setIsEditing(true)}
               >
-                <img
-                  src={recipe.image}
-                  alt={recipe.title}
-                  className={styles.recipeImage}
-                />
-                <div>
-                  <h4>{recipe.title}</h4>
-                  <p>{recipe.category}</p>
-                </div>
-              </div>
-            ))
+                Edit Profile
+              </button>
+              <button
+                className={styles.deleteProfileButton}
+                onClick={handleDeleteProfile}
+              >
+                Delete Profile
+              </button>
+            </div>
+          </div>
+        ) : (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.formGroup}>
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className={styles.formGroup}>
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className={styles.buttonGroup}>
+              <button type="submit" className={styles.saveButton}>
+                Save Changes
+              </button>
+              <button
+                type="button"
+                className={styles.cancelButton}
+                onClick={() => {
+                  setIsEditing(false);
+                  setFormData({
+                    name: user?.name || "",
+                    email: user?.email || "",
+                  });
+                }}
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        )}
+      </div>
+
+      <div className={styles.tabbedContentWrapper}>
+        <div className={styles.tabs}>
+          <button
+            className={activeTab === "my" ? styles.activeTab : ""}
+            onClick={() => handleTabChange("my")}
+          >
+            Мои комментарии
+          </button>
+          <button
+            className={activeTab === "liked" ? styles.activeTab : ""}
+            onClick={() => handleTabChange("liked")}
+          >
+            Понравившиеся
+          </button>
+          <button
+            className={activeTab === "recipes" ? styles.activeTab : ""}
+            onClick={() => handleTabChange("recipes")}
+          >
+            Мои рецепты
+          </button>
+        </div>
+
+        <div className={styles.tabContent}>
+          {activeTab === "my" && (
+            <CommentList
+              comments={userComments}
+              currentUserId={user.id}
+              onLikeToggle={handleLikeToggle}
+              onEdit={handleEditComment}
+              onDelete={handleDeleteComment}
+            />
+          )}
+          {activeTab === "liked" && (
+            <CommentList
+              comments={likedComments}
+              currentUserId={user.id}
+              onLikeToggle={handleLikeToggle}
+              onEdit={handleEditComment}
+              onDelete={handleDeleteComment}
+            />
+          )}
+          {activeTab === "recipes" && (
+            <div className={styles.recipeList}>
+              {userRecipes.length === 0 ? (
+                <p className={styles.noContent}>You have no recipes yet.</p>
+              ) : (
+                userRecipes.map((recipe) => (
+                  <div
+                    key={recipe._id}
+                    className={styles.recipeCard}
+                    onClick={() => navigate(`/recipes/${recipe._id}`)}
+                  >
+                    <img
+                      src={recipe.image}
+                      alt={recipe.title}
+                      className={styles.recipeImage}
+                    />
+                    <div>
+                      <h4>{recipe.title}</h4>
+                      <p>{recipe.category}</p>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
           )}
         </div>
-      )}
+      </div>
     </div>
   );
 }
