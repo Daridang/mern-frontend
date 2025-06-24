@@ -46,6 +46,11 @@ h2 {
   font-size: 16px;
 }
 
+.formGroup input:focus {
+  box-shadow: 0 0 20px rgba(72, 219, 251, 0.8);
+  transition: box-shadow 0.2s;
+}
+
 .submitButton {
   background-color: #4a6fa5;
   color: white;
