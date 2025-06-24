@@ -14,7 +14,6 @@ export default function RecipesCatalog() {
   const [limit] = useState(6);
   const [totalPages, setTotalPages] = useState(1);
 
-  // Восстанавливаем страницу из sessionStorage при первом монтировании
   useEffect(() => {
     const savedPage = sessionStorage.getItem("catalogPage");
     if (savedPage) {

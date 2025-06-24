@@ -84,7 +84,7 @@
 }
 
 @media (max-width: 768px) {
-  .header {
+  .headerContent {
     flex-direction: row;
     justify-content: space-between;
     height: 50px;
