@@ -1,21 +1,17 @@
 .footer {
-  /* background-color: #c7e4d9; */
+  background-color: transparent;
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
-  /* Removed padding, border, border-radius, and box-shadow from here */
 }
 
 .footerContent {
   padding: 0 20px;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  border-bottom: 1px solid rgb(1, 89, 122);
-  border-left: 1px solid rgb(1, 89, 122);
-  border-right: 1px solid rgb(1, 89, 122);
-  /* box-shadow: 0 0 8px rgba(72, 219, 251, 0.4);  */
-  height: 100%; 
+  border-radius: 12px;
+  border: 1px solid rgb(1, 89, 122);
+  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
