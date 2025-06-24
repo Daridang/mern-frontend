@@ -45,48 +45,50 @@ export default function Login() {
   };
 
   return (
-    <div className={styles.loginContainer}>
-      <h2>Login to Your Account</h2>
+    <div className={`${styles.loginPageWrapper} container`}>
+      <div className={styles.loginContainer}>
+        <h2>Login to Your Account</h2>
 
-      {formError && <div className={styles.error}>{formError}</div>}
+        {formError && <div className={styles.error}>{formError}</div>}
 
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <div className={styles.formGroup}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </div>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.formGroup}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-        </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-        <button
-          type="submit"
-          className={styles.submitButton}
-          disabled={isLoading}
-        >
-          {isLoading ? "Logging in..." : "Login"}
-        </button>
-      </form>
+          <button
+            type="submit"
+            className={styles.submitButton}
+            disabled={isLoading}
+          >
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
+        </form>
 
-      <p className={styles.registerLink}>
-        Don't have an account? <Link to="/register">Register here</Link>
-      </p>
+        <p className={styles.registerLink}>
+          Don't have an account? <Link to="/register">Register here</Link>
+        </p>
+      </div>
     </div>
   );
 }
