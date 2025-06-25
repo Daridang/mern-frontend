@@ -1,6 +1,9 @@
-.profileContainer {
-  padding: 40px 0;
-  background-color: #f1f9e2;
+.profilePageWrapper {
+  padding: 40px 20px;
+  margin-bottom: 64px;
+  border: 1px solid #01597a;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
 }
 
 .loading,
@@ -9,7 +12,7 @@
   text-align: center;
   padding: 20px;
   font-size: 1.2rem;
-  color: #235372;
+  color: #48dbfb;
 }
 
 .heading {
@@ -17,43 +20,48 @@
   text-align: center;
   margin-bottom: 40px;
   font-family: "Orbitron", sans-serif;
-  color: #235372;
+  color: #48dbfb;
 }
 
-.profileInfo {
+.topBlock {
   display: flex;
-  align-items: center;
-  background-color: #fffde2;
+  gap: 32px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+
+.mainAvatar {
+  width: 340px;
+  height: 340px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  border: 1px solid rgb(1, 89, 122);
+}
+
+.profileInfoDetails {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: #010d1bc2;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
-}
-
-.profileAvatar {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 30px;
-  border: 4px solid #c7e4d9;
-}
-
-.infoDetails {
-  flex-grow: 1;
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  border: 1px solid rgb(1, 89, 122);
 }
 
 .name {
   font-size: 1.8rem;
   font-weight: 700;
-  color: #0d1538;
+  color: #48dbfb;
   margin-bottom: 8px;
 }
 
 .joinDate,
 .recipesCount {
   font-size: 1.1rem;
-  color: #235372;
+  color: #c7e4d9;
   margin-bottom: 4px;
 }
 
@@ -62,7 +70,7 @@
   text-align: center;
   margin: 50px 0 30px;
   font-family: "Orbitron", sans-serif;
-  color: #235372;
+  color: #48dbfb;
 }
 
 .recipeGrid {
@@ -76,17 +84,32 @@
 .noRecipes {
   text-align: center;
   font-size: 1.1rem;
-  color: #235372;
+  color: #c7e4d9;
   padding: 20px;
 }
 
-@media (max-width: 768px) {
-  .profileInfo {
+@media (max-width: 900px) {
+  .topBlock {
     flex-direction: column;
-    text-align: center;
+    align-items: center;
+    gap: 20px;
   }
-  .profileAvatar {
-    margin: 0 0 20px 0;
+
+  .mainAvatar {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+  }
+
+  .profileInfoDetails {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .profilePageWrapper {
+    padding: 30px 15px;
   }
   .name {
     font-size: 1.5rem;
@@ -106,13 +129,16 @@
 }
 
 @media (max-width: 480px) {
+  .profilePageWrapper {
+    padding: 20px 10px;
+  }
   .heading,
   .sectionHeading {
     font-size: 1.8rem;
   }
-  .profileAvatar {
-    width: 100px;
-    height: 100px;
+  .mainAvatar {
+    width: 100%;
+    height: auto;
   }
   .name {
     font-size: 1.3rem;

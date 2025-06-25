@@ -33,45 +33,45 @@ export default function PublicProfile() {
   if (!userProfile) return <p className={styles.notFound}>User not found.</p>;
 
   return (
-    <div className={styles.profileContainer}>
-      <div className="container">
-        <h2 className={styles.heading}>User Profile</h2>
-        <div className={styles.profileInfo}>
-          <img
-            src={userProfile.avatar || `https://robohash.org/${userProfile.id}`}
-            alt={userProfile.name}
-            className={styles.profileAvatar}
-          />
-          <div className={styles.infoDetails}>
-            <p className={styles.name}>@{userProfile.name}</p>
-            <p className={styles.joinDate}>
-              Joined: {new Date(userProfile.createdAt).toLocaleDateString()}
-            </p>
-            <p className={styles.recipesCount}>
-              Recipes Published: {userProfile.recipesCount}
-            </p>
-          </div>
-        </div>
+    <div className={`${styles.profilePageWrapper} container`}>
+      <h2 className={styles.heading}>Профиль пользователя</h2>
 
-        <h3 className={styles.sectionHeading}>Recipes by {userProfile.name}</h3>
-        {userRecipes.length > 0 ? (
-          <div className={styles.recipeGrid}>
-            {userRecipes.map((r) => (
-              <RecipeCard
-                key={r._id}
-                id={r._id}
-                title={r.title}
-                price={r.price || "$–"}
-                img={r.image}
-              />
-            ))}
-          </div>
-        ) : (
-          <p className={styles.noRecipes}>
-            This user has not published any recipes yet.
+      <div className={styles.topBlock}>
+        <img
+          src={userProfile.avatar || `https://robohash.org/${userProfile.id}`}
+          alt={userProfile.name}
+          className={styles.mainAvatar}
+        />
+        <div className={styles.profileInfoDetails}>
+          <p className={styles.name}>@{userProfile.name}</p>
+          <p className={styles.joinDate}>
+            Присоединился:{" "}
+            {new Date(userProfile.createdAt).toLocaleDateString()}
           </p>
-        )}
+          <p className={styles.recipesCount}>
+            Опубликованные рецепты: {userProfile.recipesCount}
+          </p>
+        </div>
       </div>
+
+      <h3 className={styles.sectionHeading}>Рецепты от {userProfile.name}</h3>
+      {userRecipes.length > 0 ? (
+        <div className={styles.recipeGrid}>
+          {userRecipes.map((r) => (
+            <RecipeCard
+              key={r._id}
+              id={r._id}
+              title={r.title}
+              price={r.price || "$–"}
+              img={r.image}
+            />
+          ))}
+        </div>
+      ) : (
+        <p className={styles.noRecipes}>
+          Этот пользователь еще не опубликовал ни одного рецепта.
+        </p>
+      )}
     </div>
   );
 }
