@@ -174,8 +174,8 @@ export default function RecipeDetail() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div className={styles.wrap}>
-      <div className="container">
+    // <div className={styles.wrap}>
+      <div className={`${styles.recipeDetailsWrapper} container`}>
         <div className={styles.breadcrumb}>
           <Link to="/">Home</Link> &gt; <span>{recipe.title}</span>
         </div>
@@ -301,6 +301,5 @@ export default function RecipeDetail() {
           from={location.pathname}
         />
       </div>
-    </div>
   );
 }

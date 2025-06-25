@@ -8,4 +8,5 @@
 }
 .list li {
   margin-bottom: 6px;
+  color: var(--color-text);
 }
