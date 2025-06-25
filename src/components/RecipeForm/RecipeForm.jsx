@@ -272,82 +272,94 @@ export default function RecipeForm() {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
-      <h2>{recipeId ? "Edit Recipe" : "New Recipe"}</h2>
-      {error && <div className={styles.error}>{error}</div>}
+    <div className={`${styles.recipeFormPageWrapper} container`}>
+      <form className={styles.recipeFormContent} onSubmit={handleSubmit}>
+        <h2>{recipeId ? "Edit Recipe" : "New Recipe"}</h2>
+        {error && <div className={styles.error}>{error}</div>}
 
-      <input
-        type="file"
-        id="jsonUpload"
-        accept=".json"
-        onChange={handleFillFromJson}
-        style={{ display: "none" }}
-      />
-      <button
-        type="button"
-        className={styles.fillFromJsonBtn}
-        onClick={() => document.getElementById("jsonUpload").click()}
-      >
-        Заполнить из JSON
-      </button>
+        <input
+          type="file"
+          id="jsonUpload"
+          accept=".json"
+          onChange={handleFillFromJson}
+          style={{ display: "none" }}
+        />
+        <button
+          type="button"
+          className={styles.fillFromJsonBtn}
+          onClick={() => document.getElementById("jsonUpload").click()}
+        >
+          Заполнить из JSON
+        </button>
 
-      <BasicInfo
-        {...{
-          title,
-          setTitle,
-          description,
-          setDescription,
-          category,
-          setCategory,
-          yieldInfo,
-          setYieldInfo,
-          servingSize,
-          setServingSize,
-          prepTime,
-          setPrepTime,
-          temperature,
-          setTemperature,
-        }}
-      />
-      <ImageUpload
-        {...{ imageFile, setImageFile, existingImage, setExistingImage }}
-      />
-      <IngredientsSection
-        {...{
-          groups: ingredientsGroups,
-          handleAddGroup,
-          handleRemoveGroup,
-          handleGroupNameChange,
-          handleAddItem,
-          handleRemoveItem,
-          handleItemChange,
-        }}
-      />
-      <EquipmentSection
-        {...{
-          equipment,
-          handleAddEquipment,
-          handleRemoveEquipment,
-          handleEquipmentChange,
-        }}
-      />
-      <InstructionsSection
-        {...{
-          groups: instructionsGroups,
-          handleAddInstrGroup,
-          handleRemoveInstrGroup,
-          handleInstrGroupName,
-          handleAddStep,
-          handleRemoveStep,
-          handleStepChange,
-        }}
-      />
-      <ExtrasSection
-        {...{ extras, handleAddExtra, handleRemoveExtra, handleExtraChange }}
-      />
-      <button type="submit" className={styles.submitBtn}>
-        {recipeId ? "Update Recipe" : "Create Recipe"}
-      </button>
-    </form>
+        <BasicInfo
+          {...{
+            title,
+            setTitle,
+            description,
+            setDescription,
+            category,
+            setCategory,
+            yieldInfo,
+            setYieldInfo,
+            servingSize,
+            setServingSize,
+            prepTime,
+            setPrepTime,
+            temperature,
+            setTemperature,
+          }}
+        />
+        <ImageUpload
+          {...{
+            imageFile,
+            setImageFile,
+            existingImage,
+            setExistingImage,
+          }}
+        />
+        <IngredientsSection
+          {...{
+            groups: ingredientsGroups,
+            handleAddGroup,
+            handleRemoveGroup,
+            handleGroupNameChange,
+            handleAddItem,
+            handleRemoveItem,
+            handleItemChange,
+          }}
+        />
+        <EquipmentSection
+          {...{
+            equipment,
+            handleAddEquipment,
+            handleRemoveEquipment,
+            handleEquipmentChange,
+          }}
+        />
+        <InstructionsSection
+          {...{
+            groups: instructionsGroups,
+            handleAddInstrGroup,
+            handleRemoveInstrGroup,
+            handleInstrGroupName,
+            handleAddStep,
+            handleRemoveStep,
+            handleStepChange,
+          }}
+        />
+        <ExtrasSection
+          {...{
+            extras,
+            handleAddExtra,
+            handleRemoveExtra,
+            handleExtraChange,
+          }}
+        />
+        <button type="submit" className={styles.submitBtn}>
+          {recipeId ? "Update Recipe" : "Create Recipe"}
+        </button>
+      </form>
+    </div>
   );
 }

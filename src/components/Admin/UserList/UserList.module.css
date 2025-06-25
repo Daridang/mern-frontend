@@ -1,12 +1,12 @@
 .userListContainer {
-  margin-top: 30px; /* Adjust as needed for spacing within AdminPanel */
+  margin-top: 30px;
 }
 
 .subHeading {
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
-  color: #0d1538;
+  color: #48dbfb;
 }
 
 .filters {
@@ -19,47 +19,47 @@
 
 .selectInput {
   padding: 10px 15px;
-  border: 2px solid #c7e4d9;
+  border: 1px solid rgb(1, 89, 122);
   border-radius: 6px;
   font-size: 1rem;
-  color: #235372;
-  background-color: #fff;
+  color: var(--color-text);
+  background-color: #0000006b;
   flex: 1;
   min-width: 200px;
-}
-
-.selectInput {
   appearance: none;
-  background-image: url('data:image/svg+xml;utf8,<svg fill="%23235372" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%2348dbfb" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
   background-repeat: no-repeat;
   background-position: right 10px center;
   background-size: 16px;
-  padding-right: 30px; /* Space for the custom arrow */
+  padding-right: 30px;
+  box-shadow: 2px 3px 8px rgb(0 0 0);
 }
 
 .userTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fffde2;
+  background-color: #010d1bc2;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  border: 1px solid rgb(1, 89, 122);
 }
 
 .userTable th,
 .userTable td {
   padding: 12px 15px;
-  border-bottom: 1px solid #c7e4d9;
+  border-bottom: 1px solid rgb(1, 89, 122);
   text-align: left;
-  color: #235372;
+  color: var(--color-text);
 }
 
 .userTable th {
-  background-color: #c7e4d9;
+  background-color: #010d1b;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.9rem;
+  color: #48dbfb;
 }
 
 .userTable tr:last-child td {
@@ -67,7 +67,7 @@
 }
 
 .userTable tbody tr:hover {
-  background-color: #e0f2f7;
+  background-color: rgba(72, 219, 251, 0.1);
 }
 
 .error {
@@ -77,11 +77,10 @@
   margin-top: 20px;
 }
 
-/* Add a loading message style */
 .loadingMessage {
   text-align: center;
   margin-top: 20px;
-  color: #235372;
+  color: #48dbfb;
 }
 
 .loadingCell,
@@ -89,10 +88,33 @@
   text-align: center;
   padding: 20px;
   font-style: italic;
-  color: #555;
+  color: #c7e4d9;
 }
 
-/* Responsive Styles */
+.actionButton {
+  background-color: #4a6fa5;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-right: 8px;
+}
+
+.actionButton:hover {
+  background-color: #3a5a8c;
+}
+
+.deleteButton {
+  background-color: #e74c3c;
+  color: white;
+}
+
+.deleteButton:hover {
+  background-color: #c0392b;
+}
+
 @media (max-width: 768px) {
   .subHeading {
     font-size: 1.8rem;
@@ -117,7 +139,7 @@
   }
   .userTable tr {
     margin-bottom: 15px;
-    border: 1px solid #c7e4d9;
+    border: 1px solid rgb(1, 89, 122);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -125,6 +147,7 @@
     text-align: right;
     padding-left: 50%;
     position: relative;
+    color: var(--color-text);
   }
   .userTable td::before {
     content: attr(data-label);
@@ -135,9 +158,8 @@
     white-space: nowrap;
     text-align: left;
     font-weight: 600;
-    color: #0d1538;
+    color: #48dbfb;
   }
-  /* Specific labels for each cell in responsive mode */
   .userTable td:nth-of-type(1)::before {
     content: "ID:";
   }
