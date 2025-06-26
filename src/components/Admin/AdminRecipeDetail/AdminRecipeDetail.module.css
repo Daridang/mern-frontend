@@ -138,7 +138,7 @@
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
-  background-color: #0000006b;
+  background-color: #00000075;
   color: var(--color-text);
 }
 
@@ -233,7 +233,7 @@
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
-  background-color: #0000006b;
+  background-color: #00000075;
   color: var(--color-text);
 }
 
@@ -281,7 +281,7 @@
   font-size: 1rem;
   width: 100%;
   box-sizing: border-box;
-  background-color: #0000006b;
+  background-color: #00000075;
   color: var(--color-text);
 }
 
@@ -294,6 +294,7 @@
 
 .textareaInput {
   min-height: 80px;
+  background-color: #00000075;
 }
 
 .removeItemBtn,

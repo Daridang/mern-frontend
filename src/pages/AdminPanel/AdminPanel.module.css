@@ -1,14 +1,20 @@
 /*
 * Styles for AdminPanel component
 */
-.adminPanel {
+.adminPanelWrapper {
   padding: 40px 0;
-  background-color: transparent;
-  min-height: calc(100vh - 130px); /* Adjust based on header/footer height */
+  min-height: calc(100vh - 130px);
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
   border: 1px solid rgb(1, 89, 122);
   box-shadow: 2px 3px 8px rgb(0 0 0);
+  margin-bottom: 70px;
+}
+
+.adminPanel {
+  background-color: transparent;
+  padding: 0 15px; /* Adjust padding if needed, assuming container handles it */
+  /* Remove border, shadow, and radius, as they are now on the wrapper */
 }
 
 .heading {

@@ -23,8 +23,8 @@ export default function AdminPanel() {
   };
 
   return (
-    <div className={styles.adminPanel}>
-      <div className="container">
+    <div className={`${styles.adminPanelWrapper} container`}>
+      <div className={styles.adminPanel}>
         <h2 className={styles.heading}>Админ-панель</h2>
         <div className={styles.tabs}>
           <button

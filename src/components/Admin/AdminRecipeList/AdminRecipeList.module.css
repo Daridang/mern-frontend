@@ -17,13 +17,32 @@
   flex-wrap: wrap;
 }
 
+/* Specific styles for SearchInput within filters for dark theme */
+.filters .searchInput {
+  padding: 10px 15px;
+  border: 1px solid rgb(1, 89, 122); /* Changed border */
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--color-text); /* Changed color */
+  background-color: #00000075; /* Changed background */
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 2px 3px 8px rgb(0 0 0); /* Added box-shadow */
+}
+
+.filters .searchInput:focus {
+  box-shadow: 0 0 20px rgba(72, 219, 251, 0.8); /* Added focus shadow */
+  transition: box-shadow 0.2s;
+  outline: none;
+}
+
 .selectInput {
   padding: 10px 15px;
   border: 1px solid rgb(1, 89, 122);
   border-radius: 6px;
   font-size: 1rem;
   color: var(--color-text);
-  background-color: #0000006b;
+  background-color: #00000075; /* Changed from #0000006b */
   flex: 1;
   min-width: 200px;
   appearance: none;

@@ -6,7 +6,7 @@
   font-size: 2rem;
   text-align: center;
   margin-bottom: 20px;
-  color: #0d1538;
+  color: #48dbfb;
 }
 
 .filters {
@@ -17,29 +17,50 @@
   flex-wrap: wrap;
 }
 
+/* Specific styles for SearchInput within filters for dark theme */
+.filters .searchInput {
+  padding: 10px 15px;
+  border: 1px solid rgb(1, 89, 122);
+  border-radius: 6px;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: #0000006b;
+  flex: 1;
+  min-width: 200px;
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+}
+
+.filters .searchInput:focus {
+  box-shadow: 0 0 20px rgba(72, 219, 251, 0.8);
+  transition: box-shadow 0.2s;
+  outline: none;
+}
+
 .commentTable {
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
-  background-color: #fffde2;
+  background-color: #010d1bc2;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 3px 8px rgb(0 0 0);
+  border: 1px solid rgb(1, 89, 122);
 }
 
 .commentTable th,
 .commentTable td {
   padding: 12px 15px;
-  border-bottom: 1px solid #c7e4d9;
+  border-bottom: 1px solid rgb(1, 89, 122);
   text-align: left;
-  color: #235372;
+  color: var(--color-text);
 }
 
 .commentTable th {
-  background-color: #c7e4d9;
+  background-color: #010d1b;
   font-weight: 600;
   text-transform: uppercase;
   font-size: 0.9rem;
+  color: #48dbfb;
 }
 
 .commentTable tr:last-child td {
@@ -47,7 +68,7 @@
 }
 
 .commentTable tbody tr:hover {
-  background-color: #e0f2f7;
+  background-color: rgba(72, 219, 251, 0.1);
 }
 
 .loadingCell,
@@ -55,31 +76,33 @@
   text-align: center;
   padding: 20px;
   font-style: italic;
-  color: #555;
+  color: #c7e4d9;
 }
 
 .actionButton {
-  background-color: #ccecde;
-  color: #235372;
+  background-color: #4a6fa5;
+  color: white;
   padding: 8px 12px;
   border-radius: 4px;
   font-weight: 500;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  margin-right: 8px; /* Spacing between buttons */
+  margin-right: 8px;
+  border: 1px solid rgb(1, 89, 122);
+  box-shadow: 2px 3px 8px rgb(0 0 0);
 }
 
 .actionButton:hover {
-  background-color: #7caf99;
+  background-color: #3a5a8c;
 }
 
 .deleteButton {
-  background-color: #f44336;
+  background-color: #e74c3c;
   color: white;
 }
 
 .deleteButton:hover {
-  background-color: #d32f2f;
+  background-color: #c0392b;
 }
 
 /* Responsive Styles */
@@ -90,6 +113,11 @@
   .filters {
     flex-direction: column;
     gap: 15px;
+  }
+  /* Ensure search input takes full width on smaller screens */
+  .filters .searchInput {
+    width: 100%;
+    min-width: unset;
   }
   .commentTable,
   .commentTable tbody,
@@ -103,7 +131,7 @@
   }
   .commentTable tr {
     margin-bottom: 15px;
-    border: 1px solid #c7e4d9;
+    border: 1px solid rgb(1, 89, 122);
     border-radius: 8px;
     overflow: hidden;
   }
@@ -111,6 +139,7 @@
     text-align: right;
     padding-left: 50%;
     position: relative;
+    color: var(--color-text);
   }
   .commentTable td::before {
     content: attr(data-label);
@@ -121,7 +150,7 @@
     white-space: nowrap;
     text-align: left;
     font-weight: 600;
-    color: #0d1538;
+    color: #48dbfb;
   }
   .commentTable td:nth-of-type(1)::before {
     content: "ID:";
@@ -142,7 +171,7 @@
     content: "Действия:";
   }
   .actionButton {
-    width: calc(100% - 16px); /* Adjust for margin-right */
+    width: calc(100% - 16px);
     margin-top: 10px;
     margin-right: 0;
   }

@@ -104,7 +104,7 @@
   border-radius: 4px;
   font-size: 1rem;
   width: 100%;
-  background-color: #0000006b;
+  background-color: #00000075;
   color: var(--color-text);
 }
 
@@ -112,6 +112,7 @@
   box-shadow: 0 0 20px rgba(72, 219, 251, 0.8);
   transition: box-shadow 0.2s;
   outline: none;
+  background-color: #00000075;
 }
 
 .checkboxInput {
@@ -119,7 +120,7 @@
   height: 20px;
   cursor: pointer;
   border: 1px solid rgb(1, 89, 122);
-  background-color: #0000006b;
+  background-color: #00000075;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
