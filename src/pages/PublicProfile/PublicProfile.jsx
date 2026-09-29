@@ -34,7 +34,7 @@ export default function PublicProfile() {
 
   return (
     <div className={`${styles.profilePageWrapper} container`}>
-      <h2 className={styles.heading}>Профиль пользователя</h2>
+      <h2 className={styles.heading}>User Profile</h2>
 
       <div className={styles.topBlock}>
         <img
@@ -45,16 +45,16 @@ export default function PublicProfile() {
         <div className={styles.profileInfoDetails}>
           <p className={styles.name}>@{userProfile.name}</p>
           <p className={styles.joinDate}>
-            Присоединился:{" "}
+            Joined:{" "}
             {new Date(userProfile.createdAt).toLocaleDateString()}
           </p>
           <p className={styles.recipesCount}>
-            Опубликованные рецепты: {userProfile.recipesCount}
+            Published recipes: {userProfile.recipesCount}
           </p>
         </div>
       </div>
 
-      <h3 className={styles.sectionHeading}>Рецепты от {userProfile.name}</h3>
+      <h3 className={styles.sectionHeading}>Recipes by {userProfile.name}</h3>
       {userRecipes.length > 0 ? (
         <div className={styles.recipeGrid}>
           {userRecipes.map((r) => (
@@ -69,7 +69,7 @@ export default function PublicProfile() {
         </div>
       ) : (
         <p className={styles.noRecipes}>
-          Этот пользователь еще не опубликовал ни одного рецепта.
+          This user has not published any recipes yet.
         </p>
       )}
     </div>

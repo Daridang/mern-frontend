@@ -1,3 +1,4 @@
+// #region Comment Component
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "./Comment.module.css";
@@ -40,14 +41,14 @@ const Comment = ({
 
   const handleEditSave = async () => {
     if (!editedText.trim()) {
-      setError("Комментарий не может быть пустым");
+      setError("Comment cannot be empty");
       return;
     }
     if (editedText !== text) {
       try {
         await onEdit(editedText);
       } catch (e) {
-        setError("Ошибка при сохранении");
+        setError("Error while saving");
         return;
       }
     }
@@ -88,8 +89,6 @@ const Comment = ({
         <Link to={`/users/${authorId}`}>
           <h4>{username}</h4>
         </Link>
-        {/* <h3>User ID: {currentUserId}</h3>
-        <h3>Comment ID: {commentId}</h3> */}
         {isEditing ? (
           <>
             <textarea
@@ -101,8 +100,8 @@ const Comment = ({
             />
             {error && <div className={styles.error}>{error}</div>}
             <div className={styles.commentActions}>
-              <button onClick={handleEditSave}>Сохранить</button>
-              <button onClick={handleEditCancel}>Отмена</button>
+              <button onClick={handleEditSave}>Save</button>
+              <button onClick={handleEditCancel}>Cancel</button>
             </div>
           </>
         ) : (
@@ -129,7 +128,7 @@ const Comment = ({
                 </>
               )}
               <button onClick={handleReplyClick}>
-                {showReplyForm ? "Отменить ответ" : "Ответить"}
+                {showReplyForm ? "Cancel reply" : "Reply"}
               </button>
             </div>
           </>
@@ -163,3 +162,4 @@ const Comment = ({
 };
 
 export default Comment;
+// #endregion

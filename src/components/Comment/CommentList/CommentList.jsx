@@ -1,3 +1,4 @@
+// #region CommentList Component
 import React, { useMemo } from "react";
 import styles from "./CommentList.module.css";
 import Comment from "../Comment/Comment";
@@ -43,3 +44,4 @@ const CommentList = ({
 };
 
 export default CommentList;
+// #endregion

@@ -48,12 +48,11 @@ export default function AdminUserProfile() {
         });
       } catch (err) {
         console.error("Error fetching user profile:", err);
-        setError("Не удалось загрузить профиль пользователя.");
+        setError("Failed to load user profile.");
       } finally {
         setLoading(false);
       }
     };
-
     fetchUserProfile();
   }, [id, currentUser, navigate]);
 
@@ -70,10 +69,10 @@ export default function AdminUserProfile() {
       const res = await api.put(`/api/admin/users/${id}`, editableFields);
       setUserProfile(res.data.user);
       setIsEditing(false);
-      alert("Профиль пользователя успешно обновлен!");
+      alert("User profile updated successfully!");
     } catch (err) {
       console.error("Error updating user profile:", err);
-      setError("Не удалось обновить профиль пользователя.");
+      setError("Failed to update user profile.");
     }
   };
 
@@ -85,51 +84,49 @@ export default function AdminUserProfile() {
       });
       setUserProfile(res.data.user);
       setEditableFields((prev) => ({ ...prev, isActive: newStatus }));
-      alert(`Пользователь ${newStatus ? "разблокирован" : "заблокирован"}!`);
+      alert(`User ${newStatus ? "unblocked" : "blocked"}!`);
     } catch (err) {
       console.error("Error toggling user status:", err);
-      setError("Не удалось изменить статус пользователя.");
+      setError("Failed to change user status.");
     }
   };
 
   const handleDelete = async () => {
     if (
       window.confirm(
-        "Вы уверены, что хотите удалить этого пользователя и все связанные с ним данные (рецепты, комментарии)?"
+        "Are you sure you want to delete this user and all related data (recipes, comments)?"
       )
     ) {
       try {
         await api.delete(`/api/admin/users/${id}`);
-        alert("Пользователь успешно удален!");
-        navigate("/admin"); // Go back to user list after deletion
+        alert("User deleted successfully!");
+        navigate("/admin");
       } catch (err) {
         console.error("Error deleting user:", err);
-        setError("Не удалось удалить пользователя.");
+        setError("Failed to delete user.");
       }
     }
   };
 
   if (loading) {
-    return <div className={styles.loading}>Загрузка профиля...</div>;
+    return <div className={styles.loading}>Loading profile...</div>;
   }
 
   if (error) {
-    return <div className={styles.error}>Ошибка: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   if (!userProfile) {
-    return <div className={styles.empty}>Профиль пользователя не найден.</div>;
+    return <div className={styles.empty}>User profile not found.</div>;
   }
 
   return (
     <div className={styles.profileContainer}>
       <div className="container">
         <div className={styles.profileHeader}>
-          <h2 className={styles.heading}>
-            Профиль пользователя: {userProfile.name}
-          </h2>
+          <h2 className={styles.heading}>User Profile: {userProfile.name}</h2>
           <button onClick={() => navigate(-1)} className={styles.backButton}>
-            &larr; Назад к списку
+            &larr; Back to list
           </button>
         </div>
 
@@ -150,7 +147,7 @@ export default function AdminUserProfile() {
               <span className={styles.value}>{userProfile._id}</span>
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Имя:</label>
+              <label className={styles.label}>Name:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -178,7 +175,7 @@ export default function AdminUserProfile() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Роль:</label>
+              <label className={styles.label}>Role:</label>
               {isEditing ? (
                 <select
                   name="role"
@@ -186,15 +183,15 @@ export default function AdminUserProfile() {
                   onChange={handleFieldChange}
                   className={styles.editInput}
                 >
-                  <option value="user">Пользователь</option>
-                  <option value="admin">Администратор</option>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
                 </select>
               ) : (
                 <span className={styles.value}>{userProfile.role}</span>
               )}
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Активен:</label>
+              <label className={styles.label}>Active:</label>
               {isEditing ? (
                 <input
                   type="checkbox"
@@ -205,12 +202,12 @@ export default function AdminUserProfile() {
                 />
               ) : (
                 <span className={styles.value}>
-                  {userProfile.isActive ? "Да" : "Нет"}
+                  {userProfile.isActive ? "Yes" : "No"}
                 </span>
               )}
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Дата регистрации:</label>
+              <label className={styles.label}>Registration Date:</label>
               <span className={styles.value}>
                 {new Date(userProfile.createdAt).toLocaleDateString()}
               </span>
@@ -222,13 +219,13 @@ export default function AdminUserProfile() {
           {isEditing ? (
             <>
               <button onClick={handleSave} className={styles.saveButton}>
-                Сохранить
+                Save
               </button>
               <button
                 onClick={() => setIsEditing(false)}
                 className={styles.cancelButton}
               >
-                Отмена
+                Cancel
               </button>
             </>
           ) : (
@@ -236,7 +233,7 @@ export default function AdminUserProfile() {
               onClick={() => setIsEditing(true)}
               className={styles.editButton}
             >
-              Редактировать
+              Edit
             </button>
           )}
           <button
@@ -245,16 +242,16 @@ export default function AdminUserProfile() {
               userProfile.isActive ? styles.blockButton : styles.unblockButton
             }
           >
-            {userProfile.isActive ? "Заблокировать" : "Разблокировать"}
+            {userProfile.isActive ? "Block" : "Unblock"}
           </button>
           <button onClick={handleDelete} className={styles.deleteButton}>
-            Удалить пользователя
+            Delete User
           </button>
         </div>
 
         {/* Placeholder for user's recipes and comments */}
         <div className={styles.userContentSections}>
-          <h3 className={styles.sectionHeading}>Рецепты пользователя</h3>
+          <h3 className={styles.sectionHeading}>User Recipes</h3>
           {userRecipes.length > 0 ? (
             <div className={styles.recipeGrid}>
               {userRecipes.map((recipe) => (
@@ -270,11 +267,11 @@ export default function AdminUserProfile() {
             </div>
           ) : (
             <p className={styles.noContent}>
-              Этот пользователь пока не опубликовал ни одного рецепта.
+              This user has not published any recipes yet.
             </p>
           )}
 
-          <h3 className={styles.sectionHeading}>Комментарии пользователя</h3>
+          <h3 className={styles.sectionHeading}>User Comments</h3>
           {userComments.length > 0 ? (
             <CommentList
               comments={userComments}
@@ -294,7 +291,7 @@ export default function AdminUserProfile() {
             />
           ) : (
             <p className={styles.noContent}>
-              Этот пользователь пока не оставил ни одного комментария.
+              This user has not left any comments yet.
             </p>
           )}
         </div>

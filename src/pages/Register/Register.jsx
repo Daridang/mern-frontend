@@ -1,3 +1,4 @@
+// #region RegisterPage Component
 import React, { useState, useContext } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -127,3 +128,4 @@ export default function Register() {
     </div>
   );
 }
+// #endregion

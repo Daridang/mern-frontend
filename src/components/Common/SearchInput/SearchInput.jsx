@@ -4,7 +4,7 @@ import styles from "./SearchInput.module.css";
 export default function SearchInput({
   value,
   onChange,
-  placeholder = "Поиск...",
+  placeholder = "Search...",
   debounceTime = 300,
 }) {
   const [inputValue, setInputValue] = useState(value);

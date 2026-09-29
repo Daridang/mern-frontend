@@ -1,4 +1,4 @@
-// src/components/Features/Features.jsx
+// #region Features Component
 import React from "react";
 import styles from "./Features.module.css";
 
@@ -40,3 +40,4 @@ export default function Features() {
     </section>
   );
 }
+// #endregion

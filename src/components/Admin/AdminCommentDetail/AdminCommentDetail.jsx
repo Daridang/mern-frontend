@@ -30,7 +30,7 @@ export default function AdminCommentDetail() {
         setEditableText(res.data.text || "");
       } catch (err) {
         console.error("Error fetching comment details:", err);
-        setError("Не удалось загрузить данные комментария.");
+        setError("Failed to load comment data.");
       } finally {
         setLoading(false);
       }
@@ -50,45 +50,45 @@ export default function AdminCommentDetail() {
       });
       setComment(res.data.comment);
       setIsEditing(false);
-      alert("Комментарий успешно обновлен!");
+      alert("Comment updated successfully!");
     } catch (err) {
       console.error("Error updating comment:", err);
-      setError("Не удалось обновить комментарий.");
+      setError("Failed to update comment.");
     }
   };
 
   const handleDelete = async () => {
-    if (window.confirm("Вы уверены, что хотите удалить этот комментарий?")) {
+    if (window.confirm("Are you sure you want to delete this comment?")) {
       try {
         await api.delete(`/api/admin/comments/${id}`);
-        alert("Комментарий успешно удален!");
+        alert("Comment deleted successfully!");
         navigate("/admin?tab=comments"); // Go back to comment list after deletion
       } catch (err) {
         console.error("Error deleting comment:", err);
-        setError("Не удалось удалить комментарий.");
+        setError("Failed to delete comment.");
       }
     }
   };
 
   if (loading) {
-    return <div className={styles.loading}>Загрузка комментария...</div>;
+    return <div className={styles.loading}>Loading comment...</div>;
   }
 
   if (error) {
-    return <div className={styles.error}>Ошибка: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   if (!comment) {
-    return <div className={styles.empty}>Комментарий не найден.</div>;
+    return <div className={styles.empty}>Comment not found.</div>;
   }
 
   return (
     <div className={styles.commentDetailContainer}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.heading}>Комментарий ID: {comment._id}</h2>
+          <h2 className={styles.heading}>Comment ID: {comment._id}</h2>
           <button onClick={() => navigate(-1)} className={styles.backButton}>
-            &larr; Назад к списку
+            &larr; Back to list
           </button>
         </div>
 
@@ -98,7 +98,7 @@ export default function AdminCommentDetail() {
             <span className={styles.value}>{comment._id}</span>
           </div>
           <div className={styles.infoItem}>
-            <label className={styles.label}>Автор:</label>
+            <label className={styles.label}>Author:</label>
             {comment.author ? (
               <Link
                 to={`/admin/users/${comment.author._id}`}
@@ -111,7 +111,7 @@ export default function AdminCommentDetail() {
             )}
           </div>
           <div className={styles.infoItem}>
-            <label className={styles.label}>Рецепт:</label>
+            <label className={styles.label}>Recipe:</label>
             {comment.recipe ? (
               <Link
                 to={`/admin/recipes/${comment.recipe._id}`}
@@ -124,7 +124,7 @@ export default function AdminCommentDetail() {
             )}
           </div>
           <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-            <label className={styles.label}>Текст:</label>
+            <label className={styles.label}>Text:</label>
             {isEditing ? (
               <textarea
                 name="text"
@@ -137,17 +137,17 @@ export default function AdminCommentDetail() {
             )}
           </div>
           <div className={styles.infoItem}>
-            <label className={styles.label}>Лайки:</label>
+            <label className={styles.label}>Likes:</label>
             <span className={styles.value}>{comment.likesCount}</span>
           </div>
           <div className={styles.infoItem}>
-            <label className={styles.label}>Дата создания:</label>
+            <label className={styles.label}>Created At:</label>
             <span className={styles.value}>
               {new Date(comment.createdAt).toLocaleDateString()}
             </span>
           </div>
           <div className={styles.infoItem}>
-            <label className={styles.label}>Дата обновления:</label>
+            <label className={styles.label}>Updated At:</label>
             <span className={styles.value}>
               {new Date(comment.updatedAt).toLocaleDateString()}
             </span>
@@ -158,13 +158,13 @@ export default function AdminCommentDetail() {
           {isEditing ? (
             <>
               <button onClick={handleSave} className={styles.saveButton}>
-                Сохранить
+                Save
               </button>
               <button
                 onClick={() => setIsEditing(false)}
                 className={styles.cancelButton}
               >
-                Отмена
+                Cancel
               </button>
             </>
           ) : (
@@ -172,11 +172,11 @@ export default function AdminCommentDetail() {
               onClick={() => setIsEditing(true)}
               className={styles.editButton}
             >
-              Редактировать
+              Edit
             </button>
           )}
           <button onClick={handleDelete} className={styles.deleteButton}>
-            Удалить комментарий
+            Delete Comment
           </button>
         </div>
       </div>

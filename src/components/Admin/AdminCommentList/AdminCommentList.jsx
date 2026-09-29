@@ -1,3 +1,4 @@
+// #region AdminCommentList Component
 import React, { useState, useEffect, useContext } from "react";
 import api from "../../../axiosConfig";
 import styles from "./AdminCommentList.module.css";
@@ -11,8 +12,8 @@ export default function AdminCommentList() {
   const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
   const [currentSearchTerm, setCurrentSearchTerm] = useState("");
-  const [filterAuthorId, setFilterAuthorId] = useState(""); // Optional: filter by author ID
-  const [filterRecipeId, setFilterRecipeId] = useState(""); // Optional: filter by recipe ID
+  const [filterAuthorId, setFilterAuthorId] = useState("");
+  const [filterRecipeId, setFilterRecipeId] = useState("");
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -33,7 +34,7 @@ export default function AdminCommentList() {
         setComments(res.data);
       } catch (err) {
         console.error("Error fetching comments:", err);
-        setError("Не удалось загрузить список комментариев.");
+        setError("Failed to load comment list.");
       } finally {
         setLoading(false);
       }
@@ -43,56 +44,55 @@ export default function AdminCommentList() {
       fetchComments();
     } else {
       setLoading(false);
-      setError("У вас нет прав администратора для доступа к этой странице.");
+      setError("You do not have admin rights to access this page.");
     }
   }, [user, currentSearchTerm, filterAuthorId, filterRecipeId]);
 
-  if (error) return <p className={styles.error}>Ошибка: {error}</p>;
+  if (error) return <p className={styles.error}>Error: {error}</p>;
 
   return (
     <div className={styles.commentListContainer}>
-      <h3 className={styles.subHeading}>Управление комментариями</h3>
+      <h3 className={styles.subHeading}>Manage Comments</h3>
 
       <div className={styles.filters}>
         <SearchInput
           value={currentSearchTerm}
           onChange={setCurrentSearchTerm}
-          placeholder="Поиск по тексту..."
+          placeholder="Search by text..."
           disabled={loading}
         />
-        {/* Optional: Add filters for authorId and recipeId if needed */}
       </div>
 
       <table className={styles.commentTable}>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Текст</th>
-            <th>Автор</th>
-            <th>Рецепт</th>
-            <th>Дата создания</th>
-            <th>Действия</th>
+            <th>Text</th>
+            <th>Author</th>
+            <th>Recipe</th>
+            <th>Created At</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {loading ? (
             <tr>
               <td colSpan="6" className={styles.loadingCell}>
-                Загрузка данных...
+                Loading data...
               </td>
             </tr>
           ) : comments.length > 0 ? (
             comments.map((c) => (
               <tr key={c._id}>
                 <td data-label="ID:">{c._id}</td>
-                <td data-label="Текст:">
+                <td data-label="Text:">
                   <Link to={`/admin/comments/${c._id}`}>
                     {c.text.length > 50
                       ? c.text.substring(0, 50) + "..."
                       : c.text}
                   </Link>
                 </td>
-                <td data-label="Автор:">
+                <td data-label="Author:">
                   {c.author ? (
                     <Link to={`/admin/users/${c.author._id}`}>
                       {c.author.name}
@@ -101,7 +101,7 @@ export default function AdminCommentList() {
                     "N/A"
                   )}
                 </td>
-                <td data-label="Рецепт:">
+                <td data-label="Recipe:">
                   {c.recipe ? (
                     <Link to={`/admin/recipes/${c.recipe._id}`}>
                       {c.recipe.title}
@@ -110,23 +110,23 @@ export default function AdminCommentList() {
                     "N/A"
                   )}
                 </td>
-                <td data-label="Дата создания:">
+                <td data-label="Created At:">
                   {new Date(c.createdAt).toLocaleDateString()}
                 </td>
-                <td data-label="Действия:">
-                  <button className={styles.actionButton}>Редактировать</button>
+                <td data-label="Actions:">
+                  <button className={styles.actionButton}>Edit</button>
                   <button
                     className={`${styles.actionButton} ${styles.deleteButton}`}
                   >
-                    Удалить
+                    Delete
                   </button>
                 </td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="6" className={styles.emptyCell}>
-                Комментарии не найдены.
+              <td colSpan="6" className={styles.loadingCell}>
+                No comments found.
               </td>
             </tr>
           )}
@@ -135,3 +135,4 @@ export default function AdminCommentList() {
     </div>
   );
 }
+// #endregion

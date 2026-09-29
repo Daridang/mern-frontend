@@ -1,3 +1,4 @@
+// #region CommentForm Component
 import React, { useState } from "react";
 import styles from "./CommentForm.module.css";
 
@@ -27,7 +28,7 @@ export default function CommentForm({
       />
       <div className={styles.actions}>
         <button className={styles.button} type="submit">
-          {isReplyForm ? "Ответить" : "Post Comment"}
+          {isReplyForm ? "Reply" : "Post Comment"}
         </button>
         {isReplyForm && (
           <button
@@ -35,10 +36,11 @@ export default function CommentForm({
             type="button"
             onClick={onCancel}
           >
-            Отмена
+            Cancel
           </button>
         )}
       </div>
     </form>
   );
 }
+// #endregion

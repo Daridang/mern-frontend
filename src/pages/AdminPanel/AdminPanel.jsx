@@ -1,3 +1,4 @@
+// #region AdminPanel Component
 import React, { useState, useEffect } from "react";
 import styles from "./AdminPanel.module.css";
 import UserList from "../../components/Admin/UserList/UserList";
@@ -25,25 +26,25 @@ export default function AdminPanel() {
   return (
     <div className={`${styles.adminPanelWrapper} container`}>
       <div className={styles.adminPanel}>
-        <h2 className={styles.heading}>Админ-панель</h2>
+        <h2 className={styles.heading}>Admin Panel</h2>
         <div className={styles.tabs}>
           <button
             className={activeTab === "users" ? styles.activeTab : ""}
             onClick={() => handleTabChange("users")}
           >
-            Пользователи
+            Users
           </button>
           <button
             className={activeTab === "recipes" ? styles.activeTab : ""}
             onClick={() => handleTabChange("recipes")}
           >
-            Рецепты
+            Recipes
           </button>
           <button
             className={activeTab === "comments" ? styles.activeTab : ""}
             onClick={() => handleTabChange("comments")}
           >
-            Комментарии
+            Comments
           </button>
         </div>
 
@@ -56,3 +57,4 @@ export default function AdminPanel() {
     </div>
   );
 }
+// #endregion

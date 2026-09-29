@@ -62,7 +62,7 @@ export default function RecipeDetail() {
       const commentRes = await api.get(`/api/comments/recipe/${id}`);
       setComments(commentRes.data);
     } catch (err) {
-      console.error("Ошибка при добавлении комментария:", err);
+      console.error("Error adding comment:", err);
     }
   };
 
@@ -151,7 +151,7 @@ export default function RecipeDetail() {
   const isAuthor = user && recipe && user.id === recipe.author.id;
   const isGuest = !user || user.id !== recipe?.author?.id;
 
-  // Хук useAuthAction
+  // useAuthAction hook
   function useAuthAction(user, openModal) {
     return useCallback(
       (action) =>
@@ -180,10 +180,10 @@ export default function RecipeDetail() {
           <Link to="/">Home</Link> &gt; <span>{recipe.title}</span>
         </div>
 
-        {/* Заголовок и описание */}
+        {/* Title and description */}
         <TitleSection title={recipe.title} description={recipe.description} />
 
-        {/* Блок: картинка + ингредиенты + автор */}
+        {/* Image + ingredients + author */}
         <div className={styles.topBlock}>
           {recipe.image ? (
             <img
@@ -195,7 +195,7 @@ export default function RecipeDetail() {
             <div className={styles.noImage}>No Image Available</div>
           )}
           <div className={styles.sideInfo}>
-            {/* Автор */}
+            {/* Author */}
             <div className={styles.author}>
               <img
                 src={
@@ -214,9 +214,9 @@ export default function RecipeDetail() {
                 {recipe.author?.name}
               </Link>
             </div>
-            {/* Ингредиенты */}
+            {/* Ingredients */}
             <Ingredients groups={recipe.ingredients.groups} />
-            {/* Кнопки */}
+            {/* Actions */}
             <div className={styles.actions}>
               {isAuthor && (
                 <>
@@ -251,7 +251,7 @@ export default function RecipeDetail() {
           </div>
         </div>
 
-        {/* Описание и остальное */}
+        {/* Details */}
         <MetaInfo
           category={recipe.category}
           yieldInfo={recipe.yield}
@@ -263,8 +263,8 @@ export default function RecipeDetail() {
         <Instructions groups={recipe.instructions.groups} />
         <Extras items={recipe.extras} />
 
-        {/* Комментарии */}
-        <h3>Комментарии</h3>
+        {/* Comments */}
+        <h3>Comments</h3>
         <CommentList
           comments={comments}
           currentUserId={user?.id || null}
@@ -276,7 +276,7 @@ export default function RecipeDetail() {
         {user && (
           <CommentForm
             onSubmit={handleAddCommentAuth}
-            placeholder="Написать комментарий..."
+            placeholder="Write a comment..."
           />
         )}
         {!user && (

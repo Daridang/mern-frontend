@@ -1,3 +1,4 @@
+// #region AdminRecipeDetail Component
 import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../../../axiosConfig";
@@ -21,12 +22,11 @@ export default function AdminRecipeDetail() {
     serving_size: "",
     prep_time: "",
     temperature: "",
-    // Инициализируем полные структуры для редактирования
     ingredients: { groups: [] },
     equipment: [],
     instructions: { groups: [] },
     extras: [],
-    image: "", // Для отображения существующего изображения
+    image: "",
   });
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function AdminRecipeDetail() {
         });
       } catch (err) {
         console.error("Error fetching recipe details:", err);
-        setError("Не удалось загрузить данные рецепта.");
+        setError("Failed to load recipe data.");
       } finally {
         setLoading(false);
       }
@@ -75,7 +75,7 @@ export default function AdminRecipeDetail() {
     }));
   };
 
-  // --- Handlers для Ingredients ---
+  // --- Handlers for Ingredients ---
   const handleAddIngredientGroup = () => {
     setEditableFields((prev) => ({
       ...prev,
@@ -170,7 +170,7 @@ export default function AdminRecipeDetail() {
     });
   };
 
-  // --- Handlers для Equipment ---
+  // --- Handlers for Equipment ---
   const handleAddEquipment = () => {
     setEditableFields((prev) => ({
       ...prev,
@@ -196,7 +196,7 @@ export default function AdminRecipeDetail() {
     });
   };
 
-  // --- Handlers для Instructions ---
+  // --- Handlers for Instructions ---
   const handleAddInstructionGroup = () => {
     setEditableFields((prev) => ({
       ...prev,
@@ -291,7 +291,7 @@ export default function AdminRecipeDetail() {
     });
   };
 
-  // --- Handlers для Extras ---
+  // --- Handlers for Extras ---
   const handleAddExtra = () => {
     setEditableFields((prev) => ({
       ...prev,
@@ -320,7 +320,7 @@ export default function AdminRecipeDetail() {
   const handleSave = async () => {
     try {
       const formData = new FormData();
-      // Добавляем все простые поля
+      // Add all simple fields
       for (const key in editableFields) {
         if (
           typeof editableFields[key] === "string" ||
@@ -330,7 +330,7 @@ export default function AdminRecipeDetail() {
         }
       }
 
-      // Добавляем сложные поля как JSON-строки
+      // Add complex fields as JSON strings
       formData.append(
         "ingredients",
         JSON.stringify(editableFields.ingredients)
@@ -349,61 +349,61 @@ export default function AdminRecipeDetail() {
       });
       setRecipe(res.data.recipe);
       setIsEditing(false);
-      alert("Рецепт успешно обновлен!");
+      alert("Recipe successfully updated!");
     } catch (err) {
       console.error("Error updating recipe:", err);
-      setError("Не удалось обновить рецепт.");
+      setError("Failed to update recipe.");
     }
   };
 
   const handleDelete = async () => {
     if (
       window.confirm(
-        "Вы уверены, что хотите удалить этот рецепт и все связанные с ним данные (комментарии, лайки)?"
+        "Are you sure you want to delete this recipe and all associated data (comments, likes)?"
       )
     ) {
       try {
         await api.delete(`/api/admin/recipes/${id}`);
-        alert("Рецепт успешно удален!");
+        alert("Recipe successfully deleted!");
         navigate("/admin?tab=recipes"); // Go back to recipe list after deletion
       } catch (err) {
         console.error("Error deleting recipe:", err);
-        setError("Не удалось удалить рецепт.");
+        setError("Failed to delete recipe.");
       }
     }
   };
 
   if (loading) {
-    return <div className={styles.loading}>Загрузка рецепта...</div>;
+    return <div className={styles.loading}>Loading recipe...</div>;
   }
 
   if (error) {
-    return <div className={styles.error}>Ошибка: {error}</div>;
+    return <div className={styles.error}>Error: {error}</div>;
   }
 
   if (!recipe) {
-    return <div className={styles.empty}>Рецепт не найден.</div>;
+    return <div className={styles.empty}>Recipe not found.</div>;
   }
 
   return (
     <div className={styles.recipeDetailContainer}>
       <div className="container">
         <div className={styles.header}>
-          <h2 className={styles.heading}>Рецепт: {recipe.title}</h2>
+          <h2 className={styles.heading}>Recipe: {recipe.title}</h2>
           <button onClick={() => navigate(-1)} className={styles.backButton}>
-            &larr; Назад к списку
+            &larr; Back to list
           </button>
           <div className={styles.actions}>
             {isEditing ? (
               <>
                 <button onClick={handleSave} className={styles.saveButton}>
-                  Сохранить
+                  Save
                 </button>
                 <button
                   onClick={() => setIsEditing(false)}
                   className={styles.cancelButton}
                 >
-                  Отмена
+                  Cancel
                 </button>
               </>
             ) : (
@@ -411,11 +411,11 @@ export default function AdminRecipeDetail() {
                 onClick={() => setIsEditing(true)}
                 className={styles.editButton}
               >
-                Редактировать
+                Edit Recipe
               </button>
             )}
             <button onClick={handleDelete} className={styles.deleteButton}>
-              Удалить рецепт
+              Delete Recipe
             </button>
           </div>
         </div>
@@ -429,7 +429,7 @@ export default function AdminRecipeDetail() {
                 className={styles.mainImage}
               />
             ) : (
-              <div className={styles.noImage}>Изображение отсутствует</div>
+              <div className={styles.noImage}>Image not available</div>
             )}
           </div>
           <div className={styles.details}>
@@ -438,7 +438,7 @@ export default function AdminRecipeDetail() {
               <span className={styles.value}>{recipe._id}</span>
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Название:</label>
+              <label className={styles.label}>Title:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -452,7 +452,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Описание:</label>
+              <label className={styles.label}>Description:</label>
               {isEditing ? (
                 <textarea
                   name="description"
@@ -465,7 +465,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Категория:</label>
+              <label className={styles.label}>Category:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -479,7 +479,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Выход:</label>
+              <label className={styles.label}>Yield:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -493,7 +493,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Размер порции:</label>
+              <label className={styles.label}>Serving Size:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -507,7 +507,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Время подготовки:</label>
+              <label className={styles.label}>Prep Time:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -521,7 +521,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem} onClick={() => setIsEditing(true)}>
-              <label className={styles.label}>Температура:</label>
+              <label className={styles.label}>Temperature:</label>
               {isEditing ? (
                 <input
                   type="text"
@@ -535,7 +535,7 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Автор:</label>
+              <label className={styles.label}>Author:</label>
               {recipe.author ? (
                 <span className={styles.value}>{recipe.author.name}</span>
               ) : (
@@ -543,23 +543,23 @@ export default function AdminRecipeDetail() {
               )}
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Дата создания:</label>
+              <label className={styles.label}>Created At:</label>
               <span className={styles.value}>
                 {new Date(recipe.created_at).toLocaleDateString()}
               </span>
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Дата обновления:</label>
+              <label className={styles.label}>Updated At:</label>
               <span className={styles.value}>
                 {new Date(recipe.updated_at).toLocaleDateString()}
               </span>
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Лайки:</label>
+              <label className={styles.label}>Likes:</label>
               <span className={styles.value}>{recipe.likesCount}</span>
             </div>
             <div className={styles.infoItem}>
-              <label className={styles.label}>Комментарии:</label>
+              <label className={styles.label}>Comments:</label>
               <span className={styles.value}>{recipe.commentsCount}</span>
             </div>
           </div>
@@ -567,14 +567,14 @@ export default function AdminRecipeDetail() {
 
         {/* Ingredients Section */}
         <div className={styles.section}>
-          <h3 className={styles.sectionHeading}>Ингредиенты</h3>
+          <h3 className={styles.sectionHeading}>Ingredients</h3>
           {isEditing ? (
             <div className={styles.groupsContainer}>
               {editableFields.ingredients.groups.map((group, grpIdx) => (
                 <div key={grpIdx} className={styles.group}>
                   <input
                     type="text"
-                    placeholder="Название группы (например, Тесто)"
+                    placeholder="Group name (e.g., Dough)"
                     value={group.name}
                     onChange={(e) =>
                       handleIngredientGroupNameChange(grpIdx, e.target.value)
@@ -586,14 +586,14 @@ export default function AdminRecipeDetail() {
                     onClick={() => handleRemoveIngredientGroup(grpIdx)}
                     className={styles.removeGroupBtn}
                   >
-                    Удалить группу
+                    Remove Group
                   </button>
                   <div className={styles.itemsContainer}>
                     {group.items.map((item, itemIdx) => (
                       <div key={itemIdx} className={styles.itemRow}>
                         <input
                           type="text"
-                          placeholder="Ингредиент (например, Мука)"
+                          placeholder="Ingredient (e.g., Flour)"
                           value={item.item}
                           onChange={(e) =>
                             handleIngredientItemChange(
@@ -607,7 +607,7 @@ export default function AdminRecipeDetail() {
                         />
                         <input
                           type="text"
-                          placeholder="Количество (например, 200г)"
+                          placeholder="Amount (e.g., 200g)"
                           value={item.amount}
                           onChange={(e) =>
                             handleIngredientItemChange(
@@ -636,7 +636,7 @@ export default function AdminRecipeDetail() {
                     onClick={() => handleAddIngredientItem(grpIdx)}
                     className={styles.addItemBtn}
                   >
-                    Добавить ингредиент
+                    Add Ingredient
                   </button>
                 </div>
               ))}
@@ -645,7 +645,7 @@ export default function AdminRecipeDetail() {
                 onClick={handleAddIngredientGroup}
                 className={styles.addGroupBtn}
               >
-                Добавить группу ингредиентов
+                Add Ingredient Group
               </button>
             </div>
           ) : editableFields.ingredients?.groups?.length > 0 ? (
@@ -669,13 +669,13 @@ export default function AdminRecipeDetail() {
               ))}
             </div>
           ) : (
-            <p className={styles.noContent}>Ингредиенты не указаны.</p>
+            <p className={styles.noContent}>Ingredients not specified.</p>
           )}
         </div>
 
         {/* Equipment Section */}
         <div className={styles.section}>
-          <h3 className={styles.sectionHeading}>Оборудование</h3>
+          <h3 className={styles.sectionHeading}>Equipment</h3>
           {isEditing ? (
             <div className={styles.listContainer}>
               {editableFields.equipment.map((item, idx) => (
@@ -700,7 +700,7 @@ export default function AdminRecipeDetail() {
                 onClick={handleAddEquipment}
                 className={styles.addItemBtn}
               >
-                Добавить оборудование
+                Add Equipment
               </button>
             </div>
           ) : editableFields.equipment?.length > 0 ? (
@@ -715,20 +715,20 @@ export default function AdminRecipeDetail() {
               ))}
             </ul>
           ) : (
-            <p className={styles.noContent}>Оборудование не указано.</p>
+            <p className={styles.noContent}>Equipment not specified.</p>
           )}
         </div>
 
         {/* Instructions Section */}
         <div className={styles.section}>
-          <h3 className={styles.sectionHeading}>Инструкции</h3>
+          <h3 className={styles.sectionHeading}>Instructions</h3>
           {isEditing ? (
             <div className={styles.groupsContainer}>
               {editableFields.instructions.groups.map((group, grpIdx) => (
                 <div key={grpIdx} className={styles.group}>
                   <input
                     type="text"
-                    placeholder="Название группы (например, Приготовление)"
+                    placeholder="Group name (e.g., Preparation)"
                     value={group.name}
                     onChange={(e) =>
                       handleInstructionGroupNameChange(grpIdx, e.target.value)
@@ -740,13 +740,13 @@ export default function AdminRecipeDetail() {
                     onClick={() => handleRemoveInstructionGroup(grpIdx)}
                     className={styles.removeGroupBtn}
                   >
-                    Удалить группу
+                    Remove Group
                   </button>
                   <div className={styles.itemsContainer}>
                     {group.steps.map((step, stepIdx) => (
                       <div key={stepIdx} className={styles.itemRow}>
                         <textarea
-                          placeholder="Шаг инструкции"
+                          placeholder="Instruction step"
                           value={step}
                           onChange={(e) =>
                             handleStepChange(grpIdx, stepIdx, e.target.value)
@@ -768,7 +768,7 @@ export default function AdminRecipeDetail() {
                     onClick={() => handleAddStep(grpIdx)}
                     className={styles.addItemBtn}
                   >
-                    Добавить шаг
+                    Add Step
                   </button>
                 </div>
               ))}
@@ -777,7 +777,7 @@ export default function AdminRecipeDetail() {
                 onClick={handleAddInstructionGroup}
                 className={styles.addGroupBtn}
               >
-                Добавить группу инструкций
+                Add Instruction Group
               </button>
             </div>
           ) : editableFields.instructions?.groups?.length > 0 ? (
@@ -801,13 +801,13 @@ export default function AdminRecipeDetail() {
               ))}
             </div>
           ) : (
-            <p className={styles.noContent}>Инструкции не указаны.</p>
+            <p className={styles.noContent}>Instructions not specified.</p>
           )}
         </div>
 
         {/* Extras Section */}
         <div className={styles.section}>
-          <h3 className={styles.sectionHeading}>Дополнительно</h3>
+          <h3 className={styles.sectionHeading}>Extras</h3>
           {isEditing ? (
             <div className={styles.listContainer}>
               {editableFields.extras.map((item, idx) => (
@@ -831,7 +831,7 @@ export default function AdminRecipeDetail() {
                 onClick={handleAddExtra}
                 className={styles.addItemBtn}
               >
-                Добавить дополнительную заметку
+                Add Extra Note
               </button>
             </div>
           ) : editableFields.extras?.length > 0 ? (
@@ -846,12 +846,11 @@ export default function AdminRecipeDetail() {
               ))}
             </ul>
           ) : (
-            <p className={styles.noContent}>
-              Дополнительные заметки отсутствуют.
-            </p>
+            <p className={styles.noContent}>No extra notes available.</p>
           )}
         </div>
       </div>
     </div>
   );
 }
+// #endregion

@@ -1,4 +1,4 @@
-// TitleSection.jsx
+// #region TitleSection Component
 import React from "react";
 import styles from "./TitleSection.module.css";
 
@@ -10,3 +10,4 @@ export default function TitleSection({ title, description }) {
     </section>
   );
 }
+// #endregion

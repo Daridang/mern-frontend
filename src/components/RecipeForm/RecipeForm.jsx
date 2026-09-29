@@ -16,7 +16,7 @@ export default function RecipeForm() {
   const navigate = useNavigate();
   const { id: recipeId } = useParams();
 
-  // Основные поля
+  // Main fields
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
@@ -30,20 +30,20 @@ export default function RecipeForm() {
 
   const [error, setError] = useState("");
 
-  // Ингредиенты
+  // Ingredients
   const [ingredientsGroups, setIngredientsGroups] = useState([
     { name: "", items: [{ item: "", amount: "" }] },
   ]);
 
-  // Оборудование
+  // Equipment
   const [equipment, setEquipment] = useState([""]);
 
-  // Инструкции
+  // Instructions
   const [instructionsGroups, setInstructionsGroups] = useState([
     { name: "", steps: [""] },
   ]);
 
-  // Экстры
+  // Extras
   const [extras, setExtras] = useState([""]);
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function RecipeForm() {
     }
   }, [recipeId, navigate]);
 
-  // --- Handlers для Ingredients ---
+  // --- Handlers for Ingredients ---
   const handleAddGroup = () => {
     setIngredientsGroups([
       ...ingredientsGroups,
@@ -119,7 +119,7 @@ export default function RecipeForm() {
     setIngredientsGroups(newG);
   };
 
-  // --- Handlers для Equipment ---
+  // --- Handlers for Equipment ---
   const handleAddEquipment = () => setEquipment([...equipment, ""]);
   const handleRemoveEquipment = (idx) =>
     setEquipment(equipment.filter((_, i) => i !== idx));
@@ -129,7 +129,7 @@ export default function RecipeForm() {
     setEquipment(arr);
   };
 
-  // --- Handlers для Instructions ---
+  // --- Handlers for Instructions ---
   const handleAddInstrGroup = () =>
     setInstructionsGroups([...instructionsGroups, { name: "", steps: [""] }]);
   const handleRemoveInstrGroup = (idx) =>
@@ -155,7 +155,7 @@ export default function RecipeForm() {
     setInstructionsGroups(arr);
   };
 
-  // --- Handlers для Extras ---
+  // --- Handlers for Extras ---
   const handleAddExtra = () => setExtras([...extras, ""]);
   const handleRemoveExtra = (idx) =>
     setExtras(extras.filter((_, i) => i !== idx));
@@ -289,7 +289,7 @@ export default function RecipeForm() {
           className={styles.fillFromJsonBtn}
           onClick={() => document.getElementById("jsonUpload").click()}
         >
-          Заполнить из JSON
+          Fill from JSON
         </button>
 
         <BasicInfo

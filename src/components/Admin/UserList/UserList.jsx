@@ -1,3 +1,4 @@
+// #region UserList Component
 import React, { useState, useEffect, useContext } from "react";
 import api from "../../../axiosConfig";
 import styles from "./UserList.module.css";
@@ -11,7 +12,7 @@ export default function UserList() {
   const [error, setError] = useState("");
   const { user } = useContext(AuthContext);
   const [currentSearchTerm, setCurrentSearchTerm] = useState("");
-  const [filterRole, setFilterRole] = useState(""); // '' for all, 'user', 'admin'
+  const [filterRole, setFilterRole] = useState("");
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -29,7 +30,7 @@ export default function UserList() {
         setUsers(res.data);
       } catch (err) {
         console.error("Error fetching users:", err);
-        setError("Не удалось загрузить список пользователей.");
+        setError("Failed to load user list.");
       } finally {
         setLoading(false);
       }
@@ -39,21 +40,20 @@ export default function UserList() {
       fetchUsers();
     } else {
       setLoading(false);
-      setError("У вас нет прав администратора для доступа к этой странице.");
+      setError("You do not have admin rights to access this page.");
     }
   }, [user, currentSearchTerm, filterRole]);
 
-  if (error) return <p className={styles.error}>Ошибка: {error}</p>;
+  if (error) return <p className={styles.error}>Error: {error}</p>;
 
   return (
     <div className={styles.userListContainer}>
-      <h3 className={styles.subHeading}>Управление пользователями</h3>
-
+      <h3 className={styles.subHeading}>Manage Users</h3>
       <div className={styles.filters}>
         <SearchInput
           value={currentSearchTerm}
           onChange={setCurrentSearchTerm}
-          placeholder="Поиск по имени или email..."
+          placeholder="Search by name or email..."
           disabled={loading}
         />
         <select
@@ -62,52 +62,46 @@ export default function UserList() {
           className={styles.selectInput}
           disabled={loading}
         >
-          <option value="">Все роли</option>
-          <option value="user">Пользователь</option>
-          <option value="admin">Администратор</option>
+          <option value="">All Roles</option>
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
         </select>
       </div>
-
       <table className={styles.userTable}>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Имя</th>
+            <th>Name</th>
             <th>Email</th>
-            <th>Роль</th>
-            <th>Дата регистрации</th>
-            {/* <th>Действия</th> */}
+            <th>Role</th>
+            <th>Registration Date</th>
           </tr>
         </thead>
         <tbody>
           {loading ? (
             <tr>
               <td colSpan="6" className={styles.loadingCell}>
-                Загрузка данных...
+                Loading data...
               </td>
             </tr>
           ) : users.length > 0 ? (
             users.map((u) => (
               <tr key={u.id}>
                 <td data-label="ID:">{u.id}</td>
-                <td data-label="Имя:">
+                <td data-label="Name:">
                   <Link to={`/admin/users/${u._id}`}>{u.name}</Link>
                 </td>
                 <td data-label="Email:">{u.email}</td>
-                <td data-label="Роль:">{u.role}</td>
-                <td data-label="Дата регистрации:">
+                <td data-label="Role:">{u.role}</td>
+                <td data-label="Registration Date:">
                   {new Date(u.createdAt).toLocaleDateString()}
                 </td>
-                {/* <td>
-                  <button>Редактировать</button>
-                  <button>Удалить</button>
-                </td> */}
               </tr>
             ))
           ) : (
             <tr>
               <td colSpan="6" className={styles.emptyCell}>
-                Пользователи не найдены.
+                No users found.
               </td>
             </tr>
           )}
@@ -116,3 +110,4 @@ export default function UserList() {
     </div>
   );
 }
+// #endregion

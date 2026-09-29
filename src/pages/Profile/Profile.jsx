@@ -1,3 +1,4 @@
+// #region ProfilePage Component
 import React, { useContext, useState, useEffect } from "react";
 import api from "../../axiosConfig";
 import { AuthContext } from "../../context/AuthContext";
@@ -41,9 +42,7 @@ export default function Profile() {
       api
         .get(`/api/comments/liked`)
         .then((res) => setLikedComments(res.data))
-        .catch((err) =>
-          console.error("Ошибка при загрузке понравившихся:", err)
-        );
+        .catch((err) => console.error("Error loading liked comments:", err));
     }
   }, [activeTab]);
 
@@ -95,9 +94,9 @@ export default function Profile() {
         prev.map((comment) => (comment._id === commentId ? res.data : comment))
       );
     } catch (err) {
-      console.error("Ошибка при лайке:", err);
+      console.error("Error liking comment:", err);
       throw new Error(
-        err.response?.data?.message || "Нельзя лайкнуть свой комментарий"
+        err.response?.data?.message || "You cannot like your own comment"
       );
     }
   };
@@ -116,7 +115,7 @@ export default function Profile() {
         )
       );
     } catch (err) {
-      console.error("Ошибка при редактировании:", err);
+      console.error("Error editing comment:", err);
     }
   };
 
@@ -126,7 +125,7 @@ export default function Profile() {
       const res = await api.get(`/api/comments/user/${user.id}`);
       setUserComments(res.data);
     } catch (err) {
-      console.error("Ошибка при удалении:", err);
+      console.error("Error deleting comment:", err);
     }
   };
 
@@ -262,19 +261,19 @@ export default function Profile() {
             className={activeTab === "my" ? styles.activeTab : ""}
             onClick={() => handleTabChange("my")}
           >
-            Мои комментарии
+            My Comments
           </button>
           <button
             className={activeTab === "liked" ? styles.activeTab : ""}
             onClick={() => handleTabChange("liked")}
           >
-            Понравившиеся
+            Liked Comments
           </button>
           <button
             className={activeTab === "recipes" ? styles.activeTab : ""}
             onClick={() => handleTabChange("recipes")}
           >
-            Мои рецепты
+            My Recipes
           </button>
         </div>
 
@@ -327,3 +326,4 @@ export default function Profile() {
     </div>
   );
 }
+// #endregion

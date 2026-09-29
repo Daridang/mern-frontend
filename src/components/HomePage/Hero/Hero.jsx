@@ -1,4 +1,4 @@
-// src/components/Hero/Hero.jsx
+// #region Hero Component
 import { useNavigate } from "react-router-dom";
 import { authNavigate } from "../../../utils/authNavigate";
 import React, { useContext } from "react";
@@ -33,3 +33,4 @@ export default function Hero() {
     </section>
   );
 }
+// #endregion
