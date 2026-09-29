@@ -14,7 +14,8 @@
   border-right: 1px solid rgb(1, 89, 122);
 
   position: relative;
-  z-index: 1;
+  /* Above page sections (e.g. Hero, z-index: 1) so the mobile dropdown isn't covered */
+  z-index: 10;
   /* box-shadow: 0 0 2px rgba(72, 219, 251, 0.4); */
 }
 
